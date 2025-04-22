@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Intrepid Flights - Capturing breathtaking perspectives with professional drone photography and videography services.">
+    <title>Intrepid Flights - Aerial Perspectives Redefined</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS Reset & Basic Setup --- */
+        :root {
+            --primary-color: #0a192f; /* Deep Navy */
+            --secondary-color: #1e3a5f; /* Slightly Lighter Navy */
+            --accent-color: #ff6b00; /* Bold Orange */
+            --text-light: #ccd6f6; /* Light Grey/Blue */
+            --text-dark: #8892b0; /* Darker Grey/Blue */
+            --background-light: #ffffff;
+            --background-dark-transparent: rgba(10, 25, 47, 0.85); /* For overlays */
+            --font-primary: 'Poppins', sans-serif;
+            --font-monospace: 'Roboto Mono', monospace;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px; /* Base font size */
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--background-light);
+            color: var(--primary-color);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.2rem; }
+        h3 { font-size: 1.5rem; }
+
+        p {
+            margin-bottom: 1rem;
+            color: #333; /* Darker text for better readability on light bg */
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color var(--transition-speed) ease;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        img, video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            opacity: 0; /* Initially hidden for scroll animation */
+            transform: translateY(30px); /* Start slightly lower */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            will-change: opacity, transform; /* Optimize animation */
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Header & Navigation --- */
+        .main-header {
+            position: fixed; /* Sticky header */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--background-dark-transparent);
+            padding: 15px 0;
+            transition: background-color var(--transition-speed) ease;
+        }
+
+        .main-header.scrolled {
+             background-color: var(--primary-color); /* Darker when scrolled */
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-monospace);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+         .logo span {
+             color: var(--accent-color);
+             /* Optional: Add a subtle animation */
+             display: inline-block;
+             animation: flicker 5s infinite alternate;
+         }
+
+         @keyframes flicker {
+             0%, 18%, 22%, 25%, 53%, 57%, 100% { text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px var(--accent-color), 0 0 80px var(--accent-color), 0 0 90px var(--accent-color), 0 0 100px var(--accent-color), 0 0 150px var(--accent-color); }
+             20%, 24%, 55% { text-shadow: none; }
+         }
+
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .main-nav li {
+            margin-left: 25px;
+        }
+
+        .main-nav a {
+            color: var(--text-light);
+            font-weight: 400;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width var(--transition-speed) ease;
+        }
+
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Styles */
+        .menu-toggle {
+            display: none; /* Hidden by default */
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+        }
+        .menu-toggle .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-light);
+            margin: 5px auto;
+            transition: all 0.3s ease-in-out;
+        }
+
+
+        /* --- Hero Section --- */
+        #hero {
+            min-height: 100vh; /* Full viewport height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden; /* Crucial for video/parallax */
+            padding: 0; /* Override section padding */
+            color: var(--text-light);
+            opacity: 1; /* Hero is visible immediately */
+            transform: none; /* No scroll animation */
+        }
+
+        #hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -2;
+            transform: translateX(-50%) translateY(-50%);
+            /* Optional filter: background: rgba(0,0,0,0.5); */
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 25, 47, 0.6); /* Dark overlay */
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+            position: relative; /* Ensure content is above overlay */
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem; /* Larger hero heading */
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+        .hero-content h1 span { /* Accent word */
+            color: var(--accent-color);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+            font-weight: 300;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+            border: 2px solid var(--accent-color);
+            font-family: var(--font-monospace);
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* --- About Section --- */
+        #about .container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        #about .about-content {
+             flex: 1;
+        }
+         #about .about-image {
+             flex: 1;
+             max-width: 500px; /* Limit image size */
+             border-radius: 8px;
+             overflow: hidden;
+             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+         }
+         #about img {
+             border-radius: 8px;
+             transition: transform 0.5s ease;
+         }
+         #about .about-image:hover img {
+            transform: scale(1.05);
+         }
+
+        /* --- Services Section --- */
+        #services {
+            background-color: #f8f9fa; /* Light grey background */
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-item {
+            background-color: var(--background-light);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem; /* Use icon font or SVG */
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            /* Simple Animation */
+            display: inline-block;
+            transition: transform var(--transition-speed) ease;
+        }
+         /* Example using text for icon placeholder */
+         .service-icon::before {
+            font-family: 'Arial', sans-serif; /* Replace with actual icon font if used */
+            font-weight: bold;
+         }
+        .service-item:hover .service-icon {
+            transform: rotate(10deg) scale(1.1);
+        }
+        .service-item h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        .service-item p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+
+        /* --- Gallery Section --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
+            transition: transform 0.5s ease, filter 0.5s ease;
+            width: 100%; /* Ensure image fills container */
+            height: 100%;
+            object-fit: cover; /* Cover the area without distortion */
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.7);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.7); /* Dark overlay on hover */
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transition: opacity var(--transition-speed) ease;
+            padding: 15px;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h4 {
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--text-light);
+            transform: translateY(10px);
+            transition: transform var(--transition-speed) ease 0.1s;
+        }
+        .gallery-overlay p {
+             font-size: 0.9rem;
+             color: var(--text-light);
+             transform: translateY(10px);
+             transition: transform var(--transition-speed) ease 0.2s;
+             margin-bottom: 0;
+         }
+
+         .gallery-item:hover .gallery-overlay h4,
+         .gallery-item:hover .gallery-overlay p {
+             transform: translateY(0);
+         }
+
+        /* --- Contact Section --- */
+        #contact {
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+        }
+        #contact h2 {
+            color: var(--text-light);
+            text-align: center;
+        }
+        #contact p {
+            color: var(--text-dark);
+            text-align: center;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 30px;
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: 30px auto 0;
+            background: var(--primary-color);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 5px;
+            border: 1px solid var(--secondary-color);
+            background-color: #0e203a; /* Slightly lighter than primary */
+            color: var(--text-light);
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            transition: border-color var(--transition-speed) ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+             display: block;
+             width: 100%;
+             background-color: var(--accent-color);
+             color: var(--primary-color);
+             padding: 15px;
+             border-radius: 5px;
+             border: none;
+             font-weight: 700;
+             text-transform: uppercase;
+             letter-spacing: 1px;
+             cursor: pointer;
+             transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+             font-family: var(--font-monospace);
+             font-size: 1rem;
+         }
+
+         .submit-button:hover {
+             background-color: #ff8533; /* Lighter orange on hover */
+         }
+
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--primary-color);
+            color: var(--text-dark);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-socials a {
+            color: var(--text-dark);
+            margin: 0 10px;
+            font-size: 1.4rem; /* Assumes icon font */
+            transition: color var(--transition-speed) ease;
+        }
+         /* Placeholder text for social icons */
+         .footer-socials a::before { content: attr(data-icon); font-family: Arial, sans-serif; }
+
+        .footer-socials a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-copy {
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* --- Media Queries for Responsiveness --- */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+            .hero-content h1 { font-size: 2.8rem; }
+
+            #about .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            #about .about-image { margin-top: 30px; max-width: 80%; }
+        }
+
+        @media (max-width: 768px) {
+            html { font-size: 15px; } /* Slightly smaller base font */
+
+            .main-nav {
+                 position: absolute;
+                 top: 100%; /* Position below header */
+                 left: 0;
+                 width: 100%;
+                 background-color: var(--primary-color); /* Match scrolled header */
+                 flex-direction: column;
+                 align-items: center;
+                 padding: 20px 0;
+                 display: none; /* Hidden by default */
+                 max-height: 0;
+                 overflow: hidden;
+                 transition: max-height 0.5s ease-out;
+            }
+
+            .main-nav.active {
+                 display: flex;
+                 max-height: 500px; /* Or large enough value */
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+            .main-nav li {
+                margin: 10px 0;
+                margin-left: 0;
+            }
+            .main-nav a::after { display: none; /* Remove underline effect on mobile nav */ }
+
+            .menu-toggle {
+                display: block; /* Show hamburger */
+            }
+
+            /* Adjust hero text size */
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content p { font-size: 1rem; }
+
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+        }
+
+        @media (max-width: 480px) {
+             html { font-size: 14px; }
+             .container { padding: 0 15px; }
+             section { padding: 60px 0; }
+             .hero-content h1 { font-size: 2rem; }
+             .cta-button { padding: 10px 20px; font-size: 0.9rem;}
+             .gallery-grid { grid-template-columns: 1fr; } /* Single column gallery */
+             .contact-form { padding: 25px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="main-header" id="mainHeader">
+        <div class="container">
+            <a href="#hero" class="logo">Intrepid<span>.</span>Flights</a>
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+             <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+                 <span class="bar"></span>
+                 <span class="bar"></span>
+                 <span class="bar"></span>
+             </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <video autoplay muted loop playsinline id="hero-video">
+                 <source src="placeholder-drone-video.mp4" type="video/mp4">
+                 Your browser does not support the video tag.
+                 </video>
+             <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+                <h1>Elevate Your <span>Perspective</span></h1>
+                <p>Stunning aerial photography and cinematic videography that capture the world from breathtaking new heights. Experience Intrepid Flights.</p>
+                <a href="#gallery" class="cta-button">View Our Work</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <div class="about-content">
+                    <h2>About Intrepid Flights</h2>
+                    <p>We are passionate storytellers using the latest drone technology to capture unique and compelling aerial visuals. Based in [Your Location - e.g., Ramsey, MN], we serve clients across various industries, bringing visions to life from a bird's-eye view.</p>
+                    <p>Our mission is to provide high-quality, safe, and innovative drone services, ensuring every shot perfectly aligns with your creative or commercial goals. We are fully licensed and insured, prioritizing safety and professionalism on every flight.</p>
+                    <a href="#contact" class="cta-button" style="background: transparent; color: var(--accent-color); border: 2px solid var(--accent-color);">Get In Touch</a>
+                </div>
+                <div class="about-image">
+                     <img src="https://via.placeholder.com/500x350/cccccc/888888?text=Our+Drone+in+Action" alt="Intrepid Flights Drone">
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <h2 style="text-align: center;">What We Offer</h2>
+                <p style="text-align: center; max-width: 700px; margin: 0 auto 40px;">Tailored aerial solutions to meet your specific needs.</p>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <div class="service-icon">📸</div> <h3>Aerial Photography</h3>
+                        <p>High-resolution photos for real estate, events, marketing, landscapes, and more.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">🎬</div> <h3>Cinematic Videography</h3>
+                        <p>Smooth, dynamic 4K/HD video footage for films, commercials, promotions, and documentaries.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">🗺️</div> <h3>Mapping & Surveying</h3>
+                        <p>Accurate aerial mapping and site surveys for construction, agriculture, and land management.</p>
+                    </div>
+                     <div class="service-item">
+                        <div class="service-icon">🏗️</div> <h3>Inspections</h3>
+                        <p>Safe and efficient inspections of infrastructure, roofs, towers, and other hard-to-reach assets.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <div class="container">
+                <h2 style="text-align: center;">Our Portfolio</h2>
+                <p style="text-align: center; max-width: 700px; margin: 0 auto 40px;">A glimpse into the perspectives we capture.</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300/a2cff5/333333?text=Landscape+View" alt="Aerial Landscape">
+                        <div class="gallery-overlay">
+                            <h4>Mountain Peaks</h4>
+                            <p>Sunrise over the Rockies</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300/f5a9a2/333333?text=Cityscape" alt="Aerial Cityscape">
+                        <div class="gallery-overlay">
+                            <h4>Urban Energy</h4>
+                            <p>Downtown at dusk</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300/a2f5c2/333333?text=Real+Estate" alt="Aerial Real Estate">
+                        <div class="gallery-overlay">
+                            <h4>Luxury Property</h4>
+                            <p>Showcasing estate features</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300/f5e5a2/333333?text=Coastal+Shot" alt="Aerial Coastline">
+                        <div class="gallery-overlay">
+                            <h4>Coastal Beauty</h4>
+                            <p>Waves meeting the shore</p>
+                        </div>
+                    </div>
+                     <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300/c9a2f5/333333?text=Event+Coverage" alt="Aerial Event">
+                        <div class="gallery-overlay">
+                            <h4>Festival Vibes</h4>
+                            <p>Capturing the crowd</p>
+                        </div>
+                    </div>
+                     <div class="gallery-item">
+                        <img src="https://via.placeholder.com/400x300/a2f5f5/333333?text=Nature+Abstract" alt="Aerial Nature Pattern">
+                        <div class="gallery-overlay">
+                            <h4>River Delta</h4>
+                            <p>Nature's intricate patterns</p>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Ready to Take Flight?</h2>
+                <p>Let's discuss your project! Whether you have a clear vision or need creative input, we're here to help you achieve stunning aerial results. Fill out the form below or reach out directly.</p>
+
+                <form class="contact-form" action="submit-form.php" method="POST"> <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Project Details</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-socials">
+                <a href="#" data-icon="FB" aria-label="Facebook"></a>
+                <a href="#" data-icon="IG" aria-label="Instagram"></a>
+                <a href="#" data-icon="YT" aria-label="YouTube"></a>
+                <a href="#" data-icon="LI" aria-label="LinkedIn"></a>
+            </div>
+            <div class="footer-copy">
+                 &copy; <span id="currentYear"></span> Intrepid Flights. All Rights Reserved. | Ramsey, MN
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- JavaScript Enhancements ---
+
+        // 1. Sticky Header Background Change on Scroll
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // 2. Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            // Optional: Animate hamburger icon
+            menuToggle.classList.toggle('open'); // Add CSS for .open state if desired
+        });
+         // Close mobile menu when a link is clicked
+         mainNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                 if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    menuToggle.classList.remove('open');
+                 }
+             });
+         });
+
+
+        // 3. Smooth Scrolling for Anchor Links (Basic implementation)
+        // CSS `scroll-behavior: smooth;` handles this mostly, but JS can enhance or provide fallbacks.
+        // Example: Can add offset for fixed header if needed.
+
+        // 4. Scroll Animations (Fade-in Sections)
+        const sections = document.querySelectorAll('section:not(#hero)'); // Exclude hero
+
+        const observerOptions = {
+            root: null, // relative to viewport
+            rootMargin: '0px',
+            threshold: 0.15 // Trigger when 15% of the section is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Optional: Stop observing once visible to save resources
+                    // observer.unobserve(entry.target);
+                }
+                 // Optional: Remove 'visible' class if element scrolls out of view
+                 // else {
+                 //    entry.target.classList.remove('visible');
+                 // }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // 5. Update Footer Year Dynamically
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // --- Optional Enhancements (Consider adding libraries or more code) ---
+        // - Gallery Lightbox: Clicking a gallery item opens a larger image/video modal.
+        //   (Libraries like Fancybox, Photoswipe, or basic custom modal)
+        // - Parallax Effects: More advanced background scrolling effects.
+        // - Form Validation: More robust client-side checks before submission.
+
+    </script>
+
+</body>
+</html>
