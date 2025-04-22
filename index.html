@@ -730,7 +730,16 @@
                 <h2>Ready to Take Flight?</h2>
                 <p>Let's discuss your project! Whether you have a clear vision or need creative input, we're here to help you achieve stunning aerial results. Fill out the form below or reach out directly.</p>
 
-                <form class="contact-form" action="submit-form.php" method="POST"> <div class="form-group">
+                <form 
+  class="contact-form" 
+  action="https://formsubmit.co/joshstafki@intrepidflights.com" 
+  method="POST"
+>
+  <!-- disable Formsubmit’s built‑in captcha -->
+  <input type="hidden" name="_captcha" value="false">
+  <!-- optionally redirect users after submit -->
+  <input type="hidden" name="_next" value="https://joshstafki.github.io/Intrepid-Flights/thank-you.html">
+ <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
                     </div>
