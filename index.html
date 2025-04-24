@@ -11,6 +11,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
 
+    <script>
+  // Check if the maintenance flag exists
+  fetch('maintenance.flag', { cache: 'no-store' })
+    .then(response => {
+      if (response.ok) {
+        // If the file exists, redirect to the maintenance page
+        window.location.href = 'maintenance.html';
+      }
+    })
+    .catch(error => {
+      // If the file doesn't exist, do nothing
+      console.log("Site live: no maintenance.flag found.");
+    });
+</script>
+
+
     <style>
         /* --- CSS Reset & Basic Setup --- */
         :root {
