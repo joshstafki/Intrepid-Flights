@@ -749,39 +749,49 @@
         </section>
 
         <section id="contact">
-            <div class="container">
-                <h2>Ready to Take Flight?</h2>
-                <p>Let's discuss your project! Whether you have a clear vision or need creative input, we're here to help you achieve stunning aerial results. Fill out the form below or reach out directly.</p>
+    <div class="container">
+        <h2>Ready to Take Flight?</h2>
+        <p>Let's discuss your project! Whether you have a clear vision or need creative input, we're here to help you achieve stunning aerial results. Fill out the form below or reach out directly.</p>
 
-                <form 
-  class="contact-form" 
-  action="https://formsubmit.co/joshstafki@intrepidflights.com" 
-  method="POST"
->
-  <!-- disable Formsubmit’s built‑in captcha -->
-  <input type="hidden" name="_captcha" value="false">
-  <!-- optionally redirect users after submit -->
-  <input type="hidden" name="_next" value="https://joshstafki.github.io/Intrepid-Flights/thank-you.html">
- <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Project Details</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-button">Send Message</button>
-                </form>
+        <form 
+            class="contact-form" 
+            action="https://formsubmit.co/joshstafki@intrepidflights.com" 
+            method="POST"
+        >
+            <!-- disable Formsubmit’s built‑in captcha -->
+            <input type="hidden" name="_captcha" value="false">
+            <!-- enable Google reCAPTCHA -->
+            <input type="hidden" name="_recaptcha" value="true">
+            <!-- optionally redirect users after submit -->
+            <input type="hidden" name="_next" value="https://joshstafki.github.io/Intrepid-Flights/thank-you.html">
+
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
             </div>
-        </section>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject">
+            </div>
+            <div class="form-group">
+                <label for="message">Project Details</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+
+            <!-- reCAPTCHA widget with your real Site Key -->
+            <div class="g-recaptcha" data-sitekey="6LfZfCcrAAAAAOR6iQq63UZmrBOBTgo7wZ7VB1q-"></div>
+
+            <button type="submit" class="submit-button">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<!-- Load the reCAPTCHA script -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     </main>
 
