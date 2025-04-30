@@ -8,6 +8,18 @@
   </style>
 </head>
 <body>
+  <script>
+  const correctUsername = "jstafki";
+  const correctPassword = "Server123!";
+
+  const inputUsername = prompt("Username:");
+  const inputPassword = prompt("Password:");
+
+  if (inputUsername !== correctUsername || inputPassword !== correctPassword) {
+    alert("Access denied. Redirecting to homepage.");
+    window.location.href = "/";
+  }
+</script>
   <h1>Website Monitor</h1>
   <p><strong>Version:</strong> <span id="version">Loading...</span></p>
   <p><strong>Last Modified:</strong> <span id="lastModified">Loading...</span></p>
