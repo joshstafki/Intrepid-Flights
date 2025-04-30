@@ -749,28 +749,24 @@
             </div>
         </section>
 
-        <<section id="contact">
+        <section id="contact">
   <div class="container">
     <h2>Ready to Take Flight?</h2>
     <p>Let's discuss your project! Whether you have a clear vision or need creative input, we're here to help you achieve stunning aerial results. Fill out the form below or reach out directly.</p>
 
     <form 
       class="contact-form" 
-      action="https://formsubmit.co/joshstafki@intrepidflights.com" 
+      action="https://usebasin.com/f/01c1a45bc324" 
       method="POST"
     >
-      <!-- Disable Formsubmit’s built-in captcha -->
-      <input type="hidden" name="_captcha" value="false">
-      <!-- Redirect users after submit -->
-      <input type="hidden" name="_next" value="https://joshstafki.github.io/Intrepid-Flights/thank-you.html">
-      <!-- Require these fields (including honeypot) -->
-      <input type="hidden" name="_required" value="name,email,message,honeypot">
-      
-      <!-- Honeypot field (invisible) -->
+      <!-- Spam protection honeypot -->
       <div style="display:none;">
         <label for="honeypot">Leave this field empty</label>
         <input type="text" id="honeypot" name="honeypot">
       </div>
+
+      <!-- Redirect after submit -->
+      <input type="hidden" name="_redirect" value="https://joshstafki.github.io/Intrepid-Flights/thank-you.html">
 
       <div class="form-group">
         <label for="name">Name</label>
@@ -796,17 +792,6 @@
     </form>
   </div>
 </section>
-
-<!-- Honeypot Check JavaScript -->
-<script>
-const form = document.querySelector('.contact-form');
-form.addEventListener('submit', function (e) {
-  if (document.getElementById('if_this_field_is_filled_then_its_spam').value !== '') {
-    e.preventDefault(); // Stop form submission
-    console.log('Spam detected! Form blocked.');
-  }
-});
-</script>
 
 <!-- Load the reCAPTCHA script -->
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
