@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Site Monitor - Intrepid Fights</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 2rem auto; }
+    code { white-space: pre-wrap; background: #f4f4f4; display: block; padding: 1em; }
+  </style>
+</head>
+<body>
+  <h1>Website Monitor</h1>
+  <p><strong>Version:</strong> <span id="version">Loading...</span></p>
+  <p><strong>Last Modified:</strong> <span id="lastModified">Loading...</span></p>
+  <p><strong>Status:</strong> <span id="status">Checking...</span></p>
+
+  <h2>Original Code Snapshot</h2>
+  <code id="originalCodeDisplay"></code>
+
+  <h2>Current index.html Snapshot</h2>
+  <code id="currentCodeDisplay"></code>
+
+  <script>
+    // Paste your "original code" snapshot here
+    const originalCode = `
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Intrepid Fights</title>
+</head>
+<body>
+  <h1>Welcome to Intrepid Fights</h1>
+  <p>This is the original version of the site.</p>
+</body>
+</html>
+`.trim();
+
+    document.getElementById('originalCodeDisplay').textContent = originalCode;
+
+    fetch('/index.html')
+      .then(response => {
+        document.getElementById('lastModified').textContent = response.headers.get('last-modified');
+        return response.text();
+      })
+      .then(currentHTML => {
+        const versionMatch = currentHTML.match(/<!--\s*version:\s*(\d+\.\d+)\s*-->/i);
+        if (versionMatch) {
+          document.getElementById('version').textContent = versionMatch[1];
+        } else {
+          document.getElementById('version').textContent = 'Unknown';
+        }
+
+        const currentTrimmed = currentHTML.trim();
+        document.getElementById('currentCodeDisplay').textContent = currentTrimmed;
+
+        if (currentTrimmed === originalCode) {
+          document.getElementById('status').textContent = 'No changes detected.';
+        } else {
+          document.getElementById('status').textContent = 'CHANGES DETECTED!';
+          document.getElementById('status').style.color = 'red';
+        }
+      })
+      .catch(err => {
+        console.error('Fetch error:', err);
+        document.getElementById('status').textContent = 'Error fetching index.html';
+      });
+  </script>
+</body>
+</html>
