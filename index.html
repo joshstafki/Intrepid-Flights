@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTREPID FLIGHTS | Cinematic Aerial Imaging</title>
+    <meta name="description" content="Premier drone photography and cinematography based in Ramsey, MN. FAA Part 107 Certified.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'intrepid-dark': '#0f172a', // Slate 900
+                        'intrepid-black': '#020617', // Slate 950
+                        'intrepid-accent': '#f59e0b', // Amber 500 (Aviation Orange)
+                        'intrepid-text': '#f8fafc', // Slate 50
+                        'intrepid-muted': '#94a3b8', // Slate 400
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif'],
+                    },
+                    animation: {
+                        'marquee': 'marquee 25s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Cursor Styles */
+        body {
+            cursor: none; /* Hide default cursor */
+        }
+       .cursor-dot,
+       .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+       .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #f59e0b;
+        }
+       .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(245, 158, 11, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        /* Hide scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+    </style>
+</head>
+<body class="bg-intrepid-dark text-intrepid-text overflow-x-hidden selection:bg-intrepid-accent selection:text-intrepid-black">
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <nav class="fixed w-full z-50 top-0 left-0 border-b border-white/10 backdrop-blur-md bg-intrepid-dark/70">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="#" class="font-display font-bold text-2xl tracking-widest hover:text-intrepid-accent transition-colors duration-300">INTREPID<span class="text-intrepid-accent">.</span></a>
+            
+            <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+                <a href="#work" class="hover:text-intrepid-accent transition-colors">WORK</a>
+                <a href="#services" class="hover:text-intrepid-accent transition-colors">SERVICES</a>
+                <a href="#safety" class="hover:text-intrepid-accent transition-colors">SAFETY</a>
+                <a href="#journal" class="hover:text-intrepid-accent transition-colors">JOURNAL</a>
+            </div>
+
+            <a href="#contact" class="hidden md:block border border-intrepid-accent text-intrepid-accent px-6 py-2 text-sm font-bold tracking-wider hover:bg-intrepid-accent hover:text-intrepid-black transition-all duration-300">
+                START PROJECT
+            </a>
+
+            <button class="md:hidden text-intrepid-text focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <header class="relative w-full h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+             <video class="w-full h-full object-cover opacity-60" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=2070&auto=format&fit=crop">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-flying-over-a-forest-covered-in-snow-42656-large.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-t from-intrepid-dark via-transparent to-black/40"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 animate-float">
+            <p class="text-intrepid-accent font-mono text-xs md:text-sm tracking-[0.3em] mb-4">AERIAL INTELLIGENCE / RAMSEY, MN</p>
+            <h1 class="font-display font-bold text-6xl md:text-8xl lg:text-9xl tracking-tighter leading-none mb-6">
+                BEYOND<br>THE HORIZON
+            </h1>
+            <p class="text-intrepid-muted max-w-xl mx-auto text-sm md:text-base leading-relaxed mb-10">
+                Merging cinematic artistry with industrial precision. We provide FAA-certified drone solutions for those who demand a higher perspective.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#work" class="bg-intrepid-text text-intrepid-black px-8 py-4 font-bold tracking-wider hover:bg-intrepid-accent transition-colors duration-300">
+                    VIEW PORTFOLIO
+                </a>
+                <a href="#contact" class="border border-white/20 backdrop-blur-sm px-8 py-4 font-bold tracking-wider hover:border-intrepid-accent hover:text-intrepid-accent transition-colors duration-300">
+                    GET QUOTE
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+            <span class="text-[10px] tracking-widest uppercase writing-vertical">Scroll</span>
+            <div class="w-[1px] h-12 bg-gradient-to-b from-intrepid-accent to-transparent"></div>
+        </div>
+    </header>
+
+    <div class="w-full bg-intrepid-accent overflow-hidden py-4">
+        <div class="whitespace-nowrap animate-marquee flex gap-8">
+            <span class="text-intrepid-black font-display font-bold text-4xl uppercase">Cinematography • Inspection • Thermography • FPV • Mapping •</span>
+            <span class="text-intrepid-black font-display font-bold text-4xl uppercase">Cinematography • Inspection • Thermography • FPV • Mapping •</span>
+            <span class="text-intrepid-black font-display font-bold text-4xl uppercase">Cinematography • Inspection • Thermography • FPV • Mapping •</span>
+             <span class="text-intrepid-black font-display font-bold text-4xl uppercase">Cinematography • Inspection • Thermography • FPV • Mapping •</span>
+        </div>
+    </div>
+
+    <section id="work" class="py-24 px-6 bg-intrepid-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold mb-4">SELECTED WORKS</h2>
+                    <div class="h-1 w-20 bg-intrepid-accent"></div>
+                </div>
+                <a href="#" class="hidden md:flex items-center gap-2 text-sm font-medium hover:text-intrepid-accent transition-colors">
+                    FULL ARCHIVE <span class="text-lg">→</span>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-3 gap-4 h-[1200px] md:h-[800px]">
+                
+                <div class="group relative col-span-1 md:col-span-2 md:row-span-2 overflow-hidden bg-gray-800 rounded-sm cursor-none portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?q=80&w=1000&auto=format&fit=crop" alt="Nature" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <span class="text-intrepid-accent text-xs font-mono tracking-widest mb-1 block">DESTINATION</span>
+                        <h3 class="font-display text-2xl font-bold">CROSS RIVER FALLS</h3>
+                    </div>
+                </div>
+
+                <div class="group relative col-span-1 md:col-span-1 md:row-span-2 overflow-hidden bg-gray-800 rounded-sm portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1527977966376-1c8408f9f108?q=80&w=800&auto=format&fit=crop" alt="City" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute bottom-6 left-6">
+                         <span class="text-intrepid-accent text-xs font-mono tracking-widest mb-1 block">URBAN</span>
+                        <h3 class="font-display text-2xl font-bold">TWIN CITIES</h3>
+                    </div>
+                </div>
+
+                <div class="group relative col-span-1 md:col-span-1 md:row-span-1 overflow-hidden bg-gray-800 rounded-sm portfolio-item">
+                     <img src="https://images.unsplash.com/photo-1579965342575-16428a7c8d71?q=80&w=800&auto=format&fit=crop" alt="Detail" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                     <div class="absolute bottom-6 left-6">
+                        <h3 class="font-display text-xl font-bold">FPV CHASE</h3>
+                    </div>
+                </div>
+
+                 <div class="col-span-1 md:col-span-1 md:row-span-1 bg-white/5 p-8 flex flex-col justify-center border border-white/10 rounded-sm hover:border-intrepid-accent transition-colors duration-300">
+                    <p class="text-4xl font-display font-bold text-intrepid-accent mb-2">500+</p>
+                    <p class="text-sm text-intrepid-muted uppercase tracking-widest">Flight Hours Logged</p>
+                    <div class="mt-4 h-[1px] w-full bg-white/10"></div>
+                    <p class="text-xs text-intrepid-muted mt-4">Zero Safety Incidents</p>
+                </div>
+
+                <div class="group relative col-span-1 md:col-span-3 md:row-span-1 overflow-hidden bg-gray-800 rounded-sm portfolio-item">
+                     <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=1200&auto=format&fit=crop" alt="Landscape" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                     <div class="absolute bottom-6 left-6">
+                        <span class="text-intrepid-accent text-xs font-mono tracking-widest mb-1 block">COMMERCIAL</span>
+                        <h3 class="font-display text-2xl font-bold">NORDIC DEVELOPMENT</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 px-6 bg-intrepid-dark relative">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+            
+            <div>
+                <h2 class="font-display text-3xl font-bold mb-8">CAPABILITIES</h2>
+                <div class="space-y-6">
+                    <div class="group border-b border-white/10 pb-6 cursor-pointer">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-xl font-bold group-hover:text-intrepid-accent transition-colors">Cinematic Real Estate</h3>
+                            <span class="opacity-0 group-hover:opacity-100 text-intrepid-accent transition-opacity">→</span>
+                        </div>
+                        <p class="text-intrepid-muted text-sm max-w-md">Ultra-HD interior/exterior tours for luxury listings. Showcase the lifestyle, not just the property.</p>
+                    </div>
+                    <div class="group border-b border-white/10 pb-6 cursor-pointer">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-xl font-bold group-hover:text-intrepid-accent transition-colors">Construction Progression</h3>
+                             <span class="opacity-0 group-hover:opacity-100 text-intrepid-accent transition-opacity">→</span>
+                        </div>
+                        <p class="text-intrepid-muted text-sm max-w-md">Orthomosaic mapping and time-lapse monitoring for development sites. Precise data for project managers.</p>
+                    </div>
+                     <div class="group border-b border-white/10 pb-6 cursor-pointer">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-xl font-bold group-hover:text-intrepid-accent transition-colors">Event Coverage (FPV)</h3>
+                             <span class="opacity-0 group-hover:opacity-100 text-intrepid-accent transition-opacity">→</span>
+                        </div>
+                        <p class="text-intrepid-muted text-sm max-w-md">Dynamic First-Person-View flying for festivals, automotive events, and sports. High energy, high impact.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="safety" class="bg-white/5 p-10 border border-white/10 rounded-sm">
+                <div class="flex items-start gap-4 mb-6">
+                    <div class="bg-intrepid-accent/20 p-3 rounded-full">
+                        <svg class="w-6 h-6 text-intrepid-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-xl font-bold mb-1">OPERATIONAL COMPLIANCE</h3>
+                        <p class="text-xs font-mono text-intrepid-accent">FAA PART 107 CERTIFIED</p>
+                    </div>
+                </div>
+                <p class="text-intrepid-muted text-sm leading-relaxed mb-6">
+                    Aerial operations in Minnesota require strict adherence to FAA regulations and local ordinances. Intrepid Flights manages the entire compliance workflow:
+                </p>
+                <ul class="text-sm text-intrepid-text space-y-3 font-mono">
+                    <li class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 bg-intrepid-accent rounded-full"></span>
+                        Ramsey County Park Permits
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 bg-intrepid-accent rounded-full"></span>
+                        LAANC Airspace Authorization (Anoka/MSP)
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 bg-intrepid-accent rounded-full"></span>
+                        $1M - $5M Liability Insurance
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 bg-intrepid-accent rounded-full"></span>
+                        Pre-flight Risk Assessment
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="journal" class="py-24 px-6 bg-intrepid-black border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-between mb-12">
+                <h2 class="font-display text-3xl font-bold">FROM THE FLIGHT LOG</h2>
+                <a href="https://linkedin.com" target="_blank" class="text-intrepid-accent text-sm font-bold tracking-wider hover:text-white transition-colors">
+                    CONNECT ON LINKEDIN
+                </a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <article class="bg-gray-900 border border-white/5 hover:border-intrepid-accent transition-colors group p-6">
+                    <div class="text-xs text-intrepid-muted mb-4 font-mono">OCT 24, 2025</div>
+                    <h3 class="font-bold text-lg mb-4 leading-tight group-hover:text-intrepid-accent transition-colors">Navigating Winter Ops: Battery Management in -10° Weather</h3>
+                    <p class="text-sm text-intrepid-muted mb-4 line-clamp-3">
+                        Minnesota winters are brutal on LiPo batteries. Here is our protocol for pre-heating packs and ensuring safe flight times when the temp drops below zero...
+                    </p>
+                    <span class="text-xs font-bold tracking-widest text-intrepid-text">READ MORE →</span>
+                </article>
+                
+                 <article class="bg-gray-900 border border-white/5 hover:border-intrepid-accent transition-colors group p-6">
+                    <div class="text-xs text-intrepid-muted mb-4 font-mono">SEP 12, 2025</div>
+                    <h3 class="font-bold text-lg mb-4 leading-tight group-hover:text-intrepid-accent transition-colors">Project Spotlight: The New Nordic Center</h3>
+                    <p class="text-sm text-intrepid-muted mb-4 line-clamp-3">
+                        We deployed the Mavic 3 Cine to capture the final structural framing of the Nordic Center. The lighting at 6:45 AM provided the perfect...
+                    </p>
+                    <span class="text-xs font-bold tracking-widest text-intrepid-text">READ MORE →</span>
+                </article>
+
+                 <article class="bg-gray-900 border border-white/5 hover:border-intrepid-accent transition-colors group p-6">
+                    <div class="text-xs text-intrepid-muted mb-4 font-mono">AUG 01, 2025</div>
+                    <h3 class="font-bold text-lg mb-4 leading-tight group-hover:text-intrepid-accent transition-colors">Why FPV is Changing Real Estate Marketing</h3>
+                    <p class="text-sm text-intrepid-muted mb-4 line-clamp-3">
+                        Static shots are dead. Buyers want to feel the flow of the home. Watch how we flew THROUGH the front door and out to the patio in one take...
+                    </p>
+                    <span class="text-xs font-bold tracking-widest text-intrepid-text">READ MORE →</span>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-intrepid-dark border-t border-white/10 py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <h4 class="font-display font-bold text-2xl tracking-widest mb-2">INTREPID<span class="text-intrepid-accent">.</span></h4>
+                <p class="text-xs text-intrepid-muted font-mono">RAMSEY, MN • EST. 2020</p>
+            </div>
+            
+            <div class="flex gap-6 text-sm font-medium">
+                <a href="#" class="hover:text-intrepid-accent transition-colors">Instagram</a>
+                <a href="#" class="hover:text-intrepid-accent transition-colors">LinkedIn</a>
+                <a href="#" class="hover:text-intrepid-accent transition-colors">Vimeo</a>
+            </div>
+
+            <div class="text-center md:text-right">
+                <p class="text-xs text-intrepid-muted font-mono mb-1">FAA PART 107 CERTIFIED PILOTS</p>
+                <p class="text-[10px] text-intrepid-muted/50">© 2025 INTREPID FLIGHTS. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor Logic
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            // Dot follows instantly
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // Outline follows with slight delay (handled by CSS transition, we just set position)
+            // Using animate to make it smoother and less "laggy"
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Hover Magnetic Effect for Links & Buttons
+        const interactiveElements = document.querySelectorAll('a, button,.portfolio-item');
+
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOutline.style.width = '60px';
+                cursorOutline.style.height = '60px';
+                cursorOutline.style.backgroundColor = 'rgba(245, 158, 11, 0.1)';
+            });
+
+            el.addEventListener('mouseleave', () => {
+                cursorOutline.style.width = '40px';
+                cursorOutline.style.height = '40px';
+                cursorOutline.style.backgroundColor = 'transparent';
+            });
+        });
+
+        // Simple Reveal on Scroll (Intersection Observer)
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section h2, section p,.portfolio-item').forEach(el => {
+            el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
