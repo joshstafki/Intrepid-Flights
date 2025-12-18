@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/joshstafki/Intrepid-Flights/main/favicon.jpg">
 
-    
     <style>
         * {
             margin: 0;
@@ -98,7 +97,7 @@
             font-size: 0.8rem;
             margin-right: 15px;
             color: #666;
-            transform: rotate(-45deg); /* Airplane taking off */
+            transform: rotate(-45deg);
         }
 
         /* FOOTER SECTION */
@@ -154,8 +153,9 @@
             background-position: center;
             position: relative;
             display: flex;
-            align-items: center;
-            padding-left: 60px;
+            align-items: flex-end; /* Aligns content to the bottom */
+            padding-left: 40px;    /* Tighter to the left edge */
+            padding-bottom: 40px;  /* Tighter to the bottom edge */
         }
 
         /* PRECISION TEXT EFFECT */
@@ -181,8 +181,8 @@
         /* SUBTLE IMAGE ATTRIBUTION */
         .image-location {
             position: absolute;
-            bottom: 30px;
-            right: 40px;
+            bottom: 20px;
+            right: 30px;
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -194,7 +194,7 @@
         @media (max-width: 900px) {
             .container { flex-direction: column; overflow-y: auto; }
             .sidebar { width: 100%; height: auto; padding: 40px 30px; }
-            .hero-view { height: 500px; flex-grow: 0; padding-left: 30px; }
+            .hero-view { height: 500px; flex-grow: 0; padding-left: 30px; padding-bottom: 30px; }
             .precision-overlay h2 { font-size: 2.5rem; }
         }
     </style>
