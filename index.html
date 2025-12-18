@@ -19,16 +19,18 @@
             font-family: 'Inter', sans-serif;
             background-color: #121212;
             color: #ffffff;
-            overflow: hidden;
+            /* Desktop prevents scroll, Mobile allows it */
+            overflow: hidden; 
         }
 
         .container {
             display: flex;
             height: 100vh;
             width: 100vw;
+            flex-direction: row;
         }
 
-        /* SIDEBAR STYLES */
+        /* SIDEBAR / HEADER STYLES */
         .sidebar {
             width: 350px;
             background-color: #1a1a1a;
@@ -38,6 +40,7 @@
             padding: 50px 45px;
             border-right: 1px solid #2a2a2a;
             z-index: 10;
+            flex-shrink: 0;
         }
 
         .header-section h1 {
@@ -65,11 +68,6 @@
             margin-bottom: 40px;
         }
 
-        /* SERVICES SECTION */
-        .services-menu {
-            margin: 40px 0;
-        }
-
         .services-menu h3 {
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -80,9 +78,7 @@
             padding-bottom: 8px;
         }
 
-        .service-list {
-            list-style: none;
-        }
+        .service-list { list-style: none; }
 
         .service-item {
             display: flex;
@@ -100,11 +96,7 @@
             transform: rotate(-45deg);
         }
 
-        /* FOOTER SECTION */
-        .contact-box {
-            margin-top: auto;
-        }
-
+        /* CONTACT & SOCIAL */
         .contact-label {
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -114,51 +106,28 @@
             display: block;
         }
 
-        .contact-details p {
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-        }
+        .contact-details p { font-size: 0.9rem; margin-bottom: 8px; }
+        .contact-details a { color: #bbb; text-decoration: none; transition: 0.3s; }
+        .contact-details a:hover { color: #fff; }
 
-        .contact-details a {
-            color: #bbb;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
+        .social-links { display: flex; gap: 18px; margin-top: 25px; }
+        .social-links a { color: #444; transition: 0.3s; }
+        .social-links a:hover { color: #fff; }
 
-        .contact-details a:hover {
-            color: #fff;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 18px;
-            margin-top: 25px;
-        }
-
-        .social-links a {
-            color: #444;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: #fff;
-        }
-
-        /* MAIN HERO VIEW */
+        /* HERO VIEW */
         .hero-view {
             flex-grow: 1;
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), 
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), 
                         url('https://raw.githubusercontent.com/joshstafki/Intrepid-Flights/main/cancun.jpg');
             background-size: cover;
             background-position: center;
             position: relative;
             display: flex;
-            align-items: flex-end; /* Aligns content to the bottom */
-            padding-left: 40px;    /* Tighter to the left edge */
-            padding-bottom: 40px;  /* Tighter to the bottom edge */
+            align-items: flex-end; 
+            padding-left: 40px;
+            padding-bottom: 40px;
         }
 
-        /* PRECISION TEXT EFFECT */
         .precision-overlay h2 {
             font-size: 4.5rem;
             font-weight: 700;
@@ -172,13 +141,9 @@
         }
 
         @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* SUBTLE IMAGE ATTRIBUTION */
         .image-location {
             position: absolute;
             bottom: 20px;
@@ -190,12 +155,40 @@
             font-weight: 300;
         }
 
-        /* RESPONSIVE */
+        /* --- MOBILE RESPONSIVE QUERIES --- */
         @media (max-width: 900px) {
-            .container { flex-direction: column; overflow-y: auto; }
-            .sidebar { width: 100%; height: auto; padding: 40px 30px; }
-            .hero-view { height: 500px; flex-grow: 0; padding-left: 30px; padding-bottom: 30px; }
-            .precision-overlay h2 { font-size: 2.5rem; }
+            body {
+                overflow-y: auto; /* Allow scrolling on mobile */
+            }
+
+            .container {
+                flex-direction: column; /* Stack sidebar on top of image */
+                height: auto;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding: 40px 30px;
+                border-right: none;
+                border-bottom: 1px solid #2a2a2a;
+            }
+
+            .hero-view {
+                height: 70vh; /* Set a specific height for the image on mobile */
+                padding-left: 20px;
+                padding-bottom: 30px;
+            }
+
+            .precision-overlay h2 {
+                font-size: 2.2rem; /* Much smaller for mobile screens */
+                letter-spacing: -1px;
+            }
+
+            .image-location {
+                font-size: 0.6rem;
+                bottom: 15px;
+                right: 20px;
+            }
         }
     </style>
 </head>
@@ -231,8 +224,8 @@
 
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.linkedin.com/company/intrepid-flights-drone-photography"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://www.instagram.com/intrepid.flights?igsh=ZW11Zzd1OW13NnR3&utm_source=qr"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/intrepid-flights-drone-photography" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/intrepid.flights?igsh=ZW11Zzd1OW13NnR3&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </aside>
