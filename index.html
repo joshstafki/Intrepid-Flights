@@ -14,9 +14,10 @@
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "upp0ioykui");
-</script>
+    </script>
 
     <style>
+        /* --- GLOBAL & DESKTOP STYLES --- */
         * {
             margin: 0;
             padding: 0;
@@ -27,8 +28,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #121212;
             color: #ffffff;
-            /* Desktop prevents scroll, Mobile allows it */
-            overflow: hidden; 
+            overflow: hidden; /* Prevent desktop scroll */
         }
 
         .container {
@@ -38,7 +38,6 @@
             flex-direction: row;
         }
 
-        /* SIDEBAR / HEADER STYLES */
         .sidebar {
             width: 350px;
             background-color: #1a1a1a;
@@ -104,7 +103,6 @@
             transform: rotate(-45deg);
         }
 
-        /* CONTACT & SOCIAL */
         .contact-label {
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -122,10 +120,9 @@
         .social-links a { color: #444; transition: 0.3s; }
         .social-links a:hover { color: #fff; }
 
-        /* HERO VIEW */
         .hero-view {
             flex-grow: 1;
-            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), 
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
                         url('https://raw.githubusercontent.com/joshstafki/Intrepid-Flights/main/cancun.jpg');
             background-size: cover;
             background-position: center;
@@ -163,39 +160,56 @@
             font-weight: 300;
         }
 
-        /* --- MOBILE RESPONSIVE QUERIES --- */
+        /* --- MOBILE-ONLY OVERRIDES (< 900px) --- */
         @media (max-width: 900px) {
             body {
-                overflow-y: auto; /* Allow scrolling on mobile */
+                overflow-y: auto; /* Enable scrolling */
             }
 
             .container {
-                flex-direction: column; /* Stack sidebar on top of image */
+                flex-direction: column;
                 height: auto;
+                min-height: 100dvh; /* Dynamic height for mobile browsers */
             }
 
             .sidebar {
                 width: 100%;
                 padding: 40px 30px;
                 border-right: none;
-                border-bottom: 1px solid #2a2a2a;
+                order: 2; /* Content goes under image on mobile */
+                background-color: #121212;
             }
 
             .hero-view {
-                height: 70vh; /* Set a specific height for the image on mobile */
-                padding-left: 20px;
-                padding-bottom: 30px;
+                height: 55vh; /* Hero image takes up top half */
+                width: 100%;
+                order: 1;
+                padding-left: 25px;
+                padding-bottom: 25px;
+                background-attachment: scroll;
             }
 
             .precision-overlay h2 {
-                font-size: 2.2rem; /* Much smaller for mobile screens */
+                font-size: clamp(2rem, 10vw, 3rem); /* Responsive scaling font */
                 letter-spacing: -1px;
+                line-height: 1.1;
             }
 
             .image-location {
                 font-size: 0.6rem;
-                bottom: 15px;
-                right: 20px;
+                bottom: 10px;
+                right: 15px;
+            }
+
+            /* Stack services in a grid for mobile readability */
+            .service-list {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+
+            .service-item {
+                margin-bottom: 12px;
             }
         }
     </style>
@@ -231,7 +245,7 @@
                 </div>
 
                 <div class="social-links">
-                    <a href="https://x.com/intrepidflights?s=21"><i class="fab fa-x"></i></a>
+                    <a href="https://x.com/intrepidflights?s=21"><i class="fab fa-x-twitter"></i></a>
                     <a href="https://www.linkedin.com/company/intrepid-flights-drone-photography" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                     <a href="https://www.instagram.com/intrepid.flights?igsh=ZW11Zzd1OW13NnR3&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
                 </div>
