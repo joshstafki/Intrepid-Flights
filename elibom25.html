@@ -3,35 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Intrepid Flights | Mobile Precision</title>
+    <title>Intrepid Flights | Scroll Precision</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
-        /* --- 1. RESET & VARS --- */
         :root {
-            --bg-dark: #121212; /* Matches your dark sidebar */
+            --bg-dark: #121212;
             --text-white: #ffffff;
             --text-mute: #888888;
             --accent: #ffffff; 
-            --drawer-height: 85dvh;
-            --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
-            background-color: var(--bg-dark);
+            background-color: #000;
             color: var(--text-white);
             font-family: 'Inter', sans-serif;
-            overflow: hidden; /* No body scroll, we handle it internally */
-            height: 100dvh;
-            width: 100vw;
+            overflow-x: hidden;
         }
 
-        /* --- 2. DESKTOP LOCKOUT (Minimalist) --- */
+        /* --- 1. DESKTOP LOCKOUT --- */
         #desktop-lockout {
             display: none;
             position: fixed; inset: 0;
@@ -44,41 +39,35 @@
             main { display: none; }
         }
 
-        /* --- 3. THE VIEWFINDER (Background Image) --- */
-        .viewfinder {
+        /* --- 2. FIXED BACKGROUND (The Viewfinder) --- */
+        .fixed-bg {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1;
-            /* The image from your reference or similar */
-            background-image: url('https://images.unsplash.com/photo-1533575975459-d88cc2f718f4?q=80&w=2670&auto=format&fit=crop'); 
+            top: 0; left: 0; width: 100%; height: 100vh;
+            z-index: 0;
+            background-image: url('https://images.unsplash.com/photo-1533575975459-d88cc2f718f4?q=80&w=2670&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
-            transition: transform 0.8s var(--transition-smooth), filter 0.8s var(--transition-smooth);
+            filter: brightness(0.8);
         }
 
-        /* Gradient overlay for text readability */
-        .viewfinder::after {
+        /* Gradient to make text pop */
+        .fixed-bg::after {
             content: ''; position: absolute; inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%);
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(18,18,18,1) 100%);
         }
 
-        /* When drawer is open, image recedes slightly */
-        body.drawer-open .viewfinder {
-            transform: scale(0.95);
-            filter: blur(10px) brightness(0.6);
+        /* --- 3. HERO SECTION (100% Height) --- */
+        .hero-section {
+            position: relative;
+            height: 100dvh; /* Full mobile viewport height */
+            width: 100%;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Push text to bottom */
+            padding: 30px 24px 120px 24px; /* Bottom padding prompts scroll */
+            pointer-events: none; /* Allow scroll through text */
         }
-
-        /* --- 4. HERO TYPOGRAPHY (The "Look") --- */
-        .hero-text {
-            position: absolute;
-            bottom: 120px; /* Positioned above the handle */
-            left: 24px;
-            z-index: 2;
-            transition: opacity 0.4s ease;
-            pointer-events: none; /* Let clicks pass through */
-        }
-
-        body.drawer-open .hero-text { opacity: 0; }
 
         h1 {
             font-family: 'Oswald', sans-serif;
@@ -87,80 +76,45 @@
             text-transform: uppercase;
             letter-spacing: -1px;
             margin-bottom: 10px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
         .subtitle {
             font-size: 0.8rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            opacity: 0.8;
+            opacity: 0.9;
             display: block;
             margin-bottom: 8px;
+            color: var(--text-white);
         }
 
-        /* --- 5. THE DRAWER (The "Sidebar" on Mobile) --- */
-        .drawer {
-            position: fixed;
-            bottom: 0; left: 0; width: 100%;
-            height: var(--drawer-height);
+        /* Scroll Prompt Arrow */
+        .scroll-prompt {
+            position: absolute;
+            bottom: 40px; left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+            40% {transform: translateX(-50%) translateY(-10px);}
+            60% {transform: translateX(-50%) translateY(-5px);}
+        }
+
+        /* --- 4. CONTENT SHEET (Slides Over) --- */
+        .content-sheet {
+            position: relative;
+            z-index: 2;
             background: var(--bg-dark);
-            z-index: 10;
-            border-radius: 24px 24px 0 0;
-            transform: translateY(calc(100% - 90px)); /* Show only the "Handle" area */
-            transition: transform 0.6s var(--transition-smooth);
-            box-shadow: 0 -20px 40px rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
-        }
-
-        body.drawer-open .drawer {
-            transform: translateY(0);
-        }
-
-        /* The Handle / Trigger Area */
-        .drawer-handle {
-            height: 90px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 24px;
-            cursor: pointer;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            background: rgba(18, 18, 18, 0.8); /* Slight transparency */
-            backdrop-filter: blur(10px);
-            border-radius: 24px 24px 0 0;
-        }
-
-        .handle-label {
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-            font-size: 1.2rem;
-            letter-spacing: 1px;
-        }
-
-        .indicator-icon {
-            width: 40px; height: 40px;
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            transition: transform 0.4s ease;
-        }
-
-        body.drawer-open .indicator-icon { transform: rotate(180deg); }
-
-        /* Drawer Content (Scrollable) */
-        .drawer-content {
-            flex: 1;
-            overflow-y: auto;
+            min-height: 100vh;
             padding: 40px 24px;
-            opacity: 0;
-            transition: opacity 0.3s ease 0.1s;
+            border-radius: 24px 24px 0 0;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
+            margin-top: -20px; /* Slight overlap to hide gradient seam */
         }
 
-        body.drawer-open .drawer-content { opacity: 1; }
-
-        /* --- 6. CONTENT STYLING (Matching Reference) --- */
         .section-label {
             font-size: 0.75rem;
             color: var(--text-mute);
@@ -170,54 +124,65 @@
             display: block;
             border-bottom: 1px solid rgba(255,255,255,0.1);
             padding-bottom: 5px;
+            margin-top: 40px;
         }
+        .section-label:first-child { margin-top: 0; }
 
-        .menu-list { list-style: none; margin-bottom: 60px; }
+        /* Menu Items */
+        .menu-list { list-style: none; }
         .menu-list li {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-family: 'Oswald', sans-serif;
-            font-size: 2rem;
+            font-size: 2.2rem;
             text-transform: uppercase;
             color: var(--text-white);
-            opacity: 0.6;
-            transition: opacity 0.2s, transform 0.2s;
+            opacity: 0.5;
+            transition: all 0.3s ease;
             cursor: pointer;
+            display: flex; 
+            align-items: center;
         }
-        .menu-list li.active { opacity: 1; border-left: 3px solid white; padding-left: 15px; }
-        .menu-list li:active { transform: scale(0.98); }
+        
+        /* Active State (Visual Only) */
+        .menu-list li.active { opacity: 1; transform: translateX(10px); }
+        .menu-list li::before {
+            content: '';
+            display: inline-block;
+            width: 0px; height: 2px;
+            background: #fff;
+            margin-right: 0px;
+            transition: all 0.3s ease;
+        }
+        .menu-list li.active::before { width: 15px; margin-right: 10px; }
 
+        /* Contact Block */
         .contact-block p {
-            font-size: 0.9rem;
+            font-size: 1rem;
             line-height: 1.6;
             color: var(--text-mute);
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
-        .contact-block a { color: white; text-decoration: none; }
+        .contact-block a { color: white; text-decoration: none; border-bottom: 1px dotted #555; }
 
-        /* The CTA Button inside Drawer */
-        .cta-btn {
-            width: 100%;
-            padding: 20px;
-            background: white;
-            color: black;
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-            font-size: 1.1rem;
-            border: none;
-            margin-top: 20px;
-            cursor: pointer;
-            text-align: center;
-            letter-spacing: 1px;
-        }
-
-        /* --- 7. COORDINATES DECORATION --- */
+        /* Coordinates */
         .coordinates {
-            position: absolute;
+            position: fixed;
             top: 20px; right: 20px;
             font-family: monospace;
             font-size: 0.7rem;
             color: rgba(255,255,255,0.6);
-            z-index: 2;
+            z-index: 3;
+            text-align: right;
+        }
+
+        /* Footer in sheet */
+        .footer-note {
+            margin-top: 60px;
+            font-size: 0.7rem;
+            color: #444;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
     </style>
@@ -226,92 +191,81 @@
 
     <div id="desktop-lockout">
         <h1 style="color:white; font-family:'Oswald'">MOBILE ONLY</h1>
-        <p style="color:#666; font-family:'Inter'">Please open on your device.</p>
     </div>
 
     <main>
+        <div class="fixed-bg"></div>
+
         <div class="coordinates">
             LAT 44.9778° N<br>
             LON 93.2650° W
         </div>
 
-        <div class="viewfinder"></div>
-
-        <div class="hero-text">
-            <span class="subtitle">Intrepid Flights</span>
-            <h1>Designed<br>With<br>Precision.</h1>
+        <div class="hero-section">
+            <div style="pointer-events: auto;">
+                <span class="subtitle">Intrepid Flights</span>
+                <h1>Designed<br>With<br>Precision.</h1>
+            </div>
+            
+            <div class="scroll-prompt">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+                </svg>
+            </div>
         </div>
 
-        <div class="drawer" id="mainDrawer">
-            <div class="drawer-handle" onclick="toggleDrawer()">
-                <div class="handle-label">Flight Menu</div>
-                <div class="indicator-icon">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                        <path d="M18 15l-6-6-6 6"/>
-                    </svg>
-                </div>
+        <div class="content-sheet">
+            <span class="section-label">Services</span>
+            <ul class="menu-list">
+                <li class="active" onclick="selectItem(this)">Aerial Photo</li>
+                <li onclick="selectItem(this)">Geo Mapping</li>
+                <li onclick="selectItem(this)">Real Estate</li>
+                <li onclick="selectItem(this)">Inspections</li>
+            </ul>
+
+            <span class="section-label">Contact Info</span>
+            <div class="contact-block">
+                <p style="color: white; font-size: 1.2rem;">763-910-1792</p>
+                <p><a href="mailto:joshstafki@intrepidflights.com">joshstafki@intrepidflights.com</a></p>
+                <p style="margin-top: 15px; opacity: 0.5; font-size: 0.85rem;">
+                    Based in Hanover, MN.<br>
+                    Serving Twin Cities & Surrounding Communities.
+                </p>
             </div>
 
-            <div class="drawer-content">
-                <span class="section-label">Services</span>
-                <ul class="menu-list">
-                    <li class="active" onclick="selectItem(this)">Aerial Photography</li>
-                    <li onclick="selectItem(this)">Geo Mapping</li>
-                    <li onclick="selectItem(this)">Real Estate</li>
-                    <li onclick="selectItem(this)">Inspections</li>
-                </ul>
-
-                <span class="section-label">Contact Info</span>
-                <div class="contact-block">
-                    <p>763-910-1792</p>
-                    <p><a href="mailto:joshstafki@intrepidflights.com">joshstafki@intrepidflights.com</a></p>
-                    <p style="margin-top: 15px; opacity: 0.5;">Serving Twin Cities & Surrounding Communities</p>
-                </div>
-
-                <button class="cta-btn" onclick="haptic(15)">Book Consultation</button>
+            <div class="footer-note">
+                &copy; 2025 Intrepid Flights
             </div>
+            
+            <div style="height: 50px;"></div>
         </div>
     </main>
 
     <script>
-        const drawer = document.getElementById('mainDrawer');
-        const body = document.body;
-        let isOpen = false;
-
-        function toggleDrawer() {
-            haptic(10); // Subtle vibration
-            isOpen = !isOpen;
-            if (isOpen) {
-                body.classList.add('drawer-open');
-                document.querySelector('.handle-label').innerText = "Close Menu";
-            } else {
-                body.classList.remove('drawer-open');
-                document.querySelector('.handle-label').innerText = "Flight Menu";
-            }
-        }
-
+        // HAPTIC FEEDBACK ON CLICK
         function selectItem(el) {
-            haptic(5);
-            // Visual selection logic
+            if (navigator.vibrate) navigator.vibrate(5);
+            
+            // Remove active class from all
             document.querySelectorAll('.menu-list li').forEach(li => li.classList.remove('active'));
+            
+            // Add to clicked
             el.classList.add('active');
         }
 
-        // Simple Haptic Helper
-        function haptic(ms) {
-            if (navigator.vibrate) navigator.vibrate(ms);
-        }
+        // OPTIONAL: INTERSECTION OBSERVER FOR SCROLL ANIMATION
+        // This makes menu items slide in slightly as you scroll down
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }
+            });
+        }, { threshold: 0.1 });
 
-        // Swipe down to close logic (Basic Touch Handling)
-        let touchStartY = 0;
-        drawer.addEventListener('touchstart', e => touchStartY = e.touches[0].clientY);
-        drawer.addEventListener('touchmove', e => {
-            const touchY = e.touches[0].clientY;
-            // If dragging down significantly while open
-            if(isOpen && touchY - touchStartY > 50) {
-                // Logic to close could go here, for now we stick to the click toggle for simplicity
-            }
-        });
+        // Apply if you want scroll animations (currently disabled to keep it snappy)
+        // document.querySelectorAll('.menu-list li').forEach(li => observer.observe(li));
 
     </script>
 </body>
