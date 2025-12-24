@@ -3,291 +3,316 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Intrepid Flights | Mark II</title>
-
-    <meta name="theme-color" content="#000000">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="description" content="Cinematic Aerial Photography. Mobile Experience.">
-    <meta name="robots" content="noindex, nofollow">
+    <title>Intrepid Flights | Mobile Precision</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
-        /* --- 1. NEXT-GEN VARIABLES & RESET --- */
+        /* --- 1. RESET & VARS --- */
         :root {
-            --bg-deep: #000000;
-            --glass-panel: rgba(20, 20, 20, 0.7);
-            --neon-blue: #00f0ff;
-            --neon-purple: #bd00ff;
-            --text-main: #ffffff;
+            --bg-dark: #121212; /* Matches your dark sidebar */
+            --text-white: #ffffff;
             --text-mute: #888888;
-
-            --nav-height: 84px;
-            --safe-bottom: env(safe-area-inset-bottom, 20px);
-            --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --accent: #ffffff; 
+            --drawer-height: 85dvh;
+            --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* --- P3 WIDE COLOR GAMUT (CORRECTED) --- */
-        @media (color-gamut: p3) {
-            :root {
-                --neon-blue: color(display-p3 0 1 1);
-                --neon-purple: color(display-p3 0.8 0 1);
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* No body scroll, we handle it internally */
+            height: 100dvh;
+            width: 100vw;
+        }
+
+        /* --- 2. DESKTOP LOCKOUT (Minimalist) --- */
+        #desktop-lockout {
+            display: none;
+            position: fixed; inset: 0;
+            background: #000; z-index: 9999;
+            align-items: center; justify-content: center;
+            flex-direction: column;
+        }
+        @media (min-width: 769px) {
+            #desktop-lockout { display: flex; }
+            main { display: none; }
+        }
+
+        /* --- 3. THE VIEWFINDER (Background Image) --- */
+        .viewfinder {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            /* The image from your reference or similar */
+            background-image: url('https://images.unsplash.com/photo-1533575975459-d88cc2f718f4?q=80&w=2670&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.8s var(--transition-smooth), filter 0.8s var(--transition-smooth);
+        }
+
+        /* Gradient overlay for text readability */
+        .viewfinder::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%);
+        }
+
+        /* When drawer is open, image recedes slightly */
+        body.drawer-open .viewfinder {
+            transform: scale(0.95);
+            filter: blur(10px) brightness(0.6);
+        }
+
+        /* --- 4. HERO TYPOGRAPHY (The "Look") --- */
+        .hero-text {
+            position: absolute;
+            bottom: 120px; /* Positioned above the handle */
+            left: 24px;
+            z-index: 2;
+            transition: opacity 0.4s ease;
+            pointer-events: none; /* Let clicks pass through */
+        }
+
+        body.drawer-open .hero-text { opacity: 0; }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            line-height: 0.9;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* --- 5. THE DRAWER (The "Sidebar" on Mobile) --- */
+        .drawer {
+            position: fixed;
+            bottom: 0; left: 0; width: 100%;
+            height: var(--drawer-height);
+            background: var(--bg-dark);
+            z-index: 10;
+            border-radius: 24px 24px 0 0;
+            transform: translateY(calc(100% - 90px)); /* Show only the "Handle" area */
+            transition: transform 0.6s var(--transition-smooth);
+            box-shadow: 0 -20px 40px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.drawer-open .drawer {
+            transform: translateY(0);
+        }
+
+        /* The Handle / Trigger Area */
+        .drawer-handle {
+            height: 90px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: rgba(18, 18, 18, 0.8); /* Slight transparency */
+            backdrop-filter: blur(10px);
+            border-radius: 24px 24px 0 0;
+        }
+
+        .handle-label {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .indicator-icon {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.4s ease;
+        }
+
+        body.drawer-open .indicator-icon { transform: rotate(180deg); }
+
+        /* Drawer Content (Scrollable) */
+        .drawer-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px 24px;
+            opacity: 0;
+            transition: opacity 0.3s ease 0.1s;
+        }
+
+        body.drawer-open .drawer-content { opacity: 1; }
+
+        /* --- 6. CONTENT STYLING (Matching Reference) --- */
+        .section-label {
+            font-size: 0.75rem;
+            color: var(--text-mute);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            display: block;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 5px;
+        }
+
+        .menu-list { list-style: none; margin-bottom: 60px; }
+        .menu-list li {
+            margin-bottom: 20px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            text-transform: uppercase;
+            color: var(--text-white);
+            opacity: 0.6;
+            transition: opacity 0.2s, transform 0.2s;
+            cursor: pointer;
+        }
+        .menu-list li.active { opacity: 1; border-left: 3px solid white; padding-left: 15px; }
+        .menu-list li:active { transform: scale(0.98); }
+
+        .contact-block p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-mute);
+            margin-bottom: 5px;
+        }
+        .contact-block a { color: white; text-decoration: none; }
+
+        /* The CTA Button inside Drawer */
+        .cta-btn {
+            width: 100%;
+            padding: 20px;
+            background: white;
+            color: black;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        /* --- 7. COORDINATES DECORATION --- */
+        .coordinates {
+            position: absolute;
+            top: 20px; right: 20px;
+            font-family: monospace;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.6);
+            z-index: 2;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="desktop-lockout">
+        <h1 style="color:white; font-family:'Oswald'">MOBILE ONLY</h1>
+        <p style="color:#666; font-family:'Inter'">Please open on your device.</p>
+    </div>
+
+    <main>
+        <div class="coordinates">
+            LAT 44.9778° N<br>
+            LON 93.2650° W
+        </div>
+
+        <div class="viewfinder"></div>
+
+        <div class="hero-text">
+            <span class="subtitle">Intrepid Flights</span>
+            <h1>Designed<br>With<br>Precision.</h1>
+        </div>
+
+        <div class="drawer" id="mainDrawer">
+            <div class="drawer-handle" onclick="toggleDrawer()">
+                <div class="handle-label">Flight Menu</div>
+                <div class="indicator-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <path d="M18 15l-6-6-6 6"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="drawer-content">
+                <span class="section-label">Services</span>
+                <ul class="menu-list">
+                    <li class="active" onclick="selectItem(this)">Aerial Photography</li>
+                    <li onclick="selectItem(this)">Geo Mapping</li>
+                    <li onclick="selectItem(this)">Real Estate</li>
+                    <li onclick="selectItem(this)">Inspections</li>
+                </ul>
+
+                <span class="section-label">Contact Info</span>
+                <div class="contact-block">
+                    <p>763-910-1792</p>
+                    <p><a href="mailto:joshstafki@intrepidflights.com">joshstafki@intrepidflights.com</a></p>
+                    <p style="margin-top: 15px; opacity: 0.5;">Serving Twin Cities & Surrounding Communities</p>
+                </div>
+
+                <button class="cta-btn" onclick="haptic(15)">Book Consultation</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const drawer = document.getElementById('mainDrawer');
+        const body = document.body;
+        let isOpen = false;
+
+        function toggleDrawer() {
+            haptic(10); // Subtle vibration
+            isOpen = !isOpen;
+            if (isOpen) {
+                body.classList.add('drawer-open');
+                document.querySelector('.handle-label').innerText = "Close Menu";
+            } else {
+                body.classList.remove('drawer-open');
+                document.querySelector('.handle-label').innerText = "Flight Menu";
             }
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
+        function selectItem(el) {
+            haptic(5);
+            // Visual selection logic
+            document.querySelectorAll('.menu-list li').forEach(li => li.classList.remove('active'));
+            el.classList.add('active');
         }
 
-        body {
-            background-color: var(--bg-deep);
-            color: var(--text-main);
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            height: 100vh;
-            width: 100vw;
-            overflow: auto; /* FIXED: allow iOS scrolling */
+        // Simple Haptic Helper
+        function haptic(ms) {
+            if (navigator.vibrate) navigator.vibrate(ms);
         }
 
-        /* --- 2. DESKTOP LOCKOUT (QR GENERATOR) --- */
-        #desktop-lockout {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: #050505;
-            z-index: 10000;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-family: monospace;
-        }
+        // Swipe down to close logic (Basic Touch Handling)
+        let touchStartY = 0;
+        drawer.addEventListener('touchstart', e => touchStartY = e.touches[0].clientY);
+        drawer.addEventListener('touchmove', e => {
+            const touchY = e.touches[0].clientY;
+            // If dragging down significantly while open
+            if(isOpen && touchY - touchStartY > 50) {
+                // Logic to close could go here, for now we stick to the click toggle for simplicity
+            }
+        });
 
-        .qr-frame {
-            padding: 20px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 0 50px rgba(0, 240, 255, 0.2);
-            margin-bottom: 30px;
-        }
-
-        @media (min-width: 769px) {
-            #desktop-lockout { display: flex; }
-            #app-root { display: none; }
-        }
-
-        /* --- 3. APP SHELL --- */
-        #app-root {
-            height: 100%;
-            width: 100%;
-            overflow-y: scroll;
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: smooth;
-            scroll-snap-type: y mandatory;
-            padding-bottom: calc(var(--nav-height) + var(--safe-bottom));
-        }
-
-        section {
-            min-height: 100vh;
-            width: 100%;
-            position: relative;
-            scroll-snap-align: start;
-            padding: 20px 20px 120px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* --- 4. HERO --- */
-        #hero {
-            justify-content: flex-end;
-            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000000 100%);
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            height: 120%;
-            object-fit: cover;
-            opacity: 0.6;
-            z-index: 0;
-            animation: parallax-bg linear both;
-            animation-timeline: view();
-            animation-range: entry 0% exit 100%;
-        }
-
-        @keyframes parallax-bg {
-            from { transform: translateY(0); }
-            to { transform: translateY(-20%); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            margin-bottom: 40px;
-        }
-
-        h1 {
-            font-size: 4rem;
-            line-height: 0.9;
-            font-weight: 900;
-            letter-spacing: -2px;
-            background: linear-gradient(to bottom right, #fff, #888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-            animation: slideUp 0.8s var(--ease-elastic) forwards;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .tagline {
-            font-size: 1.1rem;
-            color: var(--neon-blue);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            animation: slideUp 0.8s var(--ease-elastic) 0.2s forwards;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        @keyframes slideUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- 5. PORTFOLIO --- */
-        #portfolio {
-            background: var(--bg-deep);
-            padding-top: 60px;
-            display: none;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        .card {
-            height: 300px;
-            border-radius: 24px;
-            position: relative;
-            overflow: hidden;
-            background: #111;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.8);
-            animation: card-reveal ease-out both;
-            animation-timeline: view();
-            animation-range: entry 10% cover 30%;
-        }
-
-        .card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        @keyframes card-reveal {
-            from { opacity: 0; transform: scale(0.9) translateY(50px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        /* --- 6. NAV --- */
-        .bottom-nav {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 400px;
-            height: 70px;
-            background: rgba(30, 30, 30, 0.6);
-            backdrop-filter: blur(20px) saturate(180%);
-            border-radius: 40px;
-            border: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            z-index: 100;
-        }
-
-        .nav-btn {
-            background: none;
-            border: none;
-            color: rgba(255,255,255,0.4);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-        }
-
-        .nav-btn.active {
-            color: var(--neon-blue);
-            background: rgba(0, 240, 255, 0.1);
-        }
-
-        .fab-main {
-            background: var(--neon-blue);
-            color: #000;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin-top: -30px;
-        }
-    </style>
-</head>
-
-<body>
-
-<div id="desktop-lockout">
-    <div class="qr-frame">
-        <img id="qr-code-img" alt="Scan to Enter" width="200" height="200">
-    </div>
-    <h2>MOBILE ACCESS REQUIRED</h2>
-    <p style="color:#666;margin-top:10px;">Scan to transmit session to device.</p>
-</div>
-
-<div id="app-root">
-
-    <section id="hero">
-        <img src="https://images.unsplash.com/photo-1542296332-2e44a996aa0a?q=80&w=2070" class="hero-bg" alt="">
-        <div class="hero-content">
-            <div class="tagline">MARK II // SYSTEM READY</div>
-            <h1>INTREPID<br>FLIGHTS</h1>
-            <p style="color:#ccc;max-width:80%;">Advanced aerial cinematography for the modern age.</p>
-        </div>
-    </section>
-
-    <section id="portfolio">
-        <h2 style="font-size:2rem;margin-bottom:20px;">Mission Logs</h2>
-        <div class="gallery-grid">
-            <div class="card"><img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=800"></div>
-            <div class="card"><img src="https://images.unsplash.com/photo-1559827291-72ee739d0d9a?q=80&w=800"></div>
-        </div>
-    </section>
-
-</div>
-
-<nav class="bottom-nav">
-    <button class="nav-btn active" onclick="switchView('hero', this)">⌂</button>
-    <button class="nav-btn fab-main" onclick="haptic(20)">★</button>
-    <button class="nav-btn" onclick="switchView('portfolio', this)">▦</button>
-</nav>
-
-<script>
-    document.getElementById('qr-code-img').src =
-      `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(location.href)}`;
-
-    function haptic(ms=10){ navigator.vibrate?.(ms); }
-
-    function switchView(viewId, btn){
-        document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-        btn?.classList.add('active');
-        hero.style.display = viewId === 'hero' ? 'flex' : 'none';
-        portfolio.style.display = viewId === 'portfolio' ? 'block' : 'none';
-        scrollTo(0,0);
-    }
-</script>
-
+    </script>
 </body>
 </html>
