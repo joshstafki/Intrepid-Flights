@@ -10,12 +10,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/joshstafki/Intrepid-Flights/main/favicon.jpg">
+
 
     <style>
         :root {
             --bg-dark: #121212;
             --text-white: #ffffff;
             --text-mute: #888888;
+            --accent: #ffffff; 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -25,10 +28,9 @@
             color: var(--text-white);
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
-            height: 100%;
         }
 
-        /* --- 1. DESKTOP LOCKOUT & BURN EFFECT --- */
+        /* --- 1. DESKTOP LOCKOUT --- */
         #desktop-lockout {
             display: none;
             position: fixed; inset: 0;
@@ -36,47 +38,12 @@
             align-items: center; justify-content: center;
             flex-direction: column;
         }
-
-        /* The Fire Animation Class */
-        .incinerate {
-            animation: burnText 2.5s forwards ease-in;
-        }
-
-        @keyframes burnText {
-            0% { 
-                color: #fff; 
-                text-shadow: 0 0 0 transparent; 
-                transform: scale(1);
-            }
-            20% { 
-                color: #ffeb3b; /* Yellow start */
-                text-shadow: 0 -5px 10px #ff9800;
-            }
-            40% {
-                color: #ff5722; /* Orange/Red */
-                text-shadow: 0 -10px 20px #f44336, 0 -20px 40px #000;
-                transform: scale(1.05) rotate(1deg);
-            }
-            60% {
-                color: #3e2723; /* Charred */
-                text-shadow: 0 -30px 60px #000; /* Smoke */
-                opacity: 1;
-                filter: blur(2px);
-            }
-            100% { 
-                color: #000; 
-                opacity: 0; 
-                transform: scale(1.1) translateY(-50px);
-                filter: blur(20px);
-            }
-        }
-
         @media (min-width: 769px) {
             #desktop-lockout { display: flex; }
             main { display: none; }
         }
 
-        /* --- 2. FIXED BACKGROUND --- */
+        /* --- 2. FIXED BACKGROUND (The Viewfinder) --- */
         .fixed-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100vh;
@@ -86,23 +53,24 @@
             background-position: center;
             filter: brightness(0.8);
         }
-        
+
+        /* Gradient to make text pop */
         .fixed-bg::after {
             content: ''; position: absolute; inset: 0;
             background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 100%);
         }
 
-        /* --- 3. HERO SECTION --- */
+        /* --- 3. HERO SECTION (100% Height) --- */
         .hero-section {
             position: relative;
-            height: 100dvh;
+            height: 100dvh; /* Full mobile viewport height */
             width: 100%;
             z-index: 1;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            padding: 30px 24px 120px 24px;
-            pointer-events: none; /* Let scroll pass through empty space */
+            justify-content: flex-end; /* Push text to bottom */
+            padding: 30px 24px 120px 24px; /* Bottom padding prompts scroll */
+            pointer-events: none; /* Allow scroll through text */
         }
 
         h1 {
@@ -113,7 +81,6 @@
             letter-spacing: -1px;
             margin-bottom: 10px;
             text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            pointer-events: auto;
         }
 
         .subtitle {
@@ -123,28 +90,24 @@
             opacity: 0.9;
             display: block;
             margin-bottom: 8px;
-            pointer-events: auto;
+            color: var(--text-white);
         }
 
-        /* The Functional Arrow */
+        /* Scroll Prompt Arrow */
         .scroll-prompt {
             position: absolute;
             bottom: 40px; left: 50%;
             transform: translateX(-50%);
-            opacity: 0.8;
-            cursor: pointer;
-            pointer-events: auto; /* CRITICAL: Enables clicking */
-            padding: 20px; /* Bigger hit box */
+            opacity: 0.7;
             animation: bounce 2s infinite;
         }
-        
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
             40% {transform: translateX(-50%) translateY(-10px);}
             60% {transform: translateX(-50%) translateY(-5px);}
         }
 
-        /* --- 4. CONTENT SHEET --- */
+        /* --- 4. CONTENT SHEET (Slides Over) --- */
         .content-sheet {
             position: relative;
             z-index: 2;
@@ -153,7 +116,7 @@
             padding: 40px 24px;
             border-radius: 24px 24px 0 0;
             box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
-            margin-top: -20px;
+            margin-top: -20px; /* Slight overlap to hide gradient seam */
         }
 
         .section-label {
@@ -169,6 +132,7 @@
         }
         .section-label:first-child { margin-top: 0; }
 
+        /* Menu Items */
         .menu-list { list-style: none; }
         .menu-list li {
             margin-bottom: 25px;
@@ -179,25 +143,50 @@
             opacity: 0.5;
             transition: all 0.3s ease;
             cursor: pointer;
-            display: flex; align-items: center;
+            display: flex; 
+            align-items: center;
         }
         
+        /* Active State (Visual Only) */
         .menu-list li.active { opacity: 1; transform: translateX(10px); }
         .menu-list li::before {
-            content: ''; display: inline-block; width: 0px; height: 2px; background: #fff;
-            margin-right: 0px; transition: all 0.3s ease;
+            content: '';
+            display: inline-block;
+            width: 0px; height: 2px;
+            background: #fff;
+            margin-right: 0px;
+            transition: all 0.3s ease;
         }
         .menu-list li.active::before { width: 15px; margin-right: 10px; }
 
+        /* Contact Block */
         .contact-block p {
-            font-size: 1rem; line-height: 1.6; color: var(--text-mute); margin-bottom: 8px;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-mute);
+            margin-bottom: 8px;
         }
         .contact-block a { color: white; text-decoration: none; border-bottom: 1px dotted #555; }
 
+        /* Coordinates */
         .coordinates {
-            position: fixed; top: 20px; right: 20px;
-            font-family: monospace; font-size: 0.7rem; color: rgba(255,255,255,0.6);
-            z-index: 3; text-align: right;
+            position: fixed;
+            top: 20px; right: 20px;
+            font-family: monospace;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.6);
+            z-index: 3;
+            text-align: right;
+        }
+
+        /* Footer in sheet */
+        .footer-note {
+            margin-top: 60px;
+            font-size: 0.7rem;
+            color: #444;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
     </style>
@@ -205,30 +194,31 @@
 <body>
 
     <div id="desktop-lockout">
-        <h1 id="lock-msg" style="color:white; font-family:'Oswald'; letter-spacing: 2px;">MOBILE ONLY</h1>
+        <h1 style="color:white; font-family:'Oswald'">MOBILE ONLY</h1>
     </div>
 
     <main>
         <div class="fixed-bg"></div>
+
         <div class="coordinates">
             LAT 44.9778° N<br>
             LON 93.2650° W
         </div>
 
         <div class="hero-section">
-            <div>
+            <div style="pointer-events: auto;">
                 <span class="subtitle">Intrepid Flights</span>
                 <h1>Designed<br>With<br>Precision.</h1>
             </div>
             
-            <div class="scroll-prompt" onclick="jumpDown()">
+            <div class="scroll-prompt">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
                 </svg>
             </div>
         </div>
 
-        <div id="menu-target" class="content-sheet">
+        <div class="content-sheet">
             <span class="section-label">Services</span>
             <ul class="menu-list">
                 <li class="active" onclick="selectItem(this)">Aerial Photo</li>
@@ -246,44 +236,40 @@
                 </p>
             </div>
 
-            <div style="margin-top: 60px; font-size: 0.7rem; color: #444; text-align: center; text-transform: uppercase;">
+            <div class="footer-note">
                 &copy; 2025 Intrepid Flights
             </div>
+            
             <div style="height: 50px;"></div>
         </div>
     </main>
 
     <script>
-        // --- 1. JUMP DOWN FUNCTIONALITY ---
-        function jumpDown() {
-            if (navigator.vibrate) navigator.vibrate(10);
-            const target = document.getElementById('menu-target');
-            target.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // --- 2. MENU SELECTION ---
+        // HAPTIC FEEDBACK ON CLICK
         function selectItem(el) {
             if (navigator.vibrate) navigator.vibrate(5);
+            
+            // Remove active class from all
             document.querySelectorAll('.menu-list li').forEach(li => li.classList.remove('active'));
+            
+            // Add to clicked
             el.classList.add('active');
         }
 
-        // --- 3. DESKTOP BURN & REDIRECT ---
-        if (window.innerWidth > 768) {
-            // Wait 1 second, then start burning
-            setTimeout(() => {
-                const msg = document.getElementById('lock-msg');
-                msg.classList.add('incinerate');
-                
-                // Wait for burn animation to finish (2.5s), then redirect
-                setTimeout(() => {
-                    // WARNING: If this file IS located at www.intrepidflights.com, 
-                    // this will cause a loop. Ensure this redirect points to where 
-                    // you want desktop users to actually go.
-                    window.location.href = "https://www.intrepidflights.com"; 
-                }, 2400);
-            }, 800);
-        }
+        // OPTIONAL: INTERSECTION OBSERVER FOR SCROLL ANIMATION
+        // This makes menu items slide in slightly as you scroll down
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Apply if you want scroll animations (currently disabled to keep it snappy)
+        // document.querySelectorAll('.menu-list li').forEach(li => observer.observe(li));
+
     </script>
 </body>
 </html>
