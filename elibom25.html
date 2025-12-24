@@ -8,6 +8,27 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="description" content="Cinematic Aerial Photography. Mobile Experience.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <script>
+  (function () {
+    const isMobile =
+      /Android|iPhone|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent);
+
+    if (!isMobile) {
+      document.body.innerHTML = `
+        <div style="
+          font-family: system-ui;
+          padding: 2rem;
+          text-align: center;
+        ">
+          This experience is available on mobile devices only.
+        </div>
+      `;
+    }
+  })();
+</script>
+
 
     <style>
         /* --- 1. NEXT-GEN VARIABLES & RESET --- */
