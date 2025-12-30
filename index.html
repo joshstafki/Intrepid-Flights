@@ -57,6 +57,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/joshstafki/Intrepid-Flights/main/favicon.jpg">
 
@@ -75,16 +76,18 @@
             --bg-panel: #1a1a1a;
             --text-white: #ffffff;
             --text-mute: #888888;
-            --mobile-sheet-offset: 35vh; /* Where the menu starts on mobile */
+            --mobile-sheet-offset: 35vh;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
+            /* GLOBAL TEXT: Inter */
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-white);
             overflow-x: hidden;
+            font-weight: 300;
         }
 
         /* --- 2. DESKTOP LAYOUT (Default) --- */
@@ -93,10 +96,9 @@
             height: 100vh;
             width: 100vw;
             flex-direction: row;
-            overflow: hidden; /* Desktop: No window scroll, sidebar scroll if needed */
+            overflow: hidden;
         }
 
-        /* Sidebar (becomes the Content Sheet on mobile) */
         .sidebar {
             width: 380px;
             background-color: var(--bg-panel);
@@ -112,9 +114,10 @@
 
         /* Typography */
         .header-section h1 {
+            /* HEADER: Oswald */
             font-family: 'Oswald', sans-serif;
+            font-weight: 700; 
             font-size: 1.8rem;
-            font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
             margin-bottom: 5px;
@@ -126,7 +129,7 @@
             color: var(--text-mute);
             margin-bottom: 30px;
             display: block;
-            font-weight: 300;
+            font-weight: 300; 
             letter-spacing: 0.5px;
         }
 
@@ -136,6 +139,7 @@
             color: var(--text-mute);
             text-transform: uppercase;
             letter-spacing: 1.5px;
+            font-weight: 400;
             margin-bottom: 50px;
             border-left: 2px solid #333;
             padding-left: 15px;
@@ -143,32 +147,37 @@
 
         /* Menu Styling */
         .services-menu h3 {
-            font-size: 0.7rem;
+            /* HEADER: Oswald */
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             color: #555;
             margin-bottom: 25px;
+            font-weight: 500;
         }
 
         .service-list { list-style: none; }
         .service-item {
+            /* HEADER STYLE ITEM: Oswald */
+            font-family: 'Oswald', sans-serif;
             display: flex;
             align-items: center;
             margin-bottom: 20px;
-            font-family: 'Oswald', sans-serif; /* Matching Elibom font */
             font-size: 1.4rem;
             text-transform: uppercase;
             color: #ccc;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-weight: 400;
         }
         
         .service-item:hover, .service-item.active {
             color: #fff;
             transform: translateX(10px);
+            font-weight: 500; 
         }
 
-        /* Dash indicator for active state */
         .service-item::before {
             content: ''; display: inline-block; width: 0; height: 2px; background: #fff;
             margin-right: 0; transition: all 0.3s ease;
@@ -180,10 +189,16 @@
         /* Contact & Social */
         .contact-box { margin-top: 40px; }
         .contact-label {
-            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;
+            font-size: 0.7rem;
+            text-transform: uppercase; letter-spacing: 2px;
             color: #555; margin-bottom: 15px; display: block;
+            font-weight: 600; /* Inter bold for labels */
         }
-        .contact-details p { font-size: 1rem; margin-bottom: 10px; font-weight: 300; }
+        .contact-details p { 
+            font-size: 1rem;
+            margin-bottom: 10px; 
+            font-weight: 300; 
+        }
         .contact-details a { color: #bbb; text-decoration: none; border-bottom: 1px dotted #444; }
         .contact-details a:hover { color: #fff; border-bottom-color: #fff; }
 
@@ -191,10 +206,9 @@
         .social-links a { color: #555; font-size: 1.2rem; transition: 0.3s; }
         .social-links a:hover { color: #fff; }
 
-        /* HERO VIEW (The Image Area) */
+        /* HERO VIEW */
         .hero-view {
             flex-grow: 1;
-            /* Updated Image */
             background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), 
                         url('https://raw.githubusercontent.com/joshstafki/Intrepid-Flights/main/cancun.jpg');
             background-size: cover;
@@ -207,6 +221,7 @@
         }
 
         .precision-overlay h2 {
+            /* BIG HERO TEXT: Oswald */
             font-family: 'Oswald', sans-serif;
             font-size: 5rem;
             font-weight: 700;
@@ -219,69 +234,65 @@
             text-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* Desktop Coordinates (Hidden on Mobile) */
         .coordinates {
             position: absolute; top: 40px; right: 40px;
-            font-family: monospace; font-size: 0.8rem; letter-spacing: 2px;
+            font-family: monospace; /* Tech look */
+            font-size: 0.8rem; 
+            letter-spacing: 2px;
             color: rgba(255,255,255,0.6);
         }
 
-        /* Arrow (Hidden on Desktop) */
         .scroll-prompt { display: none; }
 
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
 
-        /* --- 3. MOBILE TRANSFORMATION (The "Elibom" Logic) --- */
+        /* --- 3. MOBILE TRANSFORMATION --- */
         @media (max-width: 900px) {
             body { 
-                overflow-y: auto; /* Enable scroll for body */
+                overflow-y: auto;
                 overflow-x: hidden;
             }
 
             .container {
-                display: block; /* Break flex layout */
+                display: block;
                 height: auto;
             }
 
-            /* TRANSFORM HERO: Fixed Background + Parallax Text */
             .hero-view {
-                position: fixed; /* Lock it to viewport */
+                position: fixed;
                 top: 0; left: 0; width: 100%; height: 100vh;
-                z-index: 0; /* Send to back */
-                padding: 30px 24px 140px 24px; /* Padding for mobile */
-                background-attachment: scroll; /* Mobile friendly */
+                z-index: 0;
+                padding: 30px 24px 140px 24px;
+                background-attachment: scroll;
                 filter: brightness(0.9);
             }
 
             .precision-overlay h2 {
-                font-size: 3.5rem; /* Elibom sizing */
+                font-size: 3.5rem; 
                 margin-bottom: 10px;
             }
             
-            /* Add gradient fade at bottom of hero for text legibility */
             .hero-view::after {
                 content: ''; position: absolute; inset: 0;
                 background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(18,18,18,1) 100%);
                 z-index: -1;
             }
 
-            /* TRANSFORM SIDEBAR: The Overlay Sheet */
             .sidebar {
-                position: relative; /* Put back in document flow */
+                position: relative;
                 z-index: 10;
                 width: 100%;
                 height: auto;
                 min-height: calc(100vh - var(--mobile-sheet-offset) + 20px);
-                margin-top: var(--mobile-sheet-offset); /* The transparent gap */
+                margin-top: var(--mobile-sheet-offset);
                 background-color: var(--bg-dark);
                 border-right: none;
-                border-radius: 24px 24px 0 0; /* Rounded top */
+                border-radius: 24px 24px 0 0;
                 padding: 40px 24px 80px 24px;
                 box-shadow: 0 -10px 50px rgba(0,0,0,0.8);
             }
 
-            /* Mobile Elements Visibility */
             .coordinates { 
                 top: 30px; right: 24px; font-size: 0.7rem; 
             }
@@ -297,7 +308,6 @@
                 z-index: 20;
             }
 
-            /* Adjust text sizes for mobile sheet */
             .service-item { font-size: 2.2rem; margin-bottom: 25px; }
             .header-section h1 { font-size: 1.5rem; }
             .location-text { margin-bottom: 30px; }
@@ -368,7 +378,9 @@
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
                 </svg>
-            <div class="image-location">
+            </div>
+            
+            <div class="image-location" style="position: absolute; bottom: 20px; right: 60px; text-align: right; font-size: 0.9rem; opacity: 0.5; letter-spacing: 1px; font-weight: 300; text-transform: uppercase;">
                 Aerial View of Cancun, Mexico
             </div>
         </main>
@@ -376,25 +388,20 @@
     </div>
 
     <script>
-        // Smooth scroll to menu on mobile
         function jumpToMenu() {
             if (navigator.vibrate) navigator.vibrate(10);
             const menu = document.getElementById('menu-panel');
-            // Align the top of the menu with the top of the offset
             const offset = window.innerHeight * 0.35; 
             window.scrollTo({
-                top: menu.offsetTop - offset, // Adjust landing position
+                top: menu.offsetTop - offset,
                 behavior: 'smooth'
             });
         }
 
-        // Active state toggling
         function activate(el) {
             if (navigator.vibrate) navigator.vibrate(5);
-            // Remove active class from siblings
             const items = document.querySelectorAll('.service-item');
             items.forEach(item => item.classList.remove('active'));
-            // Add to clicked
             el.classList.add('active');
         }
     </script>
