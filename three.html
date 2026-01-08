@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Intrepid Flights | Mobile</title>
+    <meta name="description" content="Intrepid Flights - Precision Drone Photography and Videography in the Twin Cities.">
+    <title>Intrepid Flights | Mobile Experience</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,39 +16,71 @@
             --bg-dark: #121212;
             --text-white: #ffffff;
             --text-mute: #b0b0b0;
+            --focus-color: #f1c40f; /* High contrast focus color for ADA */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark); /* Fallback color */
+            background-color: var(--bg-dark);
             color: var(--text-white);
             overflow-x: hidden;
         }
 
-        /* --- 1. FIXED HERO LAYER (The Background) --- */
-        .fixed-hero {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: 0; /* Sits behind everything */
-            
-            /* Image Settings */
-            background: url('https://raw.githubusercontent.com/joshstafki/Intrepid-Flights/main/image.jpeg') no-repeat center center;
-            background-size: cover;
-            
-            /* Flexbox to put text in Bottom Left */
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end; /* Push to bottom */
-            align-items: flex-start;   /* Push to left */
-            padding: 0 0 120px 24px;   /* Padding: Top Right Bottom Left. 120px bottom clears the scroll arrow */
+        /* --- ADA: Focus Visibility --- */
+        *:focus-visible {
+            outline: 2px solid var(--focus-color);
+            outline-offset: 4px;
         }
 
-        /* Dark overlay for readability */
+        /* --- 1. DESKTOP BLOCKER (Mobile Only Enforcement) --- */
+        #desktop-warning {
+            display: none; /* Hidden on mobile */
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #000;
+            z-index: 9999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #desktop-warning h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        #desktop-warning p {
+            color: var(--text-mute);
+            max-width: 400px;
+            line-height: 1.5;
+        }
+
+        /* Show blocker on screens wider than 768px */
+        @media (min-width: 769px) {
+            #desktop-warning { display: flex; }
+            .fixed-hero, .content-layer { display: none !important; }
+        }
+
+        /* --- 2. FIXED HERO LAYER --- */
+        .fixed-hero {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            z-index: 0;
+            background: url('https://raw.githubusercontent.com/joshstafki/Intrepid-Flights/main/image.jpeg') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            padding: 0 0 120px 24px;
+        }
+
         .fixed-hero::after {
             content: '';
             position: absolute;
@@ -66,11 +99,9 @@
             margin: 0;
         }
 
-        /* Coordinates (Top Right) */
         .coordinates {
             position: absolute;
-            top: 30px;
-            right: 24px;
+            top: 30px; right: 24px;
             font-family: monospace;
             font-size: 0.75rem;
             color: rgba(255,255,255,0.8);
@@ -78,32 +109,31 @@
             letter-spacing: 1px;
         }
 
-        /* Bouncing Arrow */
+        /* ADA: Changed to button styling */
         .scroll-prompt {
             position: absolute;
-            bottom: 40px;
-            left: 50%;
+            bottom: 40px; left: 50%;
             transform: translateX(-50%);
             animation: bounce 2s infinite;
             opacity: 0.8;
             cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px; /* Larger touch target */
         }
 
-        /* --- 2. SCROLLING CONTENT LAYER (The Curtain) --- */
+        /* --- 3. SCROLLING CONTENT LAYER --- */
         .content-layer {
             position: relative;
-            z-index: 10; /* Sits ON TOP of the hero */
-            margin-top: 100vh; /* Pushes content below the fold initially */
+            z-index: 10;
+            margin-top: 100vh;
             background-color: var(--bg-dark);
-            
-            /* Visual styling for the panel */
             border-top: 1px solid #333;
             box-shadow: 0 -20px 50px rgba(0,0,0,0.8);
             padding: 60px 30px 100px 30px;
-            min-height: 100vh; /* Ensure it covers the screen when scrolling up */
+            min-height: 100vh;
         }
 
-        /* --- CONTENT STYLING --- */
         .brand-header { margin-bottom: 50px; }
         .brand-header h1 {
             font-family: 'Oswald', sans-serif;
@@ -136,7 +166,7 @@
             transition: 0.2s; background: none; border: none;
             text-align: left; width: 100%; text-transform: uppercase;
         }
-        .service-item.active {
+        .service-item[aria-selected="true"] {
             color: #fff; padding-left: 15px; border-left: 4px solid #fff;
         }
 
@@ -145,8 +175,16 @@
             text-decoration: none; margin-bottom: 15px; font-weight: 300;
             border-bottom: 1px dotted #333; width: fit-content;
         }
+        
         .social-row { display: flex; gap: 25px; margin-top: 40px; }
-        .social-row a { color: #fff; font-size: 1.5rem; opacity: 0.7; }
+        .social-row a { 
+            color: #fff; font-size: 1.5rem; opacity: 0.7; 
+            text-decoration: none; /* remove underline from icons */
+            padding: 10px; /* Touch target size increase */
+            margin: -10px; /* Offset padding layout */
+        }
+        .social-row a:hover, .social-row a:focus { opacity: 1; }
+        
         .footer-copy { margin-top: 60px; font-size: 0.7rem; color: #444; text-transform: uppercase; text-align: center; }
 
         @keyframes bounce {
@@ -158,8 +196,14 @@
 </head>
 <body>
 
-    <div class="fixed-hero">
-        <div class="coordinates">
+    <div id="desktop-warning" role="alert">
+        <i class="fas fa-mobile-alt" style="font-size: 3rem; margin-bottom: 20px; color: #fff;"></i>
+        <h2>Mobile Experience Only</h2>
+        <p>This experience is designed exclusively for mobile devices. Please open this link on your smartphone.</p>
+    </div>
+
+    <header class="fixed-hero">
+        <div class="coordinates" aria-label="Location Coordinates">
             LAT 44.9778° N<br>LON 93.2650° W
         </div>
 
@@ -167,14 +211,14 @@
             <h2>Flights<br>Designed<br>With Precision.</h2>
         </div>
 
-        <div class="scroll-prompt" onclick="slideUp()">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <button class="scroll-prompt" onclick="slideUp()" aria-label="Scroll down to content">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
             </svg>
-        </div>
-    </div>
+        </button>
+    </header>
 
-    <div class="content-layer" id="menu-panel">
+    <main class="content-layer" id="menu-panel">
         
         <div class="brand-header">
             <h1>Intrepid Flights</h1>
@@ -185,30 +229,44 @@
             </div>
         </div>
 
-        <span class="section-label">Services</span>
-        <div class="service-list">
-            <button class="service-item" onclick="select(this)">Aerial Photography</button>
-            <button class="service-item" onclick="select(this)">Geo Mapping</button>
-            <button class="service-item" onclick="select(this)">Real Estate</button>
-            <button class="service-item" onclick="select(this)">Cinematography</button>
-            <button class="service-item" onclick="select(this)">Inspections</button>
-        </div>
+        <section aria-labelledby="services-heading">
+            <span id="services-heading" class="section-label">Services</span>
+            <div class="service-list" role="list">
+                <button class="service-item" role="listitem" aria-selected="false" onclick="select(this)">Aerial Photography</button>
+                <button class="service-item" role="listitem" aria-selected="false" onclick="select(this)">Geo Mapping</button>
+                <button class="service-item" role="listitem" aria-selected="false" onclick="select(this)">Real Estate</button>
+                <button class="service-item" role="listitem" aria-selected="false" onclick="select(this)">Cinematography</button>
+                <button class="service-item" role="listitem" aria-selected="false" onclick="select(this)">Inspections</button>
+            </div>
+        </section>
 
-        <span class="section-label">Connect</span>
-        <div>
-            <a href="tel:7639101792" class="contact-link">763-910-1792</a>
-            <a href="mailto:joshstafki@intrepidflights.com" class="contact-link">joshstafki@intrepidflights.com</a>
-        </div>
+        <section aria-labelledby="connect-heading">
+            <span id="connect-heading" class="section-label">Connect</span>
+            <address style="font-style: normal;">
+                <a href="tel:7639101792" class="contact-link" aria-label="Call 7 6 3. 9 1 0. 1 7 9 2">763-910-1792</a>
+                <a href="mailto:joshstafki@intrepidflights.com" class="contact-link" aria-label="Email Josh Stafki">joshstafki@intrepidflights.com</a>
+            </address>
+        </section>
 
-        <div class="social-row">
-            <a href="https://x.com/intrepidflights?s=21"><i class="fab fa-x-twitter"></i></a>
-            <a href="https://www.linkedin.com/company/intrepid-flights-drone-photography"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.instagram.com/intrepid.flights?igsh=ZW11Zzd1OW13NnR3&utm_source=qr"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.youtube.com/@intrepid.flights"><i class="fab fa-youtube"></i></a>
-        </div>
+        <nav class="social-row" aria-label="Social Media Links">
+            <a href="https://x.com/intrepidflights?s=21" target="_blank" rel="noopener noreferrer" aria-label="Visit Intrepid Flights on X (Twitter)">
+                <i class="fab fa-x-twitter" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/intrepid-flights-drone-photography" target="_blank" rel="noopener noreferrer" aria-label="Visit Intrepid Flights on LinkedIn">
+                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.instagram.com/intrepid.flights?igsh=ZW11Zzd1OW13NnR3&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Visit Intrepid Flights on Instagram">
+                <i class="fab fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.youtube.com/@intrepid.flights" target="_blank" rel="noopener noreferrer" aria-label="Visit Intrepid Flights on YouTube">
+                <i class="fab fa-youtube" aria-hidden="true"></i>
+            </a>
+        </nav>
 
-        <div class="footer-copy">&copy; 2025 Intrepid Flights</div>
-    </div>
+        <footer class="footer-copy">
+            &copy; 2025 Intrepid Flights
+        </footer>
+    </main>
 
     <script>
         function slideUp() {
@@ -218,13 +276,15 @@
 
         function select(el) {
             if (navigator.vibrate) navigator.vibrate(5);
+            // Reset all items
             document.querySelectorAll('.service-item').forEach(i => {
-                i.classList.remove('active');
+                i.setAttribute('aria-selected', 'false'); // ADA Update
                 i.style.color = '#777';
                 i.style.borderLeft = 'none';
                 i.style.paddingLeft = '0';
             });
-            el.classList.add('active');
+            // Activate clicked item
+            el.setAttribute('aria-selected', 'true'); // ADA Update
             el.style.color = '#fff';
             el.style.borderLeft = '4px solid #fff';
             el.style.paddingLeft = '15px';
