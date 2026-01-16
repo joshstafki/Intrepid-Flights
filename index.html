@@ -2,12 +2,17 @@
 <html lang="en">
 <head>
     <script type="text/javascript">
-    if (/iPad/i.test(navigator.userAgent)) return;
-        // Checks for mobile user agent OR screen width less than 900px
-        if (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 900) {
-            window.location.href = "https://intrepidflights.com/home/";
-        }
-    </script>
+    // Detect iPads
+    const isIPad = /iPad/i.test(navigator.userAgent);
+
+    // Detect other mobiles or small screens
+    const isMobileOrSmall = (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 900);
+
+    // Only redirect if it's a mobile/small device AND NOT an iPad
+    if (isMobileOrSmall && !isIPad) {
+        window.location.href = "https://intrepidflights.com/home/";
+    }
+</script>
 
     <link rel="icon" type="image/png" href="https://intrepidflights.com/indigo.png">
     <link rel="apple-touch-icon" sizes="180x180" href="https://intrepidflights.com/apple-touch-icon.png">
