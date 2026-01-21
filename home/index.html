@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="Intrepid Flights - Precision Drone Photography and Videography in the Twin Cities.">
     <title>Intrepid Flights | Precision Drone Photography</title>
 
@@ -184,7 +184,8 @@
             transition: 0.2s; background: none; border: none;
             text-align: left; width: 100%; text-transform: uppercase;
         }
-        .service-item[aria-selected="true"] {
+        /* ADA Update: Target aria-pressed instead of aria-selected */
+        .service-item[aria-pressed="true"] {
             color: #fff; padding-left: 15px; border-left: 4px solid #fff;
         }
 
@@ -215,7 +216,7 @@
 <body>
 
     <div id="desktop-warning" role="alert">
-        <i class="fas fa-mobile-alt" style="font-size: 3rem; margin-bottom: 20px; color: #fff;"></i>
+        <i class="fas fa-mobile-alt" style="font-size: 3rem; margin-bottom: 20px; color: #fff;" aria-hidden="true"></i>
         <h2>Mobile Experience Only</h2>
         <p>This experience is designed exclusively for mobile devices. Please open this link on your smartphone.</p>
     </div>
@@ -229,7 +230,7 @@
             <h2>Flights<br>Designed<br>With Precision.</h2>
         </div>
 
-        <button class="scroll-prompt" onclick="slideUp()" aria-label="Scroll down to content">
+        <button class="scroll-prompt" type="button" onclick="slideUp()" aria-label="Scroll down to content">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
             </svg>
@@ -250,11 +251,11 @@
         <section aria-labelledby="services-heading">
             <span id="services-heading" class="section-label">Services</span>
             <div class="service-list" role="list">
-                <button class="service-item" role="listitem" aria-selected="false" onclick="select(this)">Aerial Photography</button>
-                <button class="service-item" role="listitem" aria-selected="false" onclick="select(this)">Geo Mapping</button>
-                <button class="service-item" role="listitem" aria-selected="false" onclick="select(this)">Real Estate</button>
-                <button class="service-item" role="listitem" aria-selected="false" onclick="select(this)">Cinematography</button>
-                <button class="service-item" role="listitem" aria-selected="false" onclick="select(this)">Inspections</button>
+                <button class="service-item" role="listitem" type="button" aria-pressed="false" onclick="select(this)">Aerial Photography</button>
+                <button class="service-item" role="listitem" type="button" aria-pressed="false" onclick="select(this)">Geo Mapping</button>
+                <button class="service-item" role="listitem" type="button" aria-pressed="false" onclick="select(this)">Real Estate</button>
+                <button class="service-item" role="listitem" type="button" aria-pressed="false" onclick="select(this)">Cinematography</button>
+                <button class="service-item" role="listitem" type="button" aria-pressed="false" onclick="select(this)">Inspections</button>
             </div>
         </section>
 
@@ -299,13 +300,15 @@
             if (navigator.vibrate) navigator.vibrate(5);
             // Reset all items
             document.querySelectorAll('.service-item').forEach(i => {
-                i.setAttribute('aria-selected', 'false'); // ADA Update
+                // ADA FIX: Changed to aria-pressed
+                i.setAttribute('aria-pressed', 'false'); 
                 i.style.color = '#777';
                 i.style.borderLeft = 'none';
                 i.style.paddingLeft = '0';
             });
             // Activate clicked item
-            el.setAttribute('aria-selected', 'true'); // ADA Update
+            // ADA FIX: Changed to aria-pressed
+            el.setAttribute('aria-pressed', 'true'); 
             el.style.color = '#fff';
             el.style.borderLeft = '4px solid #fff';
             el.style.paddingLeft = '15px';
