@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="https://intrepidflights.com/indigo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intrepid Flights - Terms of Service</title>
+    <style>
+        :root {
+            --primary-blue: #1a365d;
+            --accent-gold: #c05621;
+            --text-dark: #2d3748;
+            --bg-light: #f7fafc;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            border-radius: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            margin: 0 auto 20px;
+        }
+
+        .logo-container img {
+            max-width: 250px;
+            height: auto;
+        }
+
+        h1 {
+            color: var(--primary-blue);
+            font-size: 1.75rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .meta-info {
+            font-size: 0.95rem;
+            color: #4a5568;
+        }
+
+        .index-box {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 50px;
+        }
+
+        .index-box h2 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .index-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 30px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .index-list li {
+            font-size: 0.9rem;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .index-list a {
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: color 0.2s;
+        }
+
+        .index-list a:hover {
+            color: var(--accent-gold);
+        }
+
+        section {
+            margin-bottom: 45px;
+            scroll-margin-top: 20px;
+        }
+
+        h3 {
+            color: var(--primary-blue);
+            font-size: 1.25rem;
+            border-bottom: 1px solid #edf2f7;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul {
+            padding-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .footer-brand {
+            margin-top: 60px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-blue);
+            letter-spacing: 2px;
+            border-top: 2px solid var(--border-color);
+            padding-top: 30px;
+        }
+
+        @media (max-width: 700px) {
+            .index-list { grid-template-columns: 1fr; }
+            .container { padding: 30px 20px; }
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; max-width: 100%; padding: 0; }
+            .index-box { background: white; }
+            .index-list a { color: black; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="header">
+        <div class="logo-container">
+            <img src="https://intrepidflights.com/apple-touch-icon.png" alt="Intrepid Flights Logo">
+        </div>
+        <h1>Terms of Service (Draft)</h1>
+        <div class="meta-info">
+            <strong>Effective Date:</strong> 01 January 2026 <br>
+            <strong>Company:</strong> Intrepid Flights (“Company,” “we,” “us”) <br>
+            <strong>Client:</strong> The individual or entity engaging services (“Client”)
+        </div>
+    </header>
+
+    <nav class="index-box">
+        <h2>Document Index</h2>
+        <ul class="index-list">
+            <li><a href="#s1">1. Scope of Services</a></li>
+            <li><a href="#s2">2. Payment Terms</a></li>
+            <li><a href="#s3">3. Weather & Airspace</a></li>
+            <li><a href="#s4">4. Client Responsibilities</a></li>
+            <li><a href="#s5">5. Limitation of Liability</a></li>
+            <li><a href="#s6">6. Assumption of Risk</a></li>
+            <li><a href="#s7">7. Insurance</a></li>
+            <li><a href="#s8">8. Intellectual Property</a></li>
+            <li><a href="#s9">9. Municipal Clients</a></li>
+            <li><a href="#s10">10. Cancellation Policy</a></li>
+            <li><a href="#s11">11. Governing Law</a></li>
+            <li><a href="#s12">12. Severability</a></li>
+            <li><a href="#s13">13. Acceptance</a></li>
+        </ul>
+    </nav>
+
+    <section id="s1">
+        <h3>1. Scope of Services</h3>
+        <p>Intrepid Flights provides professional unmanned aerial vehicle (UAV / drone) photography, videography, and related aerial imaging services. Specific services, deliverables, timelines, and locations shall be agreed upon in writing prior to commencement.</p>
+    </section>
+
+    <section id="s2">
+        <h3>2. Payment Terms</h3>
+        <ul>
+            <li>Invoices are Net 15 unless otherwise agreed in writing.</li>
+            <li>Payment is due within 15 calendar days of the invoice date.</li>
+            <li>Late payments may incur a reasonable late fee of 1.5% per month (or the maximum allowed by law).</li>
+            <li>Client agrees to reimburse reasonable collection costs, including legal fees, if payment enforcement becomes necessary.</li>
+        </ul>
+    </section>
+
+    <section id="s3">
+        <h3>3. Weather, Airspace, and Acts of God</h3>
+        <p>Drone operations are subject to weather conditions, airspace restrictions, FAA regulations, and other factors beyond the Company’s control. Intrepid Flights shall not be held liable for delays, rescheduling, or non-performance caused by:</p>
+        <ul>
+            <li>Severe or unsafe weather</li>
+            <li>Temporary flight restrictions (TFRs)</li>
+            <li>Government or FAA restrictions</li>
+            <li>Acts of God, including but not limited to natural disasters, power outages, or civil emergencies</li>
+        </ul>
+        <p>In such cases, services may be rescheduled without penalty.</p>
+    </section>
+
+    <section id="s4">
+        <h3>4. Client Responsibilities</h3>
+        <p>Client represents and warrants that:</p>
+        <ul>
+            <li>They have the legal right to grant access to the property</li>
+            <li>Necessary permissions from property owners or authorities have been obtained</li>
+            <li>The site is free from known hazards not disclosed to the Company</li>
+        </ul>
+        <p>Client agrees to inform the Company of any site-specific risks prior to flight operations.</p>
+    </section>
+
+    <section id="s5">
+        <h3>5. Limitation of Liability & Waiver of Claims</h3>
+        <p>To the fullest extent permitted by law, Client agrees to waive, release, and hold harmless Intrepid Flights, its operators, employees, and contractors from any claims arising from:</p>
+        <ul>
+            <li>Reasonable or accidental property damage</li>
+            <li>Incidental damage occurring during drone operations</li>
+            <li>Damage occurring while traveling to or from the property</li>
+            <li>Minor, unintended impacts caused by equipment malfunction or environmental factors</li>
+        </ul>
+        <p>This waiver applies provided that the Company acts in good faith and in accordance with FAA regulations and industry best practices. This clause does not apply to gross negligence or willful misconduct.</p>
+    </section>
+
+    <section id="s6">
+        <h3>6. Assumption of Risk</h3>
+        <p>Client acknowledges that drone operations carry inherent risks, including mechanical failure, environmental interference, and third-party interference. Client voluntarily assumes all such risks associated with authorized drone operations.</p>
+    </section>
+
+    <section id="s7">
+        <h3>7. Insurance</h3>
+        <p>Intrepid Flights maintains appropriate liability insurance for UAV operations. Proof of insurance may be provided upon request.</p>
+    </section>
+
+    <section id="s8">
+        <h3>8. Intellectual Property & Usage Rights</h3>
+        <p>Unless otherwise agreed in writing:</p>
+        <ul>
+            <li>Intrepid Flights retains copyright ownership of all media</li>
+            <li>Client is granted a non-exclusive, perpetual license for agreed-upon usage</li>
+            <li>Media may be used by the Company for portfolio and marketing purposes unless explicitly restricted</li>
+        </ul>
+    </section>
+
+    <section id="s9">
+        <h3>9. Municipal Clients – Immunity & Indemnification</h3>
+        <p>For municipal or governmental clients: The Client agrees to indemnify, defend, and hold harmless Intrepid Flights from any claims, liabilities, or losses arising from authorized drone operations performed under this contract, for the duration of the agreement, except in cases of gross negligence or intentional misconduct.</p>
+        <p>Nothing in this agreement shall be construed as a waiver of statutory governmental immunities where applicable.</p>
+    </section>
+
+    <section id="s10">
+        <h3>10. Cancellation & Rescheduling</h3>
+        <ul>
+            <li>Cancellations within 24 hours of scheduled service may incur a fee</li>
+            <li>Weather-related or regulatory cancellations shall not incur penalties</li>
+            <li>Deposits, if required, are non-refundable unless otherwise stated</li>
+        </ul>
+    </section>
+
+    <section id="s11">
+        <h3>11. Governing Law</h3>
+        <p>This agreement shall be governed by and construed in accordance with the laws of the State of Minnesota (MN), without regard to conflict-of-law principles.</p>
+    </section>
+
+    <section id="s12">
+        <h3>12. Severability</h3>
+        <p>If any provision of these Terms is found unenforceable, the remaining provisions shall remain in full force and effect.</p>
+    </section>
+
+    <section id="s13">
+        <h3>13. Acceptance</h3>
+        <p>Engaging services with Intrepid Flights constitutes acceptance of these Terms of Service.</p>
+    </section>
+
+    <div class="footer-brand">
+        INTREPID FLIGHTS
+    </div>
+</div>
+
+</body>
+</html>
