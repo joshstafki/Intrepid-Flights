@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Josh Stafki</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,600;1,300&family=Oswald:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,600;1,300&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-deep: #0a0a0a;
             --bg-card: #141414;
-            --gold-accent: #b58d4a; /* Inspired by adobe.jpeg */
+            --gold-accent: #b58d4a; 
             --gold-muted: #8c6d39;
             --text-bright: #ffffff;
             --text-dim: #a0a0a0;
@@ -27,36 +27,45 @@
         }
 
         .bio-wrapper {
-            max-width: 900px;
+            max-width: 950px;
             width: 90%;
             background: var(--bg-card);
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
+            grid-template-columns: 1fr 1.3fr;
             border: 1px solid #222;
             box-shadow: 0 40px 100px rgba(0,0,0,0.8);
             margin: 40px 0;
+            overflow: hidden;
         }
 
-        /* Image Side */
+        /* Shifted to 30% to pull you closer to the text side */
         .bio-visual {
-            background: url('https://intrepidflights.com/assets/stafki.jpeg') center/cover no-repeat;
+            background: url('https://intrepidflights.com/assets/stafki.jpeg') 30% center / cover no-repeat;
+            background-color: var(--bg-card);
             position: relative;
-            min-height: 400px;
+            min-height: 550px;
         }
 
+        /* Refined mask to handle the subject being closer to the center */
         .bio-visual::after {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(to right, rgba(20,20,20,0), rgba(20,20,20,1));
+            background: linear-gradient(
+                to right, 
+                var(--bg-card) 0%, 
+                transparent 10%, 
+                transparent 40%, 
+                var(--bg-card) 90%
+            );
         }
 
-        /* Content Side */
         .bio-text {
             padding: 60px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            z-index: 2;
         }
 
         .kicker {
@@ -67,15 +76,17 @@
             font-size: 0.9rem;
             margin-bottom: 10px;
             display: block;
+            font-weight: 400;
         }
 
         h1 {
             font-family: 'Oswald', sans-serif;
-            font-size: 3.5rem;
-            line-height: 1;
+            font-size: 3.8rem;
+            line-height: 1.1;
             margin: 0 0 25px 0;
             text-transform: uppercase;
             font-weight: 700;
+            letter-spacing: -1px;
         }
 
         .bio-content p {
@@ -99,6 +110,8 @@
             border-top: 1px solid #333;
             padding-top: 20px;
             display: inline-block;
+            font-weight: 400;
+            letter-spacing: 1px;
         }
 
         .back-link {
@@ -115,21 +128,21 @@
             color: var(--gold-accent);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 850px) {
             .bio-wrapper {
                 grid-template-columns: 1fr;
             }
             .bio-visual {
-                min-height: 300px;
+                min-height: 400px;
+                background-position: center;
             }
             .bio-visual::after {
-                background: linear-gradient(to bottom, rgba(20,20,20,0), rgba(20,20,20,1));
+                background: linear-gradient(to bottom, rgba(20,20,20,0) 50%, var(--bg-card) 95%);
             }
             .bio-text {
                 padding: 40px 30px;
             }
-            h1 { font-size: 2.5rem; }
+            h1 { font-size: 2.8rem; }
         }
     </style>
 </head>
@@ -150,7 +163,7 @@
                     With a background rooted in the intersection of emerging technology and visual aesthetics, he has built Intrepid Flights into a premier drone service provider. His focus remains on delivering high-fidelity perspectives that were once unreachable, ensuring every mission is executed with clinical safety and cinematic flair.
                 </p>
                 
-                <span class="signature">Intrepid Flights — Established 2025</span>
+                <span class="signature">Intrepid Flights — Established 2020</span>
             </div>
 
             <a href="https://www.intrepidflights.com" class="back-link">← Return to intrepidflights.com</a>
