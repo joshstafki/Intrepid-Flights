@@ -1,1 +1,10 @@
-this one
+[
+  {
+    "title": "The Overview Effect: Why Aerial Perspective Shifting is Essential for 2026",
+    "date": "February 21, 2026 AD",
+    "image": "/images/aerial-horizon.jpg",
+    "imageCredit": "Shot on DJI Mavic 3 Pro | Intrepid Flights Archive",
+    "url": "/articles/overview-effect",
+    "category": "Philosophy"
+  },
+]
