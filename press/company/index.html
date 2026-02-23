@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Articles | Intrepid Flights</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-navy: #002F6C;
+            --cool-grey: #A7A8AA;
+            --pure-white: #FFFFFF;
+            --text-dark: #1A1A1A;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--pure-white);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+        }
+
+        header {
+            background-color: var(--primary-navy);
+            color: var(--pure-white);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 8px solid var(--cool-grey);
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        /* Styling for the dynamically injected items */
+        .press-item {
+            margin-bottom: 80px;
+        }
+
+        .press-item h2 {
+            font-family: 'Oswald', sans-serif;
+            color: var(--primary-navy);
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .press-item .date-stamp {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: var(--cool-grey);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .press-image {
+            margin: 25px 0;
+            border: 1px solid #eee;
+        }
+
+        .press-image img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .image-credit {
+            font-family: 'Inter', sans-serif;
+            background: #f9f9f9;
+            padding: 8px 12px;
+            border-left: 3px solid var(--cool-grey);
+        }
+
+        .read-link {
+            display: inline-block;
+            margin-top: 15px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            color: var(--primary-navy);
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .read-link:hover {
+            border-color: var(--primary-navy);
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #eee;
+            margin-top: 40px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--cool-grey);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Mission Articles</h1>
+    <p style="font-family: 'Inter'; opacity: 0.8; text-transform: uppercase; letter-spacing: 2px;">Intrepid Flights Archive</p>
+</header>
+
+<div class="container" id="pressContainer">
+    </div>
+
+<footer>
+    &copy; 2026 AD Intrepid Flights
+</footer>
+
+<script>
+fetch('/data/press.json')
+  .then(response => response.json())
+  .then(data => {
+    // Sorting by date descending
+    data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    const container = document.getElementById('pressContainer');
+
+    data.forEach(item => {
+      const article = document.createElement('div');
+      article.classList.add("press-item");
+
+      let imageBlock = "";
+      if (item.image) {
+        imageBlock = `
+          <div class="press-image">
+            <img src="${item.image}" alt="${item.title}">
+            ${item.imageCredit ? `<div class="image-credit" style="font-size:0.75rem; color:#888; margin-top:4px;">
+              ${item.imageCredit}
+            </div>` : ""}
+          </div>
+        `;
+      }
+
+      // Using your format: Oswald for Title, Inter for Date/Body
+      article.innerHTML = `
+        <h2>${item.title}</h2>
+        <span class="date-stamp">${item.date}</span>
+        ${imageBlock}
+        <a href="${item.url}" target="_blank" class="read-link">Read Full Release &rarr;</a>
+        <hr>
+      `;
+
+      container.appendChild(article);
+    });
+});
+</script>
+
+</body>
+</html>
