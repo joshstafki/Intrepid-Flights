@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From the Office of the CEO | Intrepid Flights</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --executive-gold: #C5A059; /* A muted, sophisticated gold */
+            --obsidian: #0A0A0A;      /* Deep black for high contrast */
+            --slate-grey: #1C1C1C;    /* For secondary backgrounds */
+            --pure-white: #FFFFFF;
+            --muted-white: #E0E0E0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--obsidian);
+            font-family: 'Inter', sans-serif;
+            color: var(--pure-white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            background-color: var(--obsidian);
+            color: var(--executive-gold);
+            padding: 100px 20px 60px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--executive-gold);
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            font-size: 3rem;
+            margin: 0;
+        }
+
+        .header-sub {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--pure-white);
+            margin-top: 15px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 80px auto;
+            padding: 0 25px;
+        }
+
+        /* Press Item Styling */
+        .press-item {
+            margin-bottom: 120px;
+            position: relative;
+        }
+
+        .press-item h2 {
+            font-family: 'Oswald', sans-serif;
+            color: var(--executive-gold);
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            line-height: 1.1;
+            letter-spacing: 1px;
+        }
+
+        .press-item .date-stamp {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            color: var(--executive-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.8rem;
+            display: block;
+            margin-bottom: 30px;
+        }
+
+        .press-image {
+            margin: 35px 0;
+            border: 1px solid #222;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .press-image img {
+            display: block;
+            width: 100%;
+            height: auto;
+            filter: grayscale(20%); /* Adds a cinematic, executive look */
+            transition: filter 0.5s ease;
+        }
+
+        .press-image:hover img {
+            filter: grayscale(0%);
+        }
+
+        .image-credit {
+            font-family: 'Inter', sans-serif;
+            background: var(--slate-grey);
+            color: #888;
+            padding: 10px 15px;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            border-left: 2px solid var(--executive-gold);
+        }
+
+        .read-link {
+            display: inline-block;
+            margin-top: 20px;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            color: var(--pure-white);
+            text-decoration: none;
+            font-weight: 400;
+            letter-spacing: 2px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--executive-gold);
+            transition: all 0.3s ease;
+        }
+
+        .read-link:hover {
+            color: var(--executive-gold);
+            padding-left: 10px;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, var(--executive-gold), transparent);
+            margin-top: 60px;
+            opacity: 0.3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 80px 40px;
+            color: #444;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>The CEO Dispatch</h1>
+    <div class="header-sub">Intrepid Flights — From the Office of the CEO</div>
+</header>
+
+<div class="container" id="pressContainer">
+    </div>
+
+<footer>
+    &copy; 2026 Intrepid Flights | Excellence through Perspective
+</footer>
+
+<script>
+fetch('/data/press.json')
+  .then(response => response.json())
+  .then(data => {
+    // Sort logic (Handles your "AD" preference)
+    data.sort((a, b) => {
+        const dateA = new Date(a.date.replace(" AD", ""));
+        const dateB = new Date(b.date.replace(" AD", ""));
+        return dateB - dateA;
+    });
+
+    const container = document.getElementById('pressContainer');
+
+    data.forEach(item => {
+      const article = document.createElement('div');
+      article.classList.add("press-item");
+
+      let imageBlock = "";
+      if (item.image) {
+        imageBlock = `
+          <div class="press-image">
+            <img src="${item.image}" alt="${item.title}">
+            ${item.imageCredit ? `<div class="image-credit">
+              Source: ${item.imageCredit}
+            </div>` : ""}
+          </div>
+        `;
+      }
+
+      article.innerHTML = `
+        <span class="date-stamp">${item.date}</span>
+        <h2>${item.title}</h2>
+        ${imageBlock}
+        <a href="${item.url}" target="_blank" class="read-link">Review Full Statement &rarr;</a>
+        <hr>
+      `;
+
+      container.appendChild(article);
+    });
+});
+</script>
+
+</body>
+</html>
