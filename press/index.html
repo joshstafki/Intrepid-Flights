@@ -153,7 +153,7 @@
     // Set Header Date
     const today = new Date();
     const dateOptions = { month: 'long', day: 'numeric', year: 'numeric' };
-    document.getElementById('header-date').innerText = today.toLocaleDateString('en-US', dateOptions) + " AD";
+    document.getElementById('header-date').innerText = today.toLocaleDateString('en-US', dateOptions);
 
     // Fetch from press/press.json (Moving up one folder from /company/)
     fetch('/press/press.json')
