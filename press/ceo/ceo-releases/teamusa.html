@@ -35,24 +35,16 @@
             position: relative;
         }
 
-        /* Image Placeholder Section */
         .image-container {
             width: 100%;
             margin-bottom: 40px;
         }
 
-        .image-placeholder {
+        .press-image {
             width: 100%;
-            height: 400px;
-            background: linear-gradient(45deg, #1f1f1f, #252525);
-            border: 1px dashed var(--gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gold);
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            height: auto;
+            display: block;
+            border-radius: 8px;
         }
 
         .credit-line {
@@ -63,7 +55,6 @@
             font-style: italic;
         }
 
-        /* Typography */
         h1, h2, h3 {
             font-family: 'Oswald', sans-serif;
             color: var(--gold);
@@ -119,16 +110,18 @@
 </head>
 <body>
 
- <div class="image-container">
-    <img 
-        src="https://i.ytimg.com/vi/1oiazwLG-aY/maxresdefault.jpg" 
-        alt="2026 Winter Games"
-        class="press-image"
-    >
-    <div class="credit-line">
-        Photo Credit: NBC Sports, 2026 Winter Games
-    </div>
-</div>
+    <div class="container">
+
+        <div class="image-container">
+            <img 
+                src="https://i.ytimg.com/vi/1oiazwLG-aY/maxresdefault.jpg" 
+                alt="2026 Winter Games"
+                class="press-image"
+            >
+            <div class="credit-line">
+                Photo Credit: NBC Sports, 2026 Winter Games
+            </div>
+        </div>
 
         <div class="office-header">Office of the CEO</div>
         <h1 class="main-title">A Tribute to Excellence: <br>Congratulating Team USA</h1>
@@ -148,6 +141,7 @@
             <div class="signature">Joshua Stafki</div>
             <div class="title">Chief Executive Officer</div>
         </div>
+
     </div>
 
 </body>
