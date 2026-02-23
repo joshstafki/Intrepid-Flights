@@ -184,7 +184,9 @@
         const options = { month: 'long', day: 'numeric', year: 'numeric' };
         const today = new Date();
         const dateString = today.toLocaleDateString('en-US', options);
-        
+
+        // Setting the header date with AD
+        document.getElementById('date-display').innerText = dateString + "";
         
         // Setting just the year in the footer
         document.getElementById('year-only').innerText = today.getFullYear();
