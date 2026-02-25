@@ -6,11 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <script>
-  const now = new Date();
-  const cutoff = new Date("2026-03-01T00:00:00-06:00");
+  const cutoff = new Date("2026-02-25T00:00:00-06:00");
+  const passcode = "12025";
 
-  if (now >= cutoff) {
-    window.location.replace("https://intrepidflights.com/press/newsroom/");
+  // Only gate AFTER the cutoff
+  if (new Date() >= cutoff) {
+    const hasAccess = sessionStorage.getItem("pressAccess") === passcode;
+
+    if (!hasAccess) {
+      const attempt = prompt("This release has expired. Enter access code to view:");
+
+      if (attempt === passcode) {
+        sessionStorage.setItem("pressAccess", passcode);
+        // stay on page
+      } else {
+        window.location.replace("https://intrepidflights.com/press/newsroom.html");
+      }
+    }
   }
 </script>
     
