@@ -1,81 +1,42 @@
-Intrepid Flights - Landing Page
-A high-performance, desktop-optimized landing page for Intrepid Flights, a professional aerial photography and geographical mapping service based in the Twin Cities, MN.
+# Intrepid Flights - Web Portal
 
-This repository contains the source code for the main entry point of the website, featuring rigorous SEO optimization, device-specific routing, and an accessible, dark-themed UI.
+A desktop-optimized, static landing page for **Intrepid Flights**, providing professional aerial photography, real estate drone services, and geographical mapping in the Twin Cities and surrounding communities. 
 
-🚀 Features
-📱 Intelligent Device Detection
-The site utilizes a custom JavaScript implementation to manage user experience across devices:
+The site features a modern, high-contrast dark theme, ADA-compliant accessibility, and built-in mobile redirection.
 
-Desktop & iPad: Renders the full cinematic split-screen experience.
+## 🚀 Features
 
-Mobile (Phones/Small Screens): Automatically redirects to the mobile-optimized path (/home/) to ensure usability on smaller viewports.
+* **Device-Aware Routing:** Includes a JavaScript device-detection script that automatically redirects mobile and small-screen users (excluding iPads) to the mobile-optimized `/home/` directory.
+* **Accessible Design (ADA Compliant):**
+  * Visible focus states for keyboard navigation.
+  * ARIA attributes (`aria-pressed`, `aria-label`, `aria-hidden`) for screen readers.
+  * Reduced motion media queries (`prefers-reduced-motion`) to disable animations for users with vestibular disorders.
+* **SEO & Social Graph Optimization:**
+  * Semantic HTML5 and comprehensive meta tags.
+  * OpenGraph (OG) and Twitter Card integration for rich social media sharing.
+  * Embedded JSON-LD schema (`ProfessionalService`) for enhanced search engine visibility, including local business coordinates and contact details.
+* **Analytics Integration:** Built-in tracking via Microsoft Clarity.
+* **Responsive Interactive UI:** A fixed-layout sidebar with smooth CSS transitions and JavaScript-toggled active states for the services menu.
 
-Logic: Uses navigator.userAgent and window.innerWidth to differentiate between iPads (which keep the desktop view) and other mobile devices.
+## 🛠 Tech Stack
 
-🎨 Design & UI
-Split Layout: Fixed sidebar navigation with a scrollable hero section.
+* **Markup:** HTML5
+* **Styling:** CSS3 (Custom Properties/Variables, Flexbox, Keyframe Animations)
+* **Scripting:** Vanilla JavaScript
+* **Typography:** Google Fonts (Inter & Oswald)
+* **Icons:** FontAwesome 6.5.0
 
-Typography: Pairs Oswald (headers/navigation) with Inter (body text) for a clean, industrial aesthetic.
+## 📂 Architecture Overview
 
-Cinematic Hero: Full-viewport background imagery with CSS animations (fadeInUp) for the main headline.
+The single-page application is split into a strict two-column desktop layout:
 
-Interactive Elements: Custom hover states and Haptic Feedback (Vibration API) on menu interaction.
+1. **Sidebar (`#menu-panel`):** Houses the brand identity, location details, interactive services menu, contact information (telephone, email), social media links, and footer navigation.
+2. **Hero View (`.hero-view`):** A large, screen-filling background image (Cancun, Mexico) with absolute-positioned geographical coordinates, a dynamic typography overlay, and a link to image metadata.
 
-♿ Accessibility (A11y)
-ARIA Labels: Fully implemented on navigation buttons (aria-pressed) and contact links.
+## 💻 Local Development
 
-Focus States: High-contrast visible outlines for keyboard navigation.
+Since this is a static webpage with no build steps or dependencies required, deployment and testing are straightforward.
 
-Reduced Motion: CSS media queries respect user operating system preferences for reduced motion.
-
-Contrast: Text colors adhere to high-contrast standards for readability against the dark background.
-
-📈 SEO & Analytics
-Meta Tags: Extensive Open Graph (Facebook/LinkedIn) and Twitter Card integration.
-
-Schema.org: JSON-LD structured data for ProfessionalService including geo-coordinates and pricing.
-
-Microsoft Clarity: Integrated heatmap and user behavior tracking.
-
-🛠️ Technologies Used
-HTML5: Semantic markup.
-
-CSS3: Flexbox, CSS Variables, Keyframe Animations, Media Queries.
-
-JavaScript (ES6): Device detection logic and UI interaction handling.
-
-External Assets:
-
-Font Awesome (Icons)
-
-Google Fonts (Inter & Oswald)
-
-📂 Project Structure
-Plaintext
-
-/
-├── index.html          # Main entry point (Desktop view)
-├── /home/              # Mobile redirect destination (External)
-├── indigo.png          # Favicon
-├── image.jpeg          # Main Hero Background
-└── README.md           # Project Documentation
-🔧 Usage
-Clone the repository:
-
-Bash
-
-git clone https://github.com/yourusername/intrepid-flights.git
-Open locally: Simply open index.html in your preferred web browser.
-
-Note: To test the mobile redirect locally, use your browser's DevTools to simulate a mobile device (e.g., iPhone SE).
-
-👤 Author
-Joshua Stafki
-
-Website: intrepidflights.com
-
-Location: Hanover, MN
-
-📄 License
-© 2025 Intrepid Flights. All Rights Reserved.
+1. Clone the repository to your local machine.
+2. Open `index.html` directly in any modern web browser.
+3. *Note:* To test the desktop layout on a smaller screen, temporarily comment out the mobile redirect script in the `<head>` section to prevent being routed to `/home/`.
