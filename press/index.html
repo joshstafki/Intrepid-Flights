@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Press Release – Intrepid Flights Launches Reddit Community</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #002F6C;
+      --silver: #A7A8AA;
+      --white: #FFFFFF;
+      --navy-light: #003d8a;
+      --navy-dark: #001e47;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #f4f6fa;
+      font-family: 'Inter', sans-serif;
+      color: #1a1a2e;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    /* Top bar */
+    .topbar {
+      background-color: var(--navy-dark);
+      padding: 12px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .topbar-brand {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--silver);
+      text-transform: uppercase;
+    }
+
+    .home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--navy);
+      border: 1px solid rgba(167,168,170,0.4);
+      padding: 8px 20px;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .home-btn:hover {
+      background: var(--navy-light);
+      border-color: var(--silver);
+    }
+
+    .home-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--silver);
+    }
+
+    /* Hero banner */
+    .hero {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #1a4a8a 100%);
+      padding: 70px 40px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(255,255,255,0.02) 40px,
+        rgba(255,255,255,0.02) 80px
+      );
+      pointer-events: none;
+    }
+
+    .pr-label {
+      display: inline-block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--silver);
+      border: 1px solid rgba(167,168,170,0.5);
+      padding: 5px 18px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      max-width: 780px;
+      margin: 0 auto 18px;
+    }
+
+    .hero h1 span {
+      color: var(--silver);
+    }
+
+    .hero-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.04em;
+    }
+
+    /* Main content */
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* Meta strip */
+    .meta-strip {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      align-items: center;
+      background: var(--white);
+      border-left: 4px solid var(--navy);
+      padding: 18px 28px;
+      margin: 36px 0 40px;
+      box-shadow: 0 2px 12px rgba(0,47,108,0.07);
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .meta-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--silver);
+    }
+
+    .meta-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    /* Body text */
+    .pr-body {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .pr-body p {
+      font-size: 1.01rem;
+      line-height: 1.8;
+      font-weight: 400;
+      color: #2c2c3e;
+    }
+
+    .pr-body p strong {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    /* Pullquote */
+    .pullquote {
+      border-left: 4px solid var(--navy);
+      padding: 20px 28px;
+      background: linear-gradient(90deg, rgba(0,47,108,0.05) 0%, transparent 100%);
+      margin: 8px 0;
+    }
+
+    .pullquote p {
+      font-family: 'Oswald', sans-serif !important;
+      font-size: 1.25rem !important;
+      font-weight: 400 !important;
+      font-style: normal;
+      color: var(--navy) !important;
+      line-height: 1.5 !important;
+      letter-spacing: 0.01em;
+    }
+
+    .pullquote cite {
+      display: block;
+      margin-top: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--silver);
+    }
+
+    /* CTA button */
+    .cta-block {
+      text-align: center;
+      padding: 40px 0 10px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--navy);
+      padding: 16px 40px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 20px rgba(0,47,108,0.3);
+    }
+
+    .cta-btn:hover {
+      background: var(--navy-light);
+      transform: translateY(-2px);
+    }
+
+    .cta-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--white);
+      opacity: 0.85;
+    }
+
+    .cta-sub {
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: var(--silver);
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.05em;
+    }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(167,168,170,0.35);
+      margin: 36px 0;
+    }
+
+    /* Boilerplate */
+    .boilerplate {
+      background: var(--white);
+      border-top: 3px solid var(--navy);
+      padding: 28px 32px;
+      margin-top: 20px;
+      box-shadow: 0 2px 12px rgba(0,47,108,0.06);
+    }
+
+    .boilerplate-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin-bottom: 12px;
+    }
+
+    .boilerplate p {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    /* Contact */
+    .contact-block {
+      margin-top: 32px;
+      padding: 24px 32px;
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .contact-block .boilerplate-title {
+      color: var(--silver);
+    }
+
+    .contact-block p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .contact-block a {
+      color: var(--silver);
+      text-decoration: none;
+    }
+
+    .contact-block a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--navy-dark);
+      text-align: center;
+      padding: 20px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(167,168,170,0.6);
+    }
+
+    @media (max-width: 600px) {
+      .topbar { padding: 12px 20px; }
+      .hero { padding: 50px 20px 44px; }
+      .meta-strip { padding: 16px 20px; gap: 20px; }
+      .container { padding: 0 16px 60px; }
+      .boilerplate, .contact-block { padding: 22px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="topbar-brand">Intrepid Flights</div>
+    <a href="https://intrepidflights.com/" class="home-btn">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+      </svg>
+      Home
+    </a>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="pr-label">Press Release</div>
+    <h1>Intrepid Flights<br><span>Takes Flight</span> on Reddit</h1>
+    <p class="hero-sub">Official Community Now Live &mdash; Join the Conversation</p>
+  </div>
+
+  <!-- Content -->
+  <div class="container">
+
+    <!-- Meta -->
+    <div class="meta-strip">
+      <div class="meta-item">
+        <span class="meta-label">For Immediate Release</span>
+        <span class="meta-value">March 11, 2025</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Source</span>
+        <span class="meta-value">Intrepid Flights</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Platform</span>
+        <span class="meta-value">Reddit &mdash; r/intrepidflights</span>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="pr-body">
+
+      <p><strong>Intrepid Flights</strong> is proud to announce the official launch of its community on Reddit, now live at <strong>r/intrepidflights</strong>. This new space invites passengers, aviation enthusiasts, and curious travelers to connect, share experiences, and engage directly with the Intrepid Flights team.</p>
+
+      <p>The subreddit marks an important milestone in Intrepid Flights' commitment to building a transparent, community-driven presence. Members can expect flight updates, behind-the-scenes content, travel tips, and open dialogue with the people who make Intrepid Flights possible.</p>
+
+      <div class="pullquote">
+        <p>"We've always believed the best journeys are shared ones. Our Reddit community is an extension of that belief &mdash; a place to connect, ask questions, and fly together."</p>
+        <cite>&mdash; Intrepid Flights Team</cite>
+      </div>
+
+      <p>Whether you're a first-time flyer or a seasoned traveler, r/intrepidflights is your destination for everything Intrepid. The community is open to all and welcomes posts ranging from flight reviews and travel photography to questions and suggestions for the team.</p>
+
+      <p>Intrepid Flights encourages everyone in its growing network to subscribe, introduce themselves, and help shape what the community becomes. The subreddit is moderated by the Intrepid Flights team and designed to be a welcoming, informative, and engaging environment for all aviation fans.</p>
+
+      <hr class="divider" />
+
+      <div class="cta-block">
+        <a href="https://www.reddit.com/r/intrepidflights/s/YsrjHhGtir" class="cta-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+          </svg>
+          Join r/intrepidflights
+        </a>
+        <p class="cta-sub">reddit.com/r/intrepidflights</p>
+      </div>
+
+    </div>
+
+    <!-- Boilerplate -->
+    <div class="boilerplate">
+      <div class="boilerplate-title">About Intrepid Flights</div>
+      <p>Intrepid Flights is dedicated to connecting passengers with exceptional flight experiences. Built on a foundation of reliability, transparency, and community, Intrepid Flights continues to grow its presence across digital platforms to better serve travelers everywhere.</p>
+    </div>
+
+    <!-- Contact -->
+    <div class="contact-block">
+      <div class="boilerplate-title">Media Contact</div>
+      <p>
+        Intrepid Flights &mdash; Press Office<br />
+        <a href="mailto:press@intrepidflights.com">press@intrepidflights.com</a><br />
+        <a href="https://intrepidflights.com/" target="_blank" rel="noopener">intrepidflights.com</a>
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Intrepid Flights &mdash; All Rights Reserved
+  </footer>
+
+</body>
+</html>
