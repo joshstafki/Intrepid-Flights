@@ -1,455 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Press Release: Intrepid Flights Commitment to Real Art</title>
-<link rel="icon" type="image/png" href="https://intrepidflights.com/assets/indigo.png">
-<link rel="apple-touch-icon" sizes="180x180" href="https://intrepidflights.com/assets/apple-touch-icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsroom | Intrepid Flights</title>
+    <link rel="icon" type="image/png" href="https://intrepidflights.com/assets/indigo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://intrepidflights.com/assets/apple-touch-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #002F6C;
+            --light-grey: #F8F9FA;
+            --medium-grey: #E5E7EB;
+            --text-grey: #4B5563;
+            --white: #FFFFFF;
+        }
 
- <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.intrepidflights.com/">
-    <meta property="og:title" content="Intrepid Flights | Precision Drone Photography">
-    <meta property="og:description" content="Professional aerial imaging and mapping services serving the Twin Cities. Design with precision.">
-    <meta property="og:image" content="https://intrepidflights.com/assets/image.jpeg">
-    <meta property="og:site_name" content="Intrepid Flights">
-    <meta property="og:locale" content="en_US">
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-grey);
+            color: var(--navy);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://www.intrepidflights.com/">
-    <meta name="twitter:title" content="Intrepid Flights | Precision Aerial Photography">
-    <meta name="twitter:description" content="Elevate your view. Professional drone services for real estate and mapping in Minnesota.">
-    <meta name="twitter:image" content="https://intrepidflights.com/assets/image.jpeg">
- 
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        header {
+            padding: 30px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-  :root {
-    --navy:   #002F6C;
-    --silver: #A7A8AA;
-    --white:  #FFFFFF;
-    --ink:    #0a0a0a;
-    --rule:   #C8C9CB;
-    --pale:   #F4F5F7;
-  }
+        .brand {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: var(--navy);
+        }
 
-  html { font-size: 16px; }
+        .return-home {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.85rem;
+            text-decoration: none;
+            color: var(--text-grey);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--white);
-    color: var(--ink);
-    min-height: 100vh;
-  }
+        .return-home:hover {
+            border-color: var(--navy);
+            color: var(--navy);
+        }
 
-  /* ── MASTHEAD ── */
-  .masthead {
-    background: var(--navy);
-    padding: 0 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 72px;
-    border-bottom: 3px solid var(--silver);
-  }
-  .brand-name {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    font-size: 1.35rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--white);
-  }
-  .brand-tag {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 300;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--silver);
-  }
-  .masthead-right {
-    text-align: right;
-  }
-  .press-label {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--silver);
-  }
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
 
-  /* ── BANNER RULE ── */
-  .release-bar {
-    background: var(--pale);
-    border-bottom: 1px solid var(--rule);
-    padding: 0.55rem 3rem;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-  }
-  .release-bar span {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--silver);
-  }
-  .release-bar strong {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--navy);
-  }
-  .dot { color: var(--rule); }
+        .hero-container {
+            max-width: 600px;
+            text-align: center;
+        }
 
-  /* ── LAYOUT ── */
-  .page {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 4rem 3rem 6rem;
-  }
+        .pre-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--text-grey);
+            margin-bottom: 10px;
+            display: block;
+        }
 
-  /* ── KICKER ── */
-  .kicker {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--navy);
-    margin-bottom: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  .kicker::before {
-    content: '';
-    display: block;
-    width: 32px;
-    height: 2px;
-    background: var(--navy);
-  }
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(3rem, 10vw, 4.5rem);
+            margin: 0;
+            text-transform: uppercase;
+            line-height: 1;
+        }
 
-  /* ── HEADLINE ── */
-  h1 {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    font-size: clamp(2.2rem, 5vw, 3.4rem);
-    line-height: 1.06;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-    color: var(--navy);
-    margin-bottom: 1.8rem;
-    max-width: 720px;
-  }
-  h1 em {
-    font-style: italic;
-    color: var(--silver);
-    font-weight: 300;
-  }
+        .accent-line {
+            width: 60px;
+            height: 4px;
+            background-color: var(--navy);
+            margin: 30px auto;
+        }
 
-  /* ── DECK ── */
-  .deck {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 400;
-    line-height: 1.65;
-    color: #2a2a2a;
-    border-left: 3px solid var(--navy);
-    padding-left: 1.25rem;
-    margin-bottom: 2.8rem;
-    max-width: 660px;
-  }
+        p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-grey);
+            max-width: 450px;
+            margin: 0 auto;
+        }
 
-  /* ── META ROW ── */
-  .meta {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    padding: 1.1rem 0;
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-    margin-bottom: 3rem;
-  }
-  .meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .meta-label {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.62rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--silver);
-  }
-  .meta-value {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--navy);
-  }
-  .meta-sep { width: 1px; height: 32px; background: var(--rule); }
-
-  /* ── BODY COPY ── */
-  .body p {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.98rem;
-    line-height: 1.85;
-    color: #1a1a1a;
-    margin-bottom: 1.5rem;
-    max-width: 700px;
-  }
-  .body p.lead {
-    font-size: 1.05rem;
-    font-weight: 500;
-    color: var(--ink);
-  }
-  .body p strong {
-    font-weight: 600;
-    color: var(--navy);
-  }
-
-  /* ── COMMITMENT BOX ── */
-  .commitment {
-    background: var(--navy);
-    padding: 2.4rem 2.8rem;
-    margin: 3rem 0;
-  }
-  .commitment h2 {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--silver);
-    margin-bottom: 1.5rem;
-  }
-  .commitment-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .commitment-list li {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.88rem;
-    line-height: 1.65;
-    color: var(--white);
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-  .commitment-list li::before {
-    content: '';
-    display: block;
-    flex-shrink: 0;
-    width: 20px;
-    height: 2px;
-    background: var(--silver);
-    margin-top: 0.62em;
-  }
-
-  /* ── BOILERPLATE ── */
-  .boilerplate {
-    border-top: 1px solid var(--rule);
-    margin-top: 4rem;
-    padding-top: 2rem;
-  }
-  .boilerplate h3 {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--silver);
-    margin-bottom: 0.75rem;
-  }
-  .boilerplate p {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.8rem;
-    line-height: 1.7;
-    color: #666;
-    max-width: 640px;
-    margin-bottom: 1.2rem;
-  }
-
-  /* ── CONTACT ── */
-  .contact {
-    margin-top: 2rem;
-    padding: 1.4rem 1.8rem;
-    border: 1px solid var(--rule);
-    display: inline-block;
-  }
-  .contact p {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.78rem;
-    line-height: 1.7;
-    color: #444;
-    margin: 0;
-  }
-  .contact strong {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--navy);
-    display: block;
-    margin-bottom: 0.4rem;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--navy);
-    padding: 1.5rem 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 3px solid var(--silver);
-  }
-  footer span {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--silver);
-  }
-
-  @media (max-width: 640px) {
-    .masthead { padding: 0 1.5rem; }
-    .release-bar { padding: 0.55rem 1.5rem; flex-wrap: wrap; gap: 0.5rem; }
-    .page { padding: 2.5rem 1.5rem 4rem; }
-    .meta { flex-wrap: wrap; gap: 1rem; }
-    .commitment { padding: 1.8rem 1.5rem; }
-    footer { padding: 1.2rem 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
-  }
-</style>
+        footer {
+            padding: 40px;
+            text-align: center;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: var(--text-grey);
+            text-transform: uppercase;
+        }
+    </style>
 </head>
 <body>
 
-<!-- MASTHEAD -->
-<header class="masthead">
-  <div>
-    <div class="brand-name">Intrepid Flights</div>
-    <div class="brand-tag">Aerial Drone Photography</div>
-  </div>
-  <div class="masthead-right">
-    <div class="press-label">Official Press Release</div>
-  </div>
+<header>
+    <a href="/" class="brand">Intrepid Flights</a>
+    <a href="/" class="return-home">Return to Home</a>
 </header>
 
-<!-- RELEASE BANNER -->
-<div class="release-bar">
-  <strong>For Immediate Release</strong>
-  <span class="dot">|</span>
-  <span>April 2026</span>
-  <span class="dot">|</span>
-  <span>Intrepid Flights / Minneapolis, MN</span>
-</div>
-
-<!-- PAGE CONTENT -->
-<main class="page">
-
-  <div class="kicker">Editorial Statement</div>
-
-  <h1>On the Side of <em>the</em><br>Artist, <em>Always</em></h1>
-
-  <p class="deck">
-    Intrepid Flights, an aerial drone photography company, declares its lasting commitment to real, human-made art and media, and its firm opposition to the use of AI tools in ways that devalue, replace, or extract from the labor of working visual artists.
-  </p>
-
-  <!-- META -->
-  <div class="meta">
-    <div class="meta-item">
-      <span class="meta-label">Issued By</span>
-      <span class="meta-value">Intrepid Flights</span>
+<main>
+    <div class="hero-container">
+        <span class="pre-title">Official</span>
+        <h1>Newsroom</h1>
+        <div class="accent-line"></div>
+        <p>
+            This index serves as the central hub for all Intrepid Flights press releases and corporate announcements. 
+            <br><br>
+            Please check back for future updates and media statements.
+        </p>
     </div>
-    <div class="meta-sep"></div>
-    <div class="meta-item">
-      <span class="meta-label">Date</span>
-      <span class="meta-value">April 14, 2026</span>
-    </div>
-    <div class="meta-sep"></div>
-    <div class="meta-item">
-      <span class="meta-label">Category</span>
-      <span class="meta-value">Editorial Position</span>
-    </div>
-    <div class="meta-sep"></div>
-    <div class="meta-item">
-      <span class="meta-label">Distribution</span>
-      <span class="meta-value">Unrestricted</span>
-    </div>
-  </div>
-
-  <!-- BODY -->
-  <div class="body">
-
-    <p class="lead">
-      <strong>MINNEAPOLIS, MN</strong> Intrepid Flights, an aerial drone photography company, today issues a formal statement of principle on the use of artificial intelligence in creative industries. This is not a commentary on technology broadly. It is a declaration of where Intrepid Flights stands when the interests of real artists are on the line.
-    </p>
-
-    <p>
-      We are a photography company. Every frame we deliver is the product of deliberate skill: reading light, understanding terrain, piloting with precision, and knowing when to press the shutter. That is craft. It cannot be replicated by a text prompt, and we will not pretend otherwise.
-    </p>
-
-    <p>
-      That position makes this statement more urgent, not less. As a visual media brand, we are acutely aware of what AI image generation does to working photographers, illustrators, and visual artists. When tools trained on scraped work, often without consent or credit, are used to produce imagery at scale and undercut human creators, the damage is real and financial. Artists lose commissions. Studios reduce headcount. The market for genuine visual work shrinks. Intrepid Flights will not participate in that erosion.
-    </p>
-
-    <p>
-      This is not a condemnation of AI as a whole. Legitimate applications exist in data, logistics, flight planning, and engineering. The line Intrepid Flights draws is specific: <strong>where AI is used to replace or diminish artists who depend on that work, we will not follow.</strong>
-    </p>
-
-    <p>
-      Credibility in visual media begins with authenticity. Every image this brand produces was earned in the air. We hold the same standard for the art, music, and writing we associate with. We invite fellow photographers, creatives, and independent media to stand with it: support artists, pay fairly, and credit generously.
-    </p>
-
-  </div>
-
-  <!-- COMMITMENTS BOX -->
-  <div class="commitment">
-    <h2>Intrepid Flights Commitments</h2>
-    <ul class="commitment-list">
-      <li>We will not use AI-generated imagery, music, or written content as a substitute for human creative work in our brand materials.</li>
-      <li>We will seek to commission and fairly compensate artists, photographers, and designers whose work aligns with our identity and values.</li>
-      <li>We will credit all artists and creative contributors prominently and accurately across all publications and platforms.</li>
-      <li>We will not license, feature, or promote tools or services whose explicit purpose is to replace human artists in creative industries.</li>
-      <li>We will hold this standard under commercial pressure, under deadlines, and under the convenience that automation often offers. Principle is only principle when it costs something.</li>
-    </ul>
-  </div>
-
-  <div class="body">
-    <p>
-      Intrepid Flights was built on the belief that the best shot is the one you earn by showing up, by flying the mission, and by seeing what no one else saw. That same conviction drives this position. We will not trade the integrity of real creative work for convenience. We fly higher by lifting others with us.
-    </p>
-  </div>
-
-  <!-- BOILERPLATE -->
-  <div class="boilerplate">
-    <h3>About Intrepid Flights</h3>
-    <p>
-      Intrepid Flights is an independent aerial drone photography company based in Minneapolis, Minnesota. The company produces original visual content from above, serving editorial, commercial, and media clients with a commitment to craft, authenticity, and the art of flight.
-    </p>
-
-    <div class="contact">
-      <strong>Media Contact</strong>
-      <p>
-        Intrepid Flights<br />
-        Minneapolis, Minnesota<br />
-        press@intrepidflight.com
-      </p>
-    </div>
-  </div>
-
 </main>
 
-<!-- FOOTER -->
 <footer>
-  <span>© 2026 Intrepid Flights. All Rights Reserved.</span>
-  <span>intrepidflight.com</span>
+    &copy; 2026 Intrepid Flights
 </footer>
 
 </body>
