@@ -3,32 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <script>
-  const cutoff = new Date("2026-03-01T00:00:00-06:00");
-  const passcode = "12005";
-
-  // Only gate AFTER the cutoff
-  if (new Date() >= cutoff) {
-    const hasAccess = sessionStorage.getItem("pressAccess") === passcode;
-
-    if (!hasAccess) {
-      const attempt = prompt("This release has expired. Enter access code to view:");
-
-      if (attempt === passcode) {
-        sessionStorage.setItem("pressAccess", passcode);
-        // stay on page
-      } else {
-        window.location.replace("https://intrepidflights.com/press/newsroom/");
-      }
-    }
-  }
-</script>
-    
     <title>Executive Release - Team USA 2026</title>
     <link rel="icon" type="image/png" href="https://intrepidflights.com/assets/indigo.png">
     <link rel="apple-touch-icon" sizes="180x180" href="https://intrepidflights.com/assets/apple-touch-icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Open Graph (Facebook, LinkedIn, Discord, etc.) -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://intrepidflights.com/" />
+<meta property="og:title" content="Intrepid Flights" />
+<meta property="og:description" content="Latest updates and operational news from Intrepid Flights." />
+<meta property="og:image" content="https://intrepidflights.com/assets/ogcardgold.png" />
+
+<!-- Optional but recommended -->
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@intrepidflights" />
+<meta name="twitter:title" content="Intrepid Flights" />
+<meta name="twitter:description" content="Latest updates and operational news from Intrepid Flights." />
+<meta name="twitter:image" content="https://intrepidflights.com/assets/ogcardgold.png" />
+    
     <style>
         :root {
             --gold: #C5A059;
