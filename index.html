@@ -529,25 +529,23 @@ document.getElementById("news-form").addEventListener("submit", async function(e
 </script>
     <script>
 let hasShownPopup = false;
-let timer;
+let timerStarted = false;
 
 function startTimer() {
-  if (hasShownPopup) return;
+  if (hasShownPopup || timerStarted) return;
 
-  clearTimeout(timer);
-  timer = setTimeout(() => {
+  timerStarted = true;
+
+  setTimeout(() => {
     document.getElementById("news-popup").style.display = "block";
     hasShownPopup = true;
   }, 10000);
 }
 
-// Reset timer on activity
+// Trigger ONLY once on first activity
 ["mousemove", "keydown", "scroll", "click"].forEach(event => {
-  window.addEventListener(event, startTimer);
+  window.addEventListener(event, startTimer, { once: true });
 });
-
-// Start once initially
-startTimer();
 </script>
 </body>
 </html>
