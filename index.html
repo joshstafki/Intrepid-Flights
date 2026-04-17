@@ -531,14 +531,24 @@ document.getElementById("news-form").addEventListener("submit", async function(e
 let activeTime = 0;
 let popupShown = false;
 let activityTimer;
+let trackingStarted = false;
 
 // Count active time every second
 function startActiveTracking() {
-  if (popupShown) return;
+  if (popupShown || trackingStarted) return;
 
-  clearInterval(activityTimer);
+  trackingStarted = true;
 
   activityTimer = setInterval(() => {
+    activeTime++;
+
+    if (activeTime >= 10 && !popupShown) {
+      document.getElementById("news-popup").style.display = "block";
+      popupShown = true;
+      clearInterval(activityTimer);
+    }
+  }, 1000);
+}
     activeTime++;
 
     if (activeTime >= 10 && !popupShown) {
@@ -559,7 +569,7 @@ function resetInactivity() {
   inactivityTimeout = setTimeout(() => {
     // user stopped interacting → pause counting
     clearInterval(activityTimer);
-  }, 2000); // 2s of no activity = pause
+  }, 6000); // 2s of no activity = pause
 }
 
 // Track activity
