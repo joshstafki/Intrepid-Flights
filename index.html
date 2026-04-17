@@ -484,30 +484,5 @@
         }
     </script>
 
-
-<script>
-  // This version is "bulletproof" for your specific setup
-  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-  
-  formspree("initForm", {
-    formElement: "#news-form",
-    formId: "xdayggbd",
-    onSuccess: function(data) {
-      // 1. Manually force the "Thanks" message to show
-      const msg = document.getElementById('success-msg');
-      if (msg) msg.style.display = 'block';
-      
-      // 2. Hide the "Yes" and "No" buttons
-      const buttons = document.querySelectorAll('.popup-btn');
-      buttons.forEach(btn => btn.style.display = 'none');
-      
-      // 3. Close the whole popup after 2.5 seconds
-      setTimeout(() => {
-        const popup = document.getElementById('news-popup');
-        if (popup) popup.style.display = 'none';
-      }, 2500);
-    }
-  });
-</script>
 </body>
 </html>
