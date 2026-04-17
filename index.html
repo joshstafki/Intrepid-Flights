@@ -486,6 +486,12 @@
         }
     </script>
 <script>
+function submitChoice(value) {
+  document.getElementById("wants_news").value = value;
+  document.getElementById("news-form").requestSubmit();
+}
+</script>
+<script>
 document.getElementById("news-form").addEventListener("submit", async function(e) {
   e.preventDefault();
 
