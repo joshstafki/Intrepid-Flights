@@ -291,6 +291,61 @@
                 transition: none;
             }
         }
+/* --- NEWS POPUP BRANDING --- */
+  #news-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1a1a1a; /* Matches your sidebar */
+    color: #ffffff;
+    padding: 40px;
+    border-radius: 4px;
+    border: 1px solid #333;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    z-index: 10000;
+    text-align: center;
+    width: 380px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  #news-popup h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #b0b0b0;
+    border: none;
+    background: none;
+  }
+
+  .popup-btn {
+    font-family: 'Oswald', sans-serif;
+    margin: 10px;
+    padding: 12px 30px;
+    cursor: pointer;
+    border: 1px solid #444;
+    background-color: transparent;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+  }
+
+  .popup-btn:hover {
+    background-color: #fff;
+    color: #121212;
+  }
     </style>
 </head>
 <body>
@@ -395,8 +450,22 @@
                 Aerial View of Cancun, Mexico
             </div>
         </main>
-
     </div>
+
+<div id="news-popup">
+  <button class="close-btn" onclick="document.getElementById('news-popup').style.display='none'">&times;</button>
+  
+  <h3>Would you like to see Intrepid Flights publish periodic articles & news?</h3>
+  
+  <form id="news-form">
+    <button type="submit" name="wants_news" value="Yes" class="popup-btn" data-fs-submit-btn>Yes</button>
+    <button type="submit" name="wants_news" value="No" class="popup-btn" data-fs-submit-btn>No</button>
+
+    <div id="success-msg" data-fs-success style="display:none; margin-top: 15px; color: #b0b0b0;">
+      Thanks for the feedback!
+    </div>
+  </form>
+</div>
 
     <script>
         function activate(el) {
@@ -414,5 +483,21 @@
             el.setAttribute('aria-pressed', 'true'); // ADA Fix
         }
     </script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+<script>
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  
+  formspree("initForm", {
+    formElement: "#news-form",
+    formId: "xdayggbd",
+    onSuccess: function(data) {
+      // Hides the popup 2 seconds after they click so they can see the 'Thanks' message
+      setTimeout(() => {
+        document.getElementById('news-popup').style.display = 'none';
+      }, 2000);
+    }
+  });
+</script>
 </body>
 </html>
