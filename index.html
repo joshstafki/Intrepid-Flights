@@ -549,15 +549,6 @@ function startActiveTracking() {
     }
   }, 1000);
 }
-    activeTime++;
-
-    if (activeTime >= 10 && !popupShown) {
-      document.getElementById("news-popup").style.display = "block";
-      popupShown = true;
-      clearInterval(activityTimer);
-    }
-  }, 1000);
-}
 
 // Reset activity timer on inactivity
 let inactivityTimeout;
