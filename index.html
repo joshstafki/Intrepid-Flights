@@ -492,10 +492,17 @@
     formElement: "#news-form",
     formId: "xdayggbd",
     onSuccess: function(data) {
-      // Hides the popup 2 seconds after they click so they can see the 'Thanks' message
+      // 1. Manually show the success message
+      document.getElementById('success-msg').style.display = 'block';
+      
+      // 2. Hide the buttons so they can't click again
+      const buttons = document.querySelectorAll('.popup-btn');
+      buttons.forEach(btn => btn.style.display = 'none');
+      
+      // 3. Wait 2.5 seconds, then kill the popup
       setTimeout(() => {
         document.getElementById('news-popup').style.display = 'none';
-      }, 2000);
+      }, 2500);
     }
   });
 </script>
