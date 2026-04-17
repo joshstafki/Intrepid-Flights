@@ -527,49 +527,52 @@ document.getElementById("news-form").addEventListener("submit", async function(e
   }
 });
 </script>
-    <script>
+
+<script>
 let activeTime = 0;
 let popupShown = false;
-let activityTimer;
-let trackingStarted = false;
+let activityTimer = null;
+let inactivityTimeout = null;
 
-// Count active time every second
+function showPopup() {
+  const popup = document.getElementById("news-popup");
+  if (popup) popup.style.display = "block";
+  popupShown = true;
+  clearInterval(activityTimer);
+}
+
 function startActiveTracking() {
-  if (popupShown || trackingStarted) return;
-
-  trackingStarted = true;
+  if (popupShown || activityTimer) return;
 
   activityTimer = setInterval(() => {
     activeTime++;
 
-    if (activeTime >= 10 && !popupShown) {
-      document.getElementById("news-popup").style.display = "block";
-      popupShown = true;
-      clearInterval(activityTimer);
+    if (activeTime >= 10) {
+      showPopup();
     }
   }, 1000);
 }
 
-// Reset activity timer on inactivity
-let inactivityTimeout;
-
 function resetInactivity() {
   clearTimeout(inactivityTimeout);
-  clearInterval(activityTimer);
 
   inactivityTimeout = setTimeout(() => {
-    // user stopped interacting → pause counting
     clearInterval(activityTimer);
-  }, 6000); // 2s of no activity = pause
+    activityTimer = null;
+    activeTime = 0;
+  }, 6000);
 }
 
-// Track activity
 ["mousemove", "keydown", "scroll", "click"].forEach(event => {
   window.addEventListener(event, () => {
     startActiveTracking();
     resetInactivity();
   });
 });
+
+// START IMMEDIATELY (critical fix)
+startActiveTracking();
 </script>
+
 </body>
 </html>
