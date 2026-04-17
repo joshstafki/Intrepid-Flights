@@ -528,23 +528,46 @@ document.getElementById("news-form").addEventListener("submit", async function(e
 });
 </script>
     <script>
-let hasShownPopup = false;
-let timerStarted = false;
+let activeTime = 0;
+let popupShown = false;
+let activityTimer;
 
-function startTimer() {
-  if (hasShownPopup || timerStarted) return;
+// Count active time every second
+function startActiveTracking() {
+  if (popupShown) return;
 
-  timerStarted = true;
+  clearInterval(activityTimer);
 
-  setTimeout(() => {
-    document.getElementById("news-popup").style.display = "block";
-    hasShownPopup = true;
-  }, 10000);
+  activityTimer = setInterval(() => {
+    activeTime++;
+
+    if (activeTime >= 10 && !popupShown) {
+      document.getElementById("news-popup").style.display = "block";
+      popupShown = true;
+      clearInterval(activityTimer);
+    }
+  }, 1000);
 }
 
-// Trigger ONLY once on first activity
+// Reset activity timer on inactivity
+let inactivityTimeout;
+
+function resetInactivity() {
+  clearTimeout(inactivityTimeout);
+  clearInterval(activityTimer);
+
+  inactivityTimeout = setTimeout(() => {
+    // user stopped interacting → pause counting
+    clearInterval(activityTimer);
+  }, 2000); // 2s of no activity = pause
+}
+
+// Track activity
 ["mousemove", "keydown", "scroll", "click"].forEach(event => {
-  window.addEventListener(event, startTimer, { once: true });
+  window.addEventListener(event, () => {
+    startActiveTracking();
+    resetInactivity();
+  });
 });
 </script>
 </body>
