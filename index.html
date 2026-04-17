@@ -487,31 +487,33 @@
 
 <script src="https://unpkg.com/@formspree/ajax@1"></script>
 
+<script src="https://unpkg.com/@formspree/ajax@1"></script>
+
 <script>
-  // 2. Wait for the page to be fully loaded before running the logic
-  window.addEventListener('DOMContentLoaded', (event) => {
-    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-    
-    formspree("initForm", {
-      formElement: "#news-form",
-      formId: "xdayggbd",
-      onSuccess: function(data) {
-        // Manually trigger the "Thanks" message
-        const msg = document.getElementById('success-msg');
-        if (msg) msg.style.display = 'block';
-        
-        // Hide the buttons
-        const buttons = document.querySelectorAll('.popup-btn');
-        buttons.forEach(btn => btn.style.display = 'none');
-        
-        // Close popup after a delay
-        setTimeout(() => {
-          const popup = document.getElementById('news-popup');
-          if (popup) popup.style.display = 'none';
-        }, 2500);
-      }
-    });
+  // This version is "bulletproof" for your specific setup
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  
+  formspree("initForm", {
+    formElement: "#news-form",
+    formId: "xdayggbd",
+    onSuccess: function(data) {
+      // 1. Manually force the "Thanks" message to show
+      const msg = document.getElementById('success-msg');
+      if (msg) msg.style.display = 'block';
+      
+      // 2. Hide the "Yes" and "No" buttons
+      const buttons = document.querySelectorAll('.popup-btn');
+      buttons.forEach(btn => btn.style.display = 'none');
+      
+      // 3. Close the whole popup after 2.5 seconds
+      setTimeout(() => {
+        const popup = document.getElementById('news-popup');
+        if (popup) popup.style.display = 'none';
+      }, 2500);
+    }
   });
 </script>
+</body>
+</html>
 </body>
 </html>
