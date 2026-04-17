@@ -452,7 +452,7 @@
         </main>
     </div>
 
-<div id="news-popup">
+<div id="news-popup" style="display: none;">
   <button class="close-btn" onclick="document.getElementById('news-popup').style.display='none'">&times;</button>
   
   <h3>Would you like to see Intrepid Flights publish periodic articles & news?</h3>
@@ -526,6 +526,28 @@ document.getElementById("news-form").addEventListener("submit", async function(e
     alert("Submission failed. Please check your connection and try again.");
   }
 });
+</script>
+    <script>
+let hasShownPopup = false;
+let timer;
+
+function startTimer() {
+  if (hasShownPopup) return;
+
+  clearTimeout(timer);
+  timer = setTimeout(() => {
+    document.getElementById("news-popup").style.display = "block";
+    hasShownPopup = true;
+  }, 10000);
+}
+
+// Reset timer on activity
+["mousemove", "keydown", "scroll", "click"].forEach(event => {
+  window.addEventListener(event, startTimer);
+});
+
+// Start once initially
+startTimer();
 </script>
 </body>
 </html>
