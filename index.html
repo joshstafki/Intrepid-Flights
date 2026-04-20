@@ -10,11 +10,14 @@
     const isFireTV = /Silk/i.test(navigator.userAgent) && /AFTS|AFTB|AFTM|AFTT|AFTR|AFTEU|Amazon.*TV/i.test(navigator.userAgent);
     // Detect other mobiles or small screens
     const isMobileOrSmall = (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 900);
-    // Only redirect if it's a mobile/small device AND NOT an iPad or Fire TV
-    if (isMobileOrSmall && !isIPad && !isFireTV) {
+    // Detect Flipboard crawler
+    const isFlipboard = /flipboard/i.test(navigator.userAgent);
+    // Only redirect if it's a mobile/small device AND NOT an iPad or Fire TV or Flipboard
+    if (isMobileOrSmall && !isIPad && !isFireTV && !isFlipboard) {
         window.location.href = "https://intrepidflights.com/home/";
     }
 </script>
+
 
     <link rel="icon" type="image/png" href="https://intrepidflights.com/assets/indigo.png">
     <link rel="apple-touch-icon" sizes="180x180" href="https://intrepidflights.com/assets/apple-touch-icon.png">
