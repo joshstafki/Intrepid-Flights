@@ -23,12 +23,12 @@
     <link rel="canonical" href="https://www.intrepidflights.com/home/">
     <title>Intrepid Flights | Precision Drone Photography</title>
 
-<script>
-    if (window.location.pathname.endsWith("/index.html")) {
-        window.location.replace("/home/");
-    }
-</script>
-    
+    <script>
+        if (window.location.pathname.endsWith("/index.html")) {
+            window.location.replace("/home/");
+        }
+    </script>
+
     <link rel="icon" type="image/png" href="https://intrepidflights.com/assets/indigo.png">
     <link rel="apple-touch-icon" sizes="180x180" href="https://intrepidflights.com/assets/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,36 +42,42 @@
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "v0fxp2l58l");
-</script>
+    </script>
 
     <style>
         :root {
-            --bg-dark: #121212;
+            --navy: #002F6C;
+            --silver: #A7A8AA;
+            --bg-dark: #0a0a0a;
             --text-white: #ffffff;
-            --text-mute: #b0b0b0;
-            --focus-color: #f1c40f; /* High contrast focus color for ADA */
+            --text-mute: #888;
+            --focus-color: #f1c40f;
+            --panel-bg: #111111;
+            --border-subtle: rgba(255,255,255,0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        html { scroll-behavior: auto; }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-white);
             overflow-x: hidden;
+            overscroll-behavior: none;
         }
 
-        /* --- ADA: Focus Visibility --- */
         *:focus-visible {
             outline: 2px solid var(--focus-color);
             outline-offset: 4px;
         }
 
-        /* --- 1. DESKTOP BLOCKER (Mobile Only Enforcement) --- */
+        /* ─── DESKTOP BLOCKER ─── */
         #desktop-warning {
-            display: none; /* Hidden on mobile */
+            display: none;
             position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
+            inset: 0;
             background: #000;
             z-index: 9999;
             flex-direction: column;
@@ -80,270 +86,522 @@
             text-align: center;
             padding: 20px;
         }
-
         #desktop-warning h2 {
             font-family: 'Oswald', sans-serif;
             font-size: 2rem;
             text-transform: uppercase;
             margin-bottom: 20px;
         }
+        #desktop-warning p { color: var(--silver); max-width: 400px; line-height: 1.6; }
 
-        #desktop-warning p {
-            color: var(--text-mute);
-            max-width: 400px;
-            line-height: 1.5;
-        }
-
-        /* Show blocker on screens wider than 768px */
         @media (min-width: 769px) {
             #desktop-warning { display: flex; }
-            .fixed-hero, .content-layer { display: none !important; }
+            #app { display: none !important; }
         }
 
-        /* --- 2. FIXED HERO LAYER --- */
-        .fixed-hero {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100vh;
-            z-index: 0;
+        /* ─── APP SHELL ─── */
+        #app {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* ─── HERO ─── */
+        #hero {
+            position: absolute;
+            inset: 0;
             background: url('https://www.intrepidflights.com/assets/image.jpeg') no-repeat center center;
             background-size: cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: flex-start;
-            padding: 0 0 120px 24px;
+            will-change: transform;
+            transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
         }
 
-        .fixed-hero::after {
+        #hero::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%);
-            z-index: -1;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.1) 0%,
+                rgba(0,0,0,0.0) 40%,
+                rgba(0,0,0,0.55) 80%,
+                rgba(0,0,0,0.85) 100%
+            );
         }
 
-        .hero-text h2 {
+        .hero-coords {
+            position: absolute;
+            top: env(safe-area-inset-top, 24px);
+            right: 20px;
+            font-family: 'Inter', monospace;
+            font-size: 0.68rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.65);
+            letter-spacing: 1.5px;
+            text-align: right;
+            line-height: 1.8;
+            z-index: 2;
+        }
+
+        .hero-copy {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0 24px 44px 24px;
+            z-index: 2;
+        }
+
+        .hero-copy h2 {
             font-family: 'Oswald', sans-serif;
-            font-size: 3.5rem;
-            line-height: 0.9;
+            font-size: clamp(3rem, 14vw, 3.8rem);
+            line-height: 0.92;
             text-transform: uppercase;
             font-weight: 700;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.6);
-            margin: 0;
+            letter-spacing: -0.5px;
         }
 
-        .coordinates {
+        /* ─── PULL HANDLE ─── */
+        #pull-handle {
             position: absolute;
-            top: 30px; right: 24px;
-            font-family: monospace;
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.8);
-            text-align: right;
-            letter-spacing: 1px;
-        }
-
-        /* ADA: Changed to button styling */
-        .scroll-prompt {
-            position: absolute;
-            bottom: 40px; left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-            opacity: 0.8;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 88px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 16px;
+            z-index: 20;
             cursor: pointer;
-            background: none;
-            border: none;
-            padding: 10px; /* Larger touch target */
+            background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
+            -webkit-user-select: none;
+            user-select: none;
         }
 
-        /* --- 3. SCROLLING CONTENT LAYER --- */
-        .content-layer {
-            position: relative;
-            z-index: 10;
-            margin-top: 100vh;
-            background-color: var(--bg-dark);
-            border-top: 1px solid #333;
-            box-shadow: 0 -20px 50px rgba(0,0,0,0.8);
-            padding: 60px 30px 100px 30px;
-            min-height: 100vh;
+        .handle-bar {
+            width: 40px;
+            height: 4px;
+            background: rgba(255,255,255,0.35);
+            border-radius: 2px;
+            margin-bottom: 8px;
+            transition: background 0.2s, width 0.2s;
         }
 
-        .brand-header { margin-bottom: 50px; }
-        .brand-header h1 {
+        #pull-handle:hover .handle-bar,
+        #pull-handle:active .handle-bar {
+            background: rgba(255,255,255,0.75);
+            width: 52px;
+        }
+
+        .handle-label {
+            font-size: 0.65rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            font-weight: 400;
+        }
+
+        /* ─── CONTENT PANEL ─── */
+        #panel {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: calc(100vh - 80px);
+            background: var(--panel-bg);
+            border-radius: 20px 20px 0 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+            transform: translateY(100%);
+            transition: transform 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+            z-index: 30;
+            padding: 0 0 env(safe-area-inset-bottom, 0);
+        }
+
+        #panel.open {
+            transform: translateY(0);
+        }
+
+        /* Panel drag indicator */
+        .panel-grip {
+            display: flex;
+            justify-content: center;
+            padding: 14px 0 6px;
+            position: sticky;
+            top: 0;
+            background: var(--panel-bg);
+            z-index: 1;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .grip-pill {
+            width: 36px;
+            height: 4px;
+            background: rgba(255,255,255,0.18);
+            border-radius: 2px;
+            transition: background 0.2s;
+        }
+
+        .panel-inner {
+            padding: 28px 26px 80px;
+        }
+
+        /* ─── BRAND HEADER ─── */
+        .brand-header {
+            margin-bottom: 44px;
+        }
+
+        .brand-name {
             font-family: 'Oswald', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-weight: 500;
+            line-height: 1;
+            margin-bottom: 6px;
         }
-        .brand-header .subtitle {
-            font-size: 0.9rem;
-            color: var(--text-mute);
-            display: block; margin-bottom: 20px; font-weight: 300;
+
+        .brand-byline {
+            font-size: 0.8rem;
+            color: var(--silver);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-bottom: 18px;
         }
+
         .location-tag {
-            border-left: 2px solid #fff; padding-left: 15px;
-            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px;
-            line-height: 1.6; color: #ccc;
+            border-left: 2px solid rgba(255,255,255,0.25);
+            padding-left: 14px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            line-height: 1.7;
+            color: var(--silver);
         }
 
+        /* ─── SECTION DIVIDER ─── */
         .section-label {
-            font-family: 'Oswald', sans-serif; font-size: 0.8rem;
-            text-transform: uppercase; letter-spacing: 2px; color: #555;
-            margin-bottom: 25px; display: block;
-            border-bottom: 1px solid #333; padding-bottom: 10px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.25);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-subtle);
         }
 
-        .service-list { list-style: none; margin-bottom: 60px; }
+        /* ─── SERVICES ─── */
+        .service-list {
+            list-style: none;
+            margin-bottom: 52px;
+        }
+
         .service-item {
-            font-family: 'Oswald', sans-serif; font-size: 2rem;
-            color: #fff; margin-bottom: 20px; cursor: pointer;
-            transition: 0.2s; background: none; border: none;
-            text-align: left; width: 100%; text-transform: uppercase;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.9rem;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 0;
+            cursor: pointer;
+            transition: color 0.18s, padding-left 0.18s;
+            background: none;
+            border: none;
+            border-left: 3px solid transparent;
+            text-align: left;
+            width: 100%;
+            text-transform: uppercase;
+            padding: 10px 0 10px 0;
+            line-height: 1;
+            font-weight: 500;
         }
-        /* ADA Update: Target aria-pressed instead of aria-selected */
+
         .service-item[aria-pressed="true"] {
-            color: #fff; padding-left: 15px; border-left: 4px solid #fff;
+            color: #fff;
+            padding-left: 14px;
+            border-left-color: #fff;
         }
 
+        .service-item:hover {
+            color: rgba(255,255,255,0.65);
+        }
+
+        /* ─── CONNECT ─── */
         .contact-link {
-            display: block; font-size: 1.2rem; color: #fff;
-            text-decoration: none; margin-bottom: 15px; font-weight: 300;
-            border-bottom: 1px dotted #333; width: fit-content;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-subtle);
+            font-weight: 300;
+            transition: color 0.15s;
+            letter-spacing: 0.3px;
         }
-        
-        .social-row { display: flex; gap: 25px; margin-top: 40px; }
-        .social-row a { 
-            color: #fff; font-size: 1.5rem; opacity: 0.7; 
-            text-decoration: none; /* remove underline from icons */
-            padding: 10px; /* Touch target size increase */
-            margin: -10px; /* Offset padding layout */
-        }
-        .social-row a:hover, .social-row a:focus { opacity: 1; }
-        
-        .footer-copy { margin-top: 60px; font-size: 0.7rem; color: #444; text-transform: uppercase; text-align: center; }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
-            40% {transform: translateX(-50%) translateY(-10px);}
-            60% {transform: translateX(-50%) translateY(-5px);}
+        .contact-link:last-of-type { border-bottom: none; }
+
+        .contact-link i {
+            font-size: 0.85rem;
+            color: var(--silver);
+            width: 16px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .contact-link:hover { color: #fff; }
+
+        /* ─── SOCIAL ROW ─── */
+        .social-row {
+            display: flex;
+            gap: 0;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 28px;
+        }
+
+        .social-row a {
+            color: rgba(255,255,255,0.4);
+            font-size: 1.25rem;
+            text-decoration: none;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 0;
+            transition: color 0.15s;
+        }
+
+        .social-row a:hover,
+        .social-row a:focus { color: #fff; }
+
+        /* ─── FOOTER LINKS ─── */
+        .footer-links {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+        }
+
+        .footer-links a {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.28);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+        .footer-copy {
+            margin-top: 28px;
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.18);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .footer-tagline {
+            display: block;
+            margin-top: 6px;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.1);
         }
     </style>
 </head>
 <body>
 
+    <!-- Desktop Blocker -->
     <div id="desktop-warning" role="alert">
-        <i class="fas fa-mobile-alt" style="font-size: 3rem; margin-bottom: 20px; color: #fff;" aria-hidden="true"></i>
+        <i class="fas fa-mobile-alt" style="font-size: 3rem; margin-bottom: 24px; color: rgba(255,255,255,0.6);" aria-hidden="true"></i>
         <h2>Mobile Experience Only</h2>
         <p>This experience is designed exclusively for mobile devices. Please open this link on your smartphone.</p>
     </div>
 
-    <header class="fixed-hero">
-        <div class="coordinates" aria-label="Location Coordinates">
-            LAT 44.9778° N<br>LON 93.2650° W
+    <!-- App Shell (mobile only) -->
+    <div id="app">
+
+        <!-- Hero Layer -->
+        <div id="hero" role="img" aria-label="Aerial drone photography by Intrepid Flights">
+            <div class="hero-coords" aria-label="Location Coordinates">
+                LAT 44.9778° N<br>LON 93.2650° W
+            </div>
+            <div class="hero-copy">
+                <h2>Flights<br>Designed<br>With Precision.</h2>
+            </div>
         </div>
 
-        <div class="hero-text">
-            <h2>Flights<br>Designed<br>With Precision.</h2>
-        </div>
-
-        <button class="scroll-prompt" type="button" onclick="slideUp()" aria-label="Scroll down to content">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
-            </svg>
+        <!-- Pull Handle -->
+        <button id="pull-handle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="panel">
+            <div class="handle-bar"></div>
+            <span class="handle-label">Explore</span>
         </button>
-    </header>
 
-    <main class="content-layer" id="menu-panel">
-        
-        <div class="brand-header">
-            <h1>Intrepid Flights</h1>
-            <span class="subtitle">by Joshua Stafki</span>
-            <div class="location-tag">
-                Serving The Twin Cities<br>
-                & Surrounding Communities
+        <!-- Content Panel -->
+        <div id="panel" role="dialog" aria-label="Intrepid Flights menu" aria-hidden="true">
+            <div class="panel-grip" id="panel-grip" aria-hidden="true">
+                <div class="grip-pill"></div>
             </div>
+
+            <main class="panel-inner">
+
+                <div class="brand-header">
+                    <h1 class="brand-name">Intrepid Flights</h1>
+                    <span class="brand-byline">by Joshua Stafki</span>
+                    <div class="location-tag">
+                        Serving The Twin Cities<br>
+                        &amp; Surrounding Communities
+                    </div>
+                </div>
+
+                <section aria-labelledby="services-label" style="margin-bottom: 52px;">
+                    <div id="services-label" class="section-label">Services</div>
+                    <div role="list" class="service-list">
+                        <button class="service-item" role="listitem" type="button" aria-pressed="false" onclick="selectService(this)">Aerial Photography</button>
+                        <button class="service-item" role="listitem" type="button" aria-pressed="false" onclick="selectService(this)">Geo Mapping</button>
+                        <button class="service-item" role="listitem" type="button" aria-pressed="false" onclick="selectService(this)">Real Estate</button>
+                        <button class="service-item" role="listitem" type="button" aria-pressed="false" onclick="selectService(this)">Cinematography</button>
+                        <button class="service-item" role="listitem" type="button" aria-pressed="false" onclick="selectService(this)">Inspections</button>
+                    </div>
+                </section>
+
+                <section aria-labelledby="connect-label">
+                    <div id="connect-label" class="section-label">Connect</div>
+                    <address style="font-style: normal;">
+                        <a href="tel:7639101792" class="contact-link" aria-label="Call 7 6 3. 9 1 0. 1 7 9 2">
+                            <i class="fas fa-phone" aria-hidden="true"></i>
+                            763-910-1792
+                        </a>
+                        <a href="mailto:joshstafki@intrepidflights.com" class="contact-link" aria-label="Email Josh Stafki">
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            joshstafki@intrepidflights.com
+                        </a>
+                    </address>
+                </section>
+
+                <nav class="social-row" aria-label="Social Media Links">
+                    <a href="https://x.com/intrepidflights?s=21" target="_blank" rel="noopener noreferrer" aria-label="Intrepid Flights on X">
+                        <i class="fab fa-x-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/intrepid-flights-drone-photography" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.instagram.com/intrepid.flights?igsh=ZW11Zzd1OW13NnR3&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@intrepid.flights" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                        <i class="fab fa-youtube" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://music.apple.com/us/playlist/intrepid-flights/pl.u-jV899PLsDENeq7z" target="_blank" aria-label="Apple Music">
+                        <i class="fab fa-apple" aria-hidden="true"></i>
+                    </a>
+                </nav>
+
+                <div class="footer-links">
+                    <a href="/legal">Legal</a>
+                    <a href="/about">About</a>
+                    <a href="/privacy">Privacy</a>
+                    <a href="/promotions">Promotions</a>
+                    <a href="/press">Press</a>
+                </div>
+
+                <div class="footer-copy">
+                    &copy; 2025 Intrepid Flights
+                    <span class="footer-tagline">Making The Impossible Possible</span>
+                </div>
+
+            </main>
         </div>
 
-        <section aria-labelledby="services-heading">
-            <span id="services-heading" class="section-label">Services</span>
-            <div class="service-list" role="list">
-                <button class="service-item" role="listitem" type="button" aria-pressed="false" onclick="select(this)">Aerial Photography</button>
-                <button class="service-item" role="listitem" type="button" aria-pressed="false" onclick="select(this)">Geo Mapping</button>
-                <button class="service-item" role="listitem" type="button" aria-pressed="false" onclick="select(this)">Real Estate</button>
-                <button class="service-item" role="listitem" type="button" aria-pressed="false" onclick="select(this)">Cinematography</button>
-                <button class="service-item" role="listitem" type="button" aria-pressed="false" onclick="select(this)">Inspections</button>
-            </div>
-        </section>
-
-        <section aria-labelledby="connect-heading">
-            <span id="connect-heading" class="section-label">Connect</span>
-            <address style="font-style: normal;">
-                <a href="tel:7639101792" class="contact-link" aria-label="Call 7 6 3. 9 1 0. 1 7 9 2">763-910-1792</a>
-                <a href="mailto:joshstafki@intrepidflights.com" class="contact-link" aria-label="Email Josh Stafki">joshstafki@intrepidflights.com</a>
-            </address>
-        </section>
-
-        <nav class="social-row" aria-label="Social Media Links">
-            <a href="https://x.com/intrepidflights?s=21" target="_blank" rel="noopener noreferrer" aria-label="Visit Intrepid Flights on X (Twitter)">
-                <i class="fab fa-x-twitter" aria-hidden="true"></i>
-            </a>
-            <a href="https://www.linkedin.com/company/intrepid-flights-drone-photography" target="_blank" rel="noopener noreferrer" aria-label="Visit Intrepid Flights on LinkedIn">
-                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-            </a>
-            <a href="https://www.instagram.com/intrepid.flights?igsh=ZW11Zzd1OW13NnR3&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Visit Intrepid Flights on Instagram">
-                <i class="fab fa-instagram" aria-hidden="true"></i>
-            </a>
-            <a href="https://www.youtube.com/@intrepid.flights" target="_blank" rel="noopener noreferrer" aria-label="Visit Intrepid Flights on YouTube">
-                <i class="fab fa-youtube" aria-hidden="true"></i>
-            </a>
-            <a href="https://music.apple.com/us/playlist/intrepid-flights/pl.u-jV899PLsDENeq7z" target="_blank" aria-label="Visit Intrepid Flights on Apple Music">
-                        <i class="fab fa-apple" aria-hidden="true"></i>
-            </a>
-        </nav>
-          
-<div style="margin-top: 50px; font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #b0b0b0; text-align: left; line-height: 1.8;">
-    
-    <div style="margin-bottom: 8px;">
-        <a href="/legal" style="color: #b0b0b0; text-decoration: none; margin-right: 20px; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #ffffff'" onmouseout="this.style.borderBottom='none'">Legal</a>
-        <a href="/about" style="color: #b0b0b0; text-decoration: none; margin-right: 20px; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #ffffff'" onmouseout="this.style.borderBottom='none'">About</a>
-        <a href="/privacy" style="color: #b0b0b0; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #ffffff'" onmouseout="this.style.borderBottom='none'">Privacy</a>
     </div>
-    
-    <div style="margin-bottom: 30px;"> <a href="/promotions" style="color: #b0b0b0; text-decoration: none; margin-right: 20px; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #ffffff'" onmouseout="this.style.borderBottom='none'">Promotions</a>
-        <a href="/press" style="color: #b0b0b0; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #ffffff'" onmouseout="this.style.borderBottom='none'">Press</a>
-    </div>
-
-    <div style="color: #b0b0b0; opacity: 0.8;">
-        &copy; 2025 Intrepid Flights
-    </div>
-</div>
-        
-        <footer class="footer-copy">
-           Making The Impossible Possible
-        </footer>
-    </main>
 
     <script>
-        function slideUp() {
-            if (navigator.vibrate) navigator.vibrate(10);
-            document.getElementById('menu-panel').scrollIntoView({ behavior: 'smooth' });
+        const panel   = document.getElementById('panel');
+        const hero    = document.getElementById('hero');
+        const handle  = document.getElementById('pull-handle');
+        const grip    = document.getElementById('panel-grip');
+
+        let panelOpen = false;
+
+        function openPanel() {
+            panelOpen = true;
+            panel.classList.add('open');
+            panel.setAttribute('aria-hidden', 'false');
+            handle.setAttribute('aria-expanded', 'true');
+            handle.style.display = 'none';
+            hero.style.transform = 'scale(0.94)';
+            hero.style.transition = 'transform 0.55s cubic-bezier(0.76,0,0.24,1)';
         }
 
-        function select(el) {
+        function closePanel() {
+            panelOpen = false;
+            panel.classList.remove('open');
+            panel.setAttribute('aria-hidden', 'true');
+            handle.setAttribute('aria-expanded', 'false');
+            handle.style.display = '';
+            hero.style.transform = 'scale(1)';
+            panel.scrollTop = 0;
+        }
+
+        handle.addEventListener('click', openPanel);
+
+        grip.addEventListener('click', closePanel);
+
+        // Touch drag on panel grip to dismiss
+        let touchStartY = 0;
+        let touchStartScroll = 0;
+
+        panel.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+            touchStartScroll = panel.scrollTop;
+        }, { passive: true });
+
+        panel.addEventListener('touchmove', (e) => {
+            const dy = e.touches[0].clientY - touchStartY;
+            // Only dismiss if dragging down at the top of scroll
+            if (dy > 0 && panel.scrollTop <= 0) {
+                const resistance = dy * 0.4;
+                panel.style.transform = `translateY(${resistance}px)`;
+                panel.style.transition = 'none';
+            }
+        }, { passive: true });
+
+        panel.addEventListener('touchend', (e) => {
+            const dy = e.changedTouches[0].clientY - touchStartY;
+            panel.style.transition = '';
+            panel.style.transform = '';
+
+            if (dy > 80 && panel.scrollTop <= 0) {
+                closePanel();
+            }
+        }, { passive: true });
+
+        // Service selection
+        function selectService(el) {
             if (navigator.vibrate) navigator.vibrate(5);
-            // Reset all items
             document.querySelectorAll('.service-item').forEach(i => {
-                // ADA FIX: Changed to aria-pressed
-                i.setAttribute('aria-pressed', 'false'); 
-                i.style.color = '#777';
-                i.style.borderLeft = 'none';
-                i.style.paddingLeft = '0';
+                i.setAttribute('aria-pressed', 'false');
             });
-            // Activate clicked item
-            // ADA FIX: Changed to aria-pressed
-            el.setAttribute('aria-pressed', 'true'); 
-            el.style.color = '#fff';
-            el.style.borderLeft = '4px solid #fff';
-            el.style.paddingLeft = '15px';
+            el.setAttribute('aria-pressed', 'true');
         }
     </script>
 
