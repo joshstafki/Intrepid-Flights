@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>May Focus: Zimmerman HWY 169 S Underpass — Intrepid Flights</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Bebas+Neue&family=Inter:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:      #002F6C;
+  --navy-deep: #001f4a;
+  --silver:    #A7A8AA;
+  --white:     #FFFFFF;
+  --gold:      #F5A623;
+  --danger:    #D93B0C;
+  --bg-dark:   #0a0a0a;
+}
+
+html {
+  background: var(--bg-dark);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--silver);
+  overflow-x: hidden;
+}
+
+/* ── CAUTION STRIPE (TOP) ───────────────────────────────── */
+.stripe {
+  height: 6px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  background: repeating-linear-gradient(
+    -52deg,
+    var(--gold) 0px, var(--gold) 14px,
+    #111 14px, #111 28px
+  );
+}
+
+/* ── FULL SCREEN HERO ───────────────────────────────────── */
+.hero-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: var(--navy-deep);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 65%;
+  opacity: 0;
+  transition: opacity 1s ease;
+  z-index: 0;
+}
+
+.hero-bg.loaded { opacity: 1; }
+
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,18,52,0.2) 0%,
+    rgba(0,18,52,0.6) 60%,
+    var(--bg-dark) 100%
+  );
+  z-index: 1;
+}
+
+/* ── HERO OVERLAYS ──────────────────────────────────────── */
+.alert-pill {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--danger);
+  padding: 6px 16px 6px 12px;
+  clip-path: polygon(0 0, 100% 0, 96% 100%, 0 100%);
+  opacity: 0;
+  animation: fadeIn 0.5s 0.9s ease forwards;
+}
+
+.alert-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--white);
+  flex-shrink: 0;
+  animation: blink 1.4s 1.4s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,100% { opacity:1; transform:scale(1); }
+  50%      { opacity:0.3; transform:scale(0.55); }
+}
+
+.alert-pill span {
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.agency-badge {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  z-index: 2;
+  background: rgba(0,18,52,0.82);
+  border: 1px solid rgba(167,168,170,0.25);
+  border-radius: 3px;
+  padding: 8px 14px;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  animation: fadeIn 0.5s 1.0s ease forwards;
+}
+
+.agency-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.agency-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--silver);
+  text-transform: uppercase;
+  line-height: 1.4;
+  margin-top: 2px;
+}
+
+/* ── HERO TYPOGRAPHY ────────────────────────────────────── */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 30px 60px 30px;
+}
+
+.eyebrow {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.38em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  opacity: 0;
+  animation: slideUp 0.6s 0.6s ease forwards;
+}
+
+.headline {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: clamp(42px, 8vw, 72px);
+  line-height: 0.95;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  opacity: 0;
+  animation: slideUp 0.6s 0.7s ease forwards;
+}
+
+.headline em {
+  font-style: normal;
+  color: var(--gold);
+}
+
+.scroll-indicator {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeIn 1s 1.5s ease forwards;
+}
+
+.scroll-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--silver);
+}
+
+.scroll-line {
+  width: 2px;
+  height: 40px;
+  background: rgba(255,255,255,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 50%;
+  background: var(--gold);
+  animation: scrollDrop 2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes scrollDrop {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+
+/* ── ARTICLE SECTION ────────────────────────────────────── */
+.article-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 80px 30px 100px;
+}
+
+.article-body p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.8;
+  margin-bottom: 24px;
+  color: #c4c4c4;
+}
+
+.article-body p strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.article-body h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 40px 0 20px;
+}
+
+.article-body h2 span {
+  color: var(--gold);
+}
+
+/* ── PROJECT META ───────────────────────────────────────── */
+.meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(167,168,170,0.1);
+  border: 1px solid rgba(167,168,170,0.1);
+  border-radius: 3px;
+  margin: 40px 0;
+  overflow: hidden;
+}
+
+.meta-cell {
+  background: rgba(0,18,52,0.3);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meta-cell--full {
+  grid-column: 1 / -1;
+  border-top: 1px solid rgba(167,168,170,0.1);
+}
+
+.meta-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.meta-value {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: 0.03em;
+}
+
+.meta-value.large {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+}
+
+/* ── STAT ROW ───────────────────────────────────────────── */
+.stat-row {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid rgba(167,168,170,0.1);
+  border-bottom: 1px solid rgba(167,168,170,0.1);
+  margin-bottom: 60px;
+}
+
+.stat {
+  flex: 1;
+  padding: 30px 20px;
+  text-align: center;
+  border-right: 1px solid rgba(167,168,170,0.1);
+}
+
+.stat:last-child { border-right: none; }
+
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  color: var(--gold);
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+.stat-lbl {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--silver);
+  text-transform: uppercase;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+/* ── FOOTER ─────────────────────────────────────────────── */
+.footer {
+  padding: 30px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-mark {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(167,168,170,0.4);
+  background: rgba(0,47,108,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-mark svg {
+  width: 24px; height: 24px;
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.logo-text-block { display: flex; flex-direction: column; line-height: 1; gap: 4px; }
+
+.logo-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--white);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.logo-tagline {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--silver);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.footer-url {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--silver);
+  letter-spacing: 0.15em;
+}
+
+.footer-tags {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(167,168,170,0.4);
+  letter-spacing: 0.08em;
+  text-align: right;
+}
+
+/* ── ANIMATIONS ─────────────────────────────────────────── */
+@keyframes fadeIn  { to { opacity: 1; } }
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── MOBILE TWEAKS ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .headline { font-size: clamp(38px, 10vw, 52px); }
+  .article-section { padding: 60px 20px 80px; }
+  .stat-num { font-size: 32px; }
+  .meta-grid { grid-template-columns: 1fr; }
+  .meta-cell { border-bottom: 1px solid rgba(167,168,170,0.1); }
+  .footer { flex-direction: column; align-items: flex-start; }
+  .footer-right { align-items: flex-start; text-align: left; }
+  .footer-tags { text-align: left; }
+}
+</style>
+</head>
+<body>
+
+<div class="stripe"></div>
+
+<div class="hero-section">
+  <img
+    id="heroImg"
+    class="hero-bg"
+    src="https:www.intrepidflights.com/assets/construction.JPG"
+    alt="MnDOT HWY 169 underpass construction, Zimmerman MN"
+    loading="eager"
+  />
+  <div class="hero-gradient"></div>
+
+  <div class="alert-pill">
+    <div class="alert-dot"></div>
+    <span>Active Construction Zone</span>
+  </div>
+
+  <div class="agency-badge">
+    <div class="agency-label">MnDOT</div>
+    <div class="agency-sub">Infrastructure<br>Project</div>
+  </div>
+
+  <div class="hero-content">
+    <div class="eyebrow">May 2026 &nbsp;·&nbsp; Construction Safety &amp; Visibility</div>
+    <div class="headline">See the<br><em>whole</em> site.</div>
+    
+    <div class="scroll-indicator">
+      <span class="scroll-text">Read Article</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</div>
+
+<div class="article-section">
+  
+  <div class="article-body">
+    <h2>MAY Focus on Construction: <span>The Zimmerman HWY 169 S Underpass</span></h2>
+    
+    <p>
+      The Highway 169 corridor through Zimmerman is currently undergoing a massive structural transformation. Converting this heavily traveled stretch into a true freeway system is a logistical heavy lift, involving complex grade changes, utility relocation, and the continuous management of local traffic flow.
+    </p>
+
+    <p>
+      For contractors, project managers, and safety teams operating on the ground, visibility is inherently limited. Earthworks, heavy machinery, and temporary barricades create blind spots that can slow down operations and complicate safety protocols. Ground-level sightlines can only tell part of the story.
+    </p>
+
+    <p>
+      <strong>This is where aerial data becomes critical infrastructure.</strong> Intrepid Flights documented the active build zone for the Highway 169 underpass project, giving teams an unobstructed, comprehensive view of the site. By capturing access points, material staging areas, and surrounding grade work from above, drone imagery eliminates the guesswork. 
+    </p>
+
+    <p>
+      Having a 360-degree top-down perspective allows site managers to track daily progress against engineering plans, verify that safety perimeters are established correctly, and allocate resources without needing to physically traverse hazardous terrain. When the stakes are high and the project footprint is vast, reliable aerial intelligence keeps crews informed and major infrastructure projects moving forward safely.
+    </p>
+  </div>
+
+  <div class="meta-grid">
+    <div class="meta-cell">
+      <span class="meta-label">Location</span>
+      <span class="meta-value">Zimmerman, MN</span>
+    </div>
+    <div class="meta-cell">
+      <span class="meta-label">Corridor</span>
+      <span class="meta-value large">169</span>
+    </div>
+    <div class="meta-cell meta-cell--full">
+      <span class="meta-label">Project</span>
+      <span class="meta-value">HWY 169 Underpass — MnDOT Spring 2026 Campaign</span>
+    </div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-num">FAA</div>
+      <div class="stat-lbl">Part 107<br>Certified</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4K</div>
+      <div class="stat-lbl">Photo &amp;<br>Video</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">360°</div>
+      <div class="stat-lbl">Site<br>Coverage</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="logo-row">
+      <div class="logo-mark">
+        <svg viewBox="0 0 32 32">
+          <line x1="16" y1="16" x2="6"  y2="6"/>
+          <line x1="16" y1="16" x2="26" y2="6"/>
+          <line x1="16" y1="16" x2="6"  y2="26"/>
+          <line x1="16" y1="16" x2="26" y2="26"/>
+          <circle cx="6"  cy="6"  r="3"/>
+          <circle cx="26" cy="6"  r="3"/>
+          <circle cx="6"  cy="26" r="3"/>
+          <circle cx="26" cy="26" r="3"/>
+          <circle cx="16" cy="16" r="2.2" fill="white" stroke="none"/>
+        </svg>
+      </div>
+      <div class="logo-text-block">
+        <span class="logo-name">Intrepid Flights</span>
+        <span class="logo-tagline">Aerial Imaging · Twin Cities</span>
+      </div>
+    </div>
+    <div class="footer-right">
+      <span class="footer-url">intrepidflights.com</span>
+      <span class="footer-tags">#IntrepidFlights · #MnDOT · #ConstructionSafety</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const img = document.getElementById('heroImg');
+  if (img.complete) {
+    img.classList.add('loaded');
+  } else {
+    img.addEventListener('load', () => img.classList.add('loaded'));
+  }
+</script>
+
+</body>
+</html>
