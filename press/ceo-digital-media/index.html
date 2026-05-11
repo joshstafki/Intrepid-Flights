@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html lang="en" style="background-color:#000000;">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>From the Office of the CEO — Intrepid Flights</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    html {
+      background-color: #000000 !important;
+      color-scheme: dark;
+    }
+
+```
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  font-family: 'Inter', Georgia, sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  -webkit-text-size-adjust: 100%;
+}
+
+.site-header {
+  background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 40px;
+  border-bottom: 1px solid #C9A84C;
+}
+
+.wordmark {
+  font-family: 'Oswald', Impact, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #C9A84C;
+}
+
+.wordmark span {
+  color: #aaaaaa;
+  font-weight: 300;
+}
+
+.header-tag {
+  font-family: 'Inter', Georgia, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #aaaaaa;
+}
+
+.container {
+  background-color: #000000;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 64px 32px 100px;
+}
+
+.office-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.office-label-line {
+  flex: 1;
+  height: 1px;
+  background-color: #C9A84C;
+}
+
+.office-label-text {
+  font-family: 'Oswald', Impact, sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #C9A84C;
+  white-space: nowrap;
+}
+
+.ornament {
+  text-align: center;
+  margin-bottom: 28px;
+  font-size: 20px;
+  color: #C9A84C;
+}
+
+.headline-block {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.kicker {
+  font-family: 'Inter', Georgia, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-family: 'Oswald', Impact, sans-serif;
+  font-weight: 600;
+  font-size: 44px;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.gold-word {
+  color: #C9A84C;
+}
+
+.sub-headline {
+  font-family: 'Inter', Georgia, sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: #aaaaaa;
+  letter-spacing: 0.04em;
+}
+
+.gold-rule {
+  width: 60px;
+  height: 1px;
+  background-color: #C9A84C;
+  margin: 0 auto 48px;
+}
+
+.date-line {
+  font-family: 'Oswald', Impact, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 24px;
+}
+
+.body-copy p {
+  font-family: 'Inter', Georgia, sans-serif;
+  font-size: 16px;
+  line-height: 1.9;
+  color: #ffffff;
+  margin-bottom: 24px;
+}
+
+.drop-cap::first-letter {
+  font-family: 'Oswald', Impact, sans-serif;
+  font-size: 52px;
+  font-weight: 600;
+  color: #C9A84C;
+  float: left;
+  line-height: 0.78;
+  margin: 6px 10px 0 0;
+}
+
+.stats-band {
+  display: flex;
+  border: 1px solid #C9A84C;
+  margin: 48px 0;
+  overflow: hidden;
+}
+
+.stat-cell {
+  flex: 1;
+  background-color: #111111;
+  padding: 28px 16px;
+  text-align: center;
+  border-right: 1px solid #C9A84C;
+}
+
+.stat-cell:last-child {
+  border-right: none;
+}
+
+.stat-number {
+  font-family: 'Oswald', Impact, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #C9A84C;
+  letter-spacing: 0.03em;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-family: 'Inter', Georgia, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.signature-block {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid #C9A84C;
+}
+
+.sig-name {
+  font-family: 'Oswald', Impact, sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.sig-title {
+  font-family: 'Inter', Georgia, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 3px;
+}
+
+.sig-company {
+  font-family: 'Inter', Georgia, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #aaaaaa;
+}
+
+.site-footer {
+  background-color: #000000;
+  border-top: 1px solid #C9A84C;
+  padding: 24px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-copy {
+  font-family: 'Inter', Georgia, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #aaaaaa;
+}
+
+.footer-url {
+  font-family: 'Oswald', Impact, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  color: #C9A84C;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .site-header { padding: 18px 20px; }
+  .header-tag { display: none; }
+  .container { padding: 40px 20px 72px; }
+  h1 { font-size: 30px; }
+  .stats-band { flex-direction: column; }
+  .stat-cell { border-right: none; border-bottom: 1px solid #C9A84C; }
+  .stat-cell:last-child { border-bottom: none; }
+  .site-footer { flex-direction: column; gap: 8px; text-align: center; padding: 20px; }
+  .office-label-text { font-size: 8px; letter-spacing: 0.2em; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wordmark">Intrepid Flights <span>/ Official Communication</span></div>
+    <div class="header-tag">intrepidflights.com</div>
+  </header>
+
+  <main class="container">
+
+```
+<div class="office-label">
+  <div class="office-label-line"></div>
+  <span class="office-label-text">From the Office of the Chief Executive</span>
+  <div class="office-label-line"></div>
+</div>
+
+<div class="ornament">&#9670;</div>
+
+<div class="headline-block">
+  <p class="kicker">Official Announcement &nbsp;&middot;&nbsp; May 2026</p>
+  <h1>Introducing the<br /><span class="gold-word">Digital Media</span><br />Licensure Program</h1>
+  <p class="sub-headline">Professional-grade aerial imagery, available for license.</p>
+</div>
+
+<div class="gold-rule"></div>
+
+<div class="body-copy">
+  <p class="date-line">Hanover, Minnesota &nbsp;&mdash;&nbsp; May 2026</p>
+
+  <p class="drop-cap">
+    Intrepid Flights is pleased to announce the formal launch of its Digital Media Licensure Program — a structured offering that grants individuals, businesses, and creative professionals access to our growing library of high-definition drone photography and aerial imaging content.
+  </p>
+
+  <p>
+    Since our founding, Intrepid Flights has built an extensive catalog of aerial imagery spanning landscapes, infrastructure, waterways, urban environments, and seasonal conditions across the Twin Cities metropolitan area and beyond. With this program, that library is now available for commercial and editorial licensing.
+  </p>
+
+  <p>
+    License holders will gain access to over 10,000 HD drone images captured across a range of conditions, altitudes, and subjects — each file delivered at full resolution and cleared for use under the terms of the selected license tier. Whether the need is for a single-use editorial placement or a broad commercial campaign, our program is structured to accommodate projects of any scale.
+  </p>
+
+  <p>
+    This launch reflects our commitment to extending the value of aerial perspective beyond project-specific commissions — making professional imagery more accessible while upholding the quality standards our clients have come to expect.
+  </p>
+</div>
+
+<div class="stats-band">
+  <div class="stat-cell">
+    <span class="stat-number">10,000+</span>
+    <span class="stat-label">HD Images Available</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-number">Full Res</span>
+    <span class="stat-label">Delivery on All Files</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-number">Flexible</span>
+    <span class="stat-label">License Tiers</span>
+  </div>
+</div>
+
+<div class="body-copy">
+  <p>
+    Additional details regarding license tiers, pricing, subject categories, and access procedures will be published at intrepidflights.com in the coming weeks. Inquiries may be directed through our official contact channels.
+  </p>
+  <p>
+    We look forward to supporting your next project from above.
+  </p>
+</div>
+
+<div class="signature-block">
+  <p class="sig-name">Josh Stafki</p>
+  <p class="sig-title">Founder &amp; Flight Operations Manager</p>
+  <p class="sig-company">Intrepid Flights &nbsp;/&nbsp; Hanover, Minnesota</p>
+</div>
+```
+
+  </main>
+
+  <footer class="site-footer">
+    <span class="footer-copy">&copy; 2026 Intrepid Flights. All rights reserved.</span>
+    <a class="footer-url" href="https://intrepidflights.com" target="_blank">intrepidflights.com</a>
+  </footer>
+
+</body>
+</html>
