@@ -2,641 +2,238 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
-    <!-- All meta/OG tags FIRST, before any scripts -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.intrepidflights.com/">
-    <meta property="og:title" content="Intrepid Flights | Precision Drone Photography">
-    <meta property="og:description" content="Professional aerial imaging and mapping services serving the Twin Cities. Design with precision.">
-    <meta property="og:image" content="https://intrepidflights.com/assets/lighthouse.JPG">
-    <meta property="og:site_name" content="Intrepid Flights">
-    <meta property="og:locale" content="en_US">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://www.intrepidflights.com/">
-    <meta name="twitter:title" content="Intrepid Flights | Precision Aerial Photography">
-    <meta name="twitter:description" content="Elevate your view. Professional drone services for real estate and mapping in Minnesota.">
-    <meta name="twitter:image" content="https://intrepidflights.com/assets/image.jpeg">
-    <meta name="description" content="Intrepid Flights provides professional aerial photography, real estate drone services, and geographical mapping in Hanover, MN and the Twin Cities. Precision flight services by Joshua Stafki.">
-<meta name="keywords" content="Drone Photography, Aerial Photography MN, Real Estate Drone, Geographical Mapping, Intrepid Flights, Joshua Stafki, Hanover MN Drone, Twin Cities Aerial, Wright County Drone">
-<meta name="author" content="Joshua Stafki">
-<meta name="robots" content="index, follow">
-<meta name="theme-color" content="#121212">
-    
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RJ5YS5ZN4V"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-RJ5YS5ZN4V');
-</script>
-<script type="text/javascript">
-    // Detect iPads
-    const isIPad = /iPad/i.test(navigator.userAgent);
-    // Detect Amazon Silk on Fire TV specifically (not tablets)
-    const isFireTV = /Silk/i.test(navigator.userAgent) && /AFTS|AFTB|AFTM|AFTT|AFTR|AFTEU|Amazon.*TV/i.test(navigator.userAgent);
-    // Detect other mobiles or small screens
-    const isMobileOrSmall = (/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 900);
-    // Detect Flipboard crawler
-    const isFlipboard = /flipboard/i.test(navigator.userAgent);
-    // Only redirect if it's a mobile/small device AND NOT an iPad or Fire TV or Flipboard
-    if (isMobileOrSmall && !isIPad && !isFireTV && !isFlipboard) {
-        window.location.href = "https://intrepidflights.com/home/";
-    }
-</script>
-
-<link rel="icon" type="image/png" href="https://intrepidflights.com/assets/indigo.png">
-<link rel="apple-touch-icon" sizes="180x180" href="https://intrepidflights.com/assets/apple-touch-icon.png">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Intrepid Flights",
-      "image": "https://raw.githubusercontent.com/joshstafki/Intrepid-Flights/main/favicon.jpg",
-      "url": "https://www.intrepidflights.com",
-      "telephone": "763-910-1792",
-      "email": "joshstafki@intrepidflights.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Hanover",
-        "addressRegion": "MN",
-        "postalCode": "55341",
-        "addressCountry": "US"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 45.15,
-        "longitude": -93.66
-      },
-      "priceRange": "$$",
-      "sameAs": [
-        "https://x.com/intrepidflights",
-        "https://www.linkedin.com/company/intrepid-flights-drone-photography",
-        "https://www.instagram.com/intrepid.flights"
-      ]
-    }
-    </script>
-    
-    <title>Intrepid Flights | Drone Photography</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Details and behind-the-scenes information for aerial drone photography by Intrepid Flights.">
+    <title>About This Image | Intrepid Flights</title>
+    <link rel="icon" type="image/png" href="https://intrepidflights.com/assets/indigo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://intrepidflights.com/assets/apple-touch-icon.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "upp0ioykui");
-    </script>
-
+    
     <style>
-        /* --- 1. CORE VARIABLES --- */
+        /* Intrepid Flights Color Palette */
         :root {
-            --bg-dark: #121212;
-            --bg-panel: #1a1a1a;
-            --text-white: #ffffff;
-            --text-mute: #b0b0b0; /* ADA: High contrast grey */
+            --white: #FFFFFF;
+            --gray: #A7A8AA;
+            --navy: #1a1a1a;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-        /* ADA: Visible Focus States */
-        *:focus-visible {
-            outline: 2px solid #ffffff;
-            outline-offset: 4px;
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-white);
-            overflow: hidden; /* Locked to desktop view */
-            font-weight: 300;
+            background-color: var(--navy); /* Changed to Navy for the scroll-down area */
+            color: var(--white);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- 2. DESKTOP LAYOUT --- */
-        .container {
-            display: flex;
+        h1, h2, h3 {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ADA Compliance: Clear focus states for keyboard navigation */
+        *:focus-visible {
+            outline: 3px solid var(--gray);
+            outline-offset: 4px;
+        }
+
+        /* Hero Image Section - 100vh full screen */
+        .hero {
+            position: relative;
             height: 100vh;
-            width: 100vw;
-            flex-direction: row;
-            overflow: hidden;
-        }
-
-        .sidebar {
-            width: 380px;
-            background-color: var(--bg-panel);
+            width: 100%;
+            background-image: url('https://intrepidflights.com/assets/flower.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            padding: 60px 45px;
-            border-right: 1px solid #2a2a2a;
-            z-index: 10;
-            flex-shrink: 0;
-            overflow-y: auto;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 3rem;
         }
 
-        /* Typography */
-        .header-section h1 {
+        /* Subtle scroll down indicator */
+        .scroll-indicator {
+            color: var(--white);
             font-family: 'Oswald', sans-serif;
-            font-weight: 700; 
-            font-size: 1.8rem;
-            letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 5px;
-            line-height: 1;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+            animation: bounce 2s infinite;
         }
 
-        .header-section .title {
-            font-size: 0.95rem;
-            color: var(--text-mute);
-            margin-bottom: 30px;
-            display: block;
-            font-weight: 300; 
-            letter-spacing: 0.5px;
+        .scroll-indicator svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--white);
+            filter: drop-shadow(1px 1px 4px rgba(0,0,0,0.7));
         }
 
-        .location-text {
-            font-size: 0.8rem;
-            line-height: 1.5;
-            color: var(--text-mute);
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Story Section - Dark Background */
+        .story-section {
+            padding: 8rem 2rem 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            background-color: var(--navy);
+        }
+
+        .story-section h1 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .story-content {
+            font-size: 1.25rem;
+            color: var(--white);
+            font-weight: 300;
+            position: relative;
+            padding-left: 2rem;
+            border-left: 4px solid var(--gray);
+            margin-bottom: 3rem;
+        }
+
+        .story-content strong {
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        /* Inline Link Styling */
+        .story-content a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid var(--gray);
+            transition: all 0.3s ease;
+            padding-bottom: 2px;
+        }
+
+        .story-content a:hover {
+            color: var(--gray);
+            border-bottom-color: var(--white);
+        }
+
+        /* Button Styling */
+        .btn-container {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .btn-return {
+            display: inline-block;
+            font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            font-weight: 400;
-            margin-bottom: 50px;
-            border-left: 2px solid #333;
-            padding-left: 15px;
-        }
-
-        /* Menu Styling */
-        .services-menu h3 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #b0b0b0; 
-            margin-bottom: 25px;
-            font-weight: 500;
-        }
-
-        .service-list { list-style: none; }
-        
-        .service-item {
-            font-family: 'Oswald', sans-serif;
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            font-size: 1.4rem;
-            text-transform: uppercase;
-            color: #ccc;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 400;
-            
-            /* Button Reset */
-            background: none;
-            border: none;
-            padding: 0;
-            width: 100%;
-            text-align: left;
-        }
-        
-        /* Interactive States */
-        .service-item:hover, 
-        .service-item.active, 
-        .service-item:focus {
-            color: #fff;
-            transform: translateX(10px);
-            font-weight: 500; 
-        }
-
-        .service-item::before {
-            content: ''; display: inline-block; width: 0; height: 2px; background: #fff;
-            margin-right: 0; transition: all 0.3s ease;
-        }
-        .service-item:hover::before, 
-        .service-item.active::before, 
-        .service-item:focus::before {
-            width: 15px; margin-right: 12px;
-        }
-
-        /* Contact & Social */
-        .contact-box { margin-top: 40px; }
-        .contact-label {
-            font-size: 0.7rem;
-            text-transform: uppercase; letter-spacing: 2px;
-            color: #b0b0b0; 
-            margin-bottom: 15px; display: block;
-            font-weight: 600; 
-        }
-        .contact-details p { 
-            font-size: 1rem;
-            margin-bottom: 10px; 
-            font-weight: 300; 
-        }
-        .contact-details a { color: #bbb; text-decoration: none; border-bottom: 1px dotted #444; }
-        .contact-details a:hover { color: #fff; border-bottom-color: #fff; }
-
-        .social-links { display: flex; gap: 20px; margin-top: 30px; }
-        .social-links a { 
-            color: #bbb; 
-            font-size: 1.2rem; 
-            transition: 0.3s; 
+            font-size: 1.1rem;
+            color: var(--white);
             text-decoration: none;
-        } 
-        .social-links a:hover { color: #fff; }
-
-      /* HERO VIEW */
-.hero-view {
-    flex-grow: 1;
-    background:
-        linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3));
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 60px;
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--gray);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background-color: transparent;
         }
 
-        .precision-overlay h2 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 5rem;
-            font-weight: 700;
-            line-height: 0.9;
-            letter-spacing: -2px;
-            text-transform: uppercase;
+        .btn-return:hover {
+            background-color: var(--white);
+            color: var(--navy);
+            border-color: var(--white);
+        }
+
+        /* Footer */
+        .site-footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--navy);
+            color: var(--gray);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(167, 168, 170, 0.2);
+        }
+
+        /* Fade-in Animation Classes */
+        .fade-in {
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeInUp 1.2s forwards ease-out 0.3s;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
 
-        .coordinates {
-            position: absolute; top: 40px; right: 40px;
-            font-family: monospace; 
-            font-size: 0.8rem; 
-            letter-spacing: 2px;
-            color: rgba(255,255,255,0.8); 
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-
-        /* ADA: Reduced Motion Preference */
-        @media (prefers-reduced-motion: reduce) {
-            .precision-overlay h2 {
-                animation: none;
-                opacity: 1;
-                transform: translateY(0);
-            }
-            .service-item, .service-item::before {
-                transition: none;
-            }
-        }
-/* --- NEWS POPUP BRANDING --- */
-  #news-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #1a1a1a; /* Matches your sidebar */
-    color: #ffffff;
-    padding: 40px;
-    border-radius: 4px;
-    border: 1px solid #333;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-    z-index: 10000;
-    text-align: center;
-    width: 380px;
-    font-family: 'Inter', sans-serif;
-  }
-
-  #news-popup h3 {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    line-height: 1.4;
-  }
-
-  .close-btn {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 24px;
-    cursor: pointer;
-    color: #b0b0b0;
-    border: none;
-    background: none;
-  }
-
-  .popup-btn {
-    font-family: 'Oswald', sans-serif;
-    margin: 10px;
-    padding: 12px 30px;
-    cursor: pointer;
-    border: 1px solid #444;
-    background-color: transparent;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: 0.3s;
-  }
-
-  .popup-btn:hover {
-    background-color: #fff;
-    color: #121212;
-  }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <aside class="sidebar" id="menu-panel">
-            <header class="header-section">
-                <h1>Intrepid Flights</h1>
-                <span class="title">by Joshua Stafki</span>
-                
-                <div class="location-text">
-                    Serving The Twin Cities<br>
-                    & Surrounding Communities
-                </div>
+    <header class="hero" role="img" aria-label="Aerial view of the Springtime Minnesota landscape captured by drone">
+        <div class="scroll-indicator" aria-hidden="true">
+            <span>Scroll for details</span>
+            <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </div>
+    </header>
 
-                <nav class="services-menu" aria-label="Services Menu">
-                    <h3>Services</h3>
-                    <ul class="service-list">
-                        <li><button class="service-item" aria-pressed="false" onclick="activate(this)">Aerial Photography</button></li>
-                        <li><button class="service-item" aria-pressed="false" onclick="activate(this)">Geographical Mapping</button></li>
-                        <li><button class="service-item" aria-pressed="false" onclick="activate(this)">Real Estate</button></li>
-                        <li><button class="service-item" aria-pressed="false" onclick="activate(this)">Cinematography</button></li>
-                        <li><button class="service-item" aria-pressed="false" onclick="activate(this)">Inspections</button></li>
-                        <li><button class="service-item" aria-pressed="false" onclick="activate(this)">Media Licenses</button></li>
-                    </ul>
-                </nav>
-            </header>
-
-            <div class="contact-box">
-                <span class="contact-label">Contact Info</span>
-                <address class="contact-details" style="font-style: normal;">
-                    <p><a href="tel:7639101792" aria-label="Call 7 6 3. 9 1 0. 1 7 9 2">763-910-1792</a></p>
-                    <p><a href="mailto:joshstafki@intrepidflights.com" aria-label="Email joshstafki at intrepidflights.com">joshstafki@intrepidflights.com</a></p>
-                    <p><a href="https://calendar.app.google/G2UdDi8vAQLdc6WB8" aria-label="Book an appointment with Intrepid Flights" target="_blank" rel="noopener noreferrer">Book An Appointment</a></p>
-                </address>
-
-                <nav class="social-links" aria-label="Social Media Links">
-                    <a href="https://x.com/intrepidflights?s=21" aria-label="Visit Intrepid Flights on X (Twitter)">
-                        <i class="fab fa-x-twitter" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/company/intrepid-flights-drone-photography" target="_blank" aria-label="Visit Intrepid Flights on LinkedIn">
-                        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://www.instagram.com/intrepid.flights?igsh=ZW11Zzd1OW13NnR3&utm_source=qr" target="_blank" aria-label="Visit Intrepid Flights on Instagram">
-                        <i class="fab fa-instagram" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://www.intrepidflights.com/effects/" target="_blank" aria-label="Visit Intrepid Flights on YouTube">
-                        <i class="fab fa-youtube" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://music.apple.com/us/playlist/intrepid-flights/pl.u-jV899PLsDENeq7z" target="_blank" aria-label="Visit Intrepid Flights on Apple Music">
-                        <i class="fab fa-apple" aria-hidden="true"></i>
-                    </a>
-                    <a href="https://www.reddit.com/r/intrepidflights/s/YsrjHhGtir" target="_blank" aria-label="Visit Intrepid Flights on Reddit">
-                        <i class="fab fa-reddit" aria-hidden="true"></i>
-                    </a>
-                </nav>
-                
-                    <div style="margin-top: 50px; font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #b0b0b0; text-align: left; line-height: 1.8;">
-    
-    <div style="margin-bottom: 8px;">
-    <a href="/legal" style="color: #b0b0b0; text-decoration: none; margin-right: 20px; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #ffffff'" onmouseout="this.style.borderBottom='1px solid transparent'">Legal</a>
-    <a href="/about" style="color: #b0b0b0; text-decoration: none; margin-right: 20px; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #ffffff'" onmouseout="this.style.borderBottom='1px solid transparent'">About</a>
-    <a href="/privacy" style="color: #b0b0b0; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #ffffff'" onmouseout="this.style.borderBottom='1px solid transparent'">Privacy</a>
-</div>
-
-<div style="margin-bottom: 30px;"> 
-    <a href="/promotions" style="color: #b0b0b0; text-decoration: none; margin-right: 20px; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #ffffff'" onmouseout="this.style.borderBottom='1px solid transparent'">Promotions</a>
-    <a href="/press" style="color: #b0b0b0; text-decoration: none; margin-right: 20px; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #ffffff'" onmouseout="this.style.borderBottom='1px solid transparent'">Press</a>
-    <a href="/part-107" style="color: #b0b0b0; text-decoration: none; border-bottom: 1px solid transparent;" onmouseover="this.style.borderBottom='1px solid #ffffff'" onmouseout="this.style.borderBottom='1px solid transparent'">Part 107</a>
-</div>
-
-    <div style="color: #b0b0b0; opacity: 0.8;">
-        &copy; 2025 Intrepid Flights
-    </div>
-</div>
-        </aside>
-
-       <main class="hero-view">
-    <div class="coordinates" style="text-align: right;">
-        <div>LAT 44.9778° N</div>
-        <div>LON 93.2650° W</div>
-        <a href="about/about-hero" class="image-link" style="
-            display: block;
-            margin-top: 8px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.4rem;
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: 0.3s;
-        " onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">
-            About This Image
-        </a>
-    </div>
-
-            <div class="precision-overlay">
-                <h2>FLIGHTS<br>DESIGNED<br>WITH PRECISION.</h2>
+    <main class="story-section">
+        <div class="fade-in">
+            <h1>Behind the Lens</h1>
+            <div class="story-content">
+                <p>Flying over the beautiful flowering trees of<strong>Minnesota</strong>, this aerial perspective was captured in <strong>May 2026</strong>. Piloted by <a href="https://intrepidflights.com/about/" aria-label="Learn more about photographer Josh Stafki">Josh Stafki</a>, the shot utilizes a <strong>DJI 4K Mini</strong> to showcase the landscape from a striking vantage point, blending advanced drone technology with an eye for dynamic, cinematic composition.</p>
             </div>
             
-            <div class="image-location" style="position: absolute; bottom: 20px; right: 60px; text-align: right; font-size: 0.9rem; opacity: 0.8; letter-spacing: 1px; font-weight: 300; text-transform: uppercase;">
-                Aerial View of Cancun, Mexico
+            <div class="btn-container">
+                <a href="https://intrepidflights.com/" class="btn-return" aria-label="Return to the Intrepid Flights homepage">Return to Home</a>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 
-<div id="news-popup" style="display: none;">
-  <button class="close-btn" onclick="document.getElementById('news-popup').style.display='none'">&times;</button>
-  
-  <h3>Would you like to see Intrepid Flights publish periodic articles & news?</h3>
-  
-  <form id="news-form" action="https://formspree.io/f/xdayggbd" method="POST">
-    <button type="button" class="popup-btn" onclick="submitChoice('Yes')">Yes</button>
-    <button type="button" class="popup-btn" onclick="submitChoice('No')">No</button>
-
-    <input type="hidden" name="wants_news" id="wants_news">
-
-    <div id="success-msg" data-fs-success style="display:none; margin-top: 15px; color: #b0b0b0;">
-  Thanks for the feedback!
-</div>
-  </form>
-</div>
+    <footer class="site-footer">
+        <p>&copy; 2026 Intrepid Flights</p>
+    </footer>
 
     <script>
-        function activate(el) {
-            if (navigator.vibrate) navigator.vibrate(5);
-            const items = document.querySelectorAll('.service-item');
-            
-            // Reset all items
-            items.forEach(item => {
-                item.classList.remove('active');
-                item.setAttribute('aria-pressed', 'false'); // ADA Fix
-            });
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
 
-            // Activate clicked item
-            el.classList.add('active');
-            el.setAttribute('aria-pressed', 'true'); // ADA Fix
-        }
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => observer.observe(el));
+        });
     </script>
-<script>
-function submitChoice(value) {
-  document.getElementById("wants_news").value = value;
-  document.getElementById("news-form").requestSubmit();
-}
-</script>
-<script>
-document.getElementById("news-form").addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-  const formData = new FormData(this);
-
-  try {
-    const response = await fetch(this.action, {
-      method: "POST",
-      body: formData,
-      headers: {
-        "Accept": "application/json"
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error("Formspree request failed");
-    }
-
-    // SUCCESS STATE
-    document.getElementById("success-msg").style.display = "block";
-
-    document.querySelectorAll(".popup-btn").forEach(btn => {
-      btn.style.display = "none";
-    });
-
-    setTimeout(() => {
-      document.getElementById("news-popup").style.display = "none";
-    }, 2500);
-
-  } catch (err) {
-    console.error(err);
-    alert("Submission failed. Please check your connection and try again.");
-  }
-});
-</script>
-
-<script>
-let activeTime = 0;
-let popupShown = false;
-let activityTimer = null;
-let inactivityTimeout = null;
-
-function showPopup() {
-  const popup = document.getElementById("news-popup");
-  if (popup) popup.style.display = "block";
-  popupShown = true;
-  clearInterval(activityTimer);
-}
-
-function startActiveTracking() {
-  if (popupShown || activityTimer) return;
-
-  activityTimer = setInterval(() => {
-    activeTime++;
-
-    if (activeTime >= 10) {
-      showPopup();
-    }
-  }, 1000);
-}
-
-function resetInactivity() {
-  clearTimeout(inactivityTimeout);
-
-  inactivityTimeout = setTimeout(() => {
-    clearInterval(activityTimer);
-    activityTimer = null;
-    activeTime = 0;
-  }, 6000);
-}
-
-["mousemove", "keydown", "scroll", "click"].forEach(event => {
-  window.addEventListener(event, () => {
-    startActiveTracking();
-    resetInactivity();
-  });
-});
-
-// START IMMEDIATELY (critical fix)
-startActiveTracking();
-</script>
-
-<script>
-const heroImages = [
-    {
-        image: "https://intrepidflights.com/assets/flowers.jpg",
-        location: "Wildflower Field",
-        aboutLink: "about/about-hero-flowers"
-    },
-    {
-        image: "https://intrepidflights.com/assets/lighthouse.JPG",
-        location: "Lighthouse Coastline",
-        aboutLink: "about/about-hero-lighthouse"
-    },
-    {
-        image: "https://intrepidflights.com/assets/image.jpeg",
-        location: "Aerial View of Cancun, Mexico",
-        aboutLink: "about/about-hero-cancun"
-    }
-];
-
-const heroView = document.querySelector(".hero-view");
-const locationText = document.querySelector(".image-location");
-const aboutLink = document.querySelector(".image-link");
-
-// Keep same image for session
-let selectedHero = sessionStorage.getItem("selectedHero");
-
-if (!selectedHero) {
-    const randomIndex = Math.floor(Math.random() * heroImages.length);
-    selectedHero = JSON.stringify(heroImages[randomIndex]);
-
-    sessionStorage.setItem("selectedHero", selectedHero);
-}
-
-selectedHero = JSON.parse(selectedHero);
-
-// Apply background
-heroView.style.background = `
-    linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)),
-    url('${selectedHero.image}')
-`;
-
-heroView.style.backgroundSize = "cover";
-heroView.style.backgroundPosition = "center";
-
-// Update location label
-if (locationText) {
-    locationText.textContent = selectedHero.location;
-}
-
-// Update about link
-if (aboutLink) {
-    aboutLink.href = selectedHero.aboutLink;
-}
-</script>
 
 </body>
 </html>
