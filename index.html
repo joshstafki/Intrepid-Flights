@@ -251,18 +251,18 @@
         } 
         .social-links a:hover { color: #fff; }
 
-        /* HERO VIEW */
-        .hero-view {
-            flex-grow: 1;
-            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), 
-                        url('https://intrepidflights.com/assets/image.jpeg');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 60px;
+      /* HERO VIEW */
+.hero-view {
+    flex-grow: 1;
+    background:
+        linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 60px;
         }
 
         .precision-overlay h2 {
@@ -581,6 +581,61 @@ function resetInactivity() {
 
 // START IMMEDIATELY (critical fix)
 startActiveTracking();
+</script>
+
+<script>
+const heroImages = [
+    {
+        image: "https://intrepidflights.com/assets/flowers.jpg",
+        location: "Wildflower Field",
+        aboutLink: "about/about-hero-flowers"
+    },
+    {
+        image: "https://intrepidflights.com/assets/lighthouse.JPG",
+        location: "Lighthouse Coastline",
+        aboutLink: "about/about-hero-lighthouse"
+    },
+    {
+        image: "https://intrepidflights.com/assets/image.jpeg",
+        location: "Aerial View of Cancun, Mexico",
+        aboutLink: "about/about-hero-cancun"
+    }
+];
+
+const heroView = document.querySelector(".hero-view");
+const locationText = document.querySelector(".image-location");
+const aboutLink = document.querySelector(".image-link");
+
+// Keep same image for session
+let selectedHero = sessionStorage.getItem("selectedHero");
+
+if (!selectedHero) {
+    const randomIndex = Math.floor(Math.random() * heroImages.length);
+    selectedHero = JSON.stringify(heroImages[randomIndex]);
+
+    sessionStorage.setItem("selectedHero", selectedHero);
+}
+
+selectedHero = JSON.parse(selectedHero);
+
+// Apply background
+heroView.style.background = `
+    linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)),
+    url('${selectedHero.image}')
+`;
+
+heroView.style.backgroundSize = "cover";
+heroView.style.backgroundPosition = "center";
+
+// Update location label
+if (locationText) {
+    locationText.textContent = selectedHero.location;
+}
+
+// Update about link
+if (aboutLink) {
+    aboutLink.href = selectedHero.aboutLink;
+}
 </script>
 
 </body>
