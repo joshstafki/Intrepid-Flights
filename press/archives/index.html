@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intrepid Flights Press Archive</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-color: #1a73e8;
+            --text-main: #202124;
+            --text-secondary: #5f6368;
+            --border-color: #dadce0;
+            --bg-color: #ffffff;
+            --bg-body: #f8f9fa;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--bg-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 22px;
+        }
+
+        .logo-container img {
+            height: 40px;
+            width: auto;
+            margin-right: 12px;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 40px 24px;
+            background-color: var(--bg-color);
+            min-height: 100vh;
+        }
+
+        .page-header {
+            margin-bottom: 48px;
+        }
+
+        .page-header h1 {
+            font-size: 36px;
+            font-weight: 400;
+            margin: 0 0 16px 0;
+        }
+
+        .page-header p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0;
+        }
+
+        /* Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-color);
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .card-image {
+            height: 160px;
+            background-color: #f1f3f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-color);
+            background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+        }
+
+        .card-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--primary-color);
+            text-decoration: none;
+            margin: 0 0 12px 0;
+            line-height: 1.4;
+        }
+
+        .card-title:hover {
+            text-decoration: underline;
+        }
+
+        .card-snippet {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin: 0 0 24px 0;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .loading {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 40px;
+            grid-column: 1 / -1;
+        }
+
+        /* Load More Button */
+        .load-more-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 48px;
+            padding-bottom: 40px;
+        }
+
+        .load-more-btn {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--primary-color);
+            padding: 8px 24px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: none;
+        }
+
+        .load-more-btn:hover {
+            background-color: #f8f9fa;
+        }
+
+        /* Return to Top Button */
+        .return-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--bg-color);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: opacity 0.3s, transform 0.3s;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+            z-index: 1000;
+        }
+
+        .return-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .return-to-top:hover {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+        }
+
+        .return-to-top svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo-container">
+            <img src="https://www.intrepidflights.com/assets/apple-touch-icon.png" alt="Intrepid Flights Logo">
+            <span>Intrepid Flights</span>
+        </a>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1>Intrepid Flights Press Archive</h1>
+            <p>Welcome to the official press room. Here you can find our latest company announcements, feature releases, industry insights, and media resources.</p>
+        </div>
+
+        <div class="card-grid" id="press-container">
+            <div class="loading" id="loading-message">Loading press releases from Google Sheets...</div>
+        </div>
+
+        <div class="load-more-container">
+            <button class="load-more-btn" id="load-more-btn">More ⌄</button>
+        </div>
+    </main>
+
+    <button class="return-to-top" id="return-to-top" aria-label="Return to top">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/>
+        </svg>
+    </button>
+
+   <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('press-container');
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            const returnToTopBtn = document.getElementById('return-to-top');
+            const loadingMessage = document.getElementById('loading-message');
+            
+            // PASTE YOUR PUBLISHED GOOGLE SHEET CSV LINK HERE
+            const googleSheetURL = "YOUR_GOOGLE_SHEET_CSV_URL_HERE";
+
+            let allArticles = [];
+            let currentIndex = 0;
+            const articlesPerPage = 6;
+
+            function renderArticles() {
+                const nextArticles = allArticles.slice(currentIndex, currentIndex + articlesPerPage);
+                
+                nextArticles.forEach(article => {
+                    // Skip empty rows
+                    if (!article.title) return;
+
+                    // --- NEW MAGIC HERE ---
+                    // Check if the imageText column has a URL. If yes, make it an image. If no, use text.
+                    let imageContent = `<span style="color: #9aa0a6;">${article.imageText || 'Article Image'}</span>`;
+                    
+                    if (article.imageText && article.imageText.trim().startsWith('http')) {
+                        imageContent = `<img src="${article.imageText.trim()}" alt="${article.title}" style="width: 100%; height: 100%; object-fit: cover;">`;
+                    }
+                    // ----------------------
+
+                    const cardHTML = `
+                        <div class="card">
+                            <div class="card-image" style="padding: 0; overflow: hidden;">
+                                ${imageContent}
+                            </div>
+                            <div class="card-content">
+                                <a href="${article.link}" target="_blank" rel="noopener noreferrer" class="card-title">${article.title}</a>
+                                <p class="card-snippet">${article.date} AD. ${article.snippet}</p>
+                            </div>
+                            <div class="card-footer">
+                                ${article.date} AD
+                            </div>
+                        </div>
+                    `;
+                    container.insertAdjacentHTML('beforeend', cardHTML);
+                });
+
+                currentIndex += nextArticles.length;
+
+                if (currentIndex < allArticles.length) {
+                    loadMoreBtn.style.display = 'block';
+                } else {
+                    loadMoreBtn.style.display = 'none';
+                }
+            }
+
+            // Use PapaParse to fetch and convert the Google Sheet
+            Papa.parse(googleSheetURL, {
+                download: true,
+                header: true,
+                complete: function(results) {
+                    allArticles = results.data;
+                    allArticles = allArticles.filter(row => row.title && row.title.trim() !== "");
+
+                    if (loadingMessage) loadingMessage.style.display = 'none';
+                    
+                    if (allArticles.length === 0) {
+                        container.innerHTML = `<div class="loading">No articles found in the spreadsheet.</div>`;
+                    } else {
+                        renderArticles();
+                    }
+                },
+                error: function(err) {
+                    console.error("Error fetching spreadsheet:", err);
+                    container.innerHTML = `<div class="loading" style="color: red;">Unable to load data. Please ensure your Google Sheet is published to the web.</div>`;
+                }
+            });
+
+            loadMoreBtn.addEventListener('click', () => {
+                renderArticles();
+            });
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 1000 && currentIndex > 6) {
+                    returnToTopBtn.classList.add('visible');
+                } else {
+                    returnToTopBtn.classList.remove('visible');
+                }
+            });
+
+            returnToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+
+</body>
+</html>
