@@ -177,12 +177,35 @@
             color: var(--text-grey);
             text-transform: uppercase;
         }
+        .brand-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.archive-link {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem; 
+    color: var(--text-grey);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+    transition: color 0.3s ease;
+}
+
+.archive-link:hover {
+    color: var(--navy);
+}
     </style>
 </head>
 <body>
 
 <header>
-    <a href="/" class="brand">Intrepid Flights</a>
+    <div class="brand-container">
+        <a href="/" class="brand">Intrepid Flights</a>
+        <a href="https://intrepidflights.com/press/archives/" class="archive-link">Press Archive</a>
+    </div>
     <a href="/" class="return-home">Return to Home</a>
 </header>
 
