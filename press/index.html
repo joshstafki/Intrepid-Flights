@@ -8,24 +8,20 @@
     <link rel="apple-touch-icon" sizes="180x180" href="https://intrepidflights.com/assets/apple-touch-icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
 
-    <!-- Open Graph (Facebook, LinkedIn, Discord, etc.) -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://intrepidflights.com/" />
-<meta property="og:title" content="Intrepid Flights" />
-<meta property="og:description" content="Latest updates and operational news from Intrepid Flights." />
-<meta property="og:image" content="https://intrepidflights.com/assets/ognewscard.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://intrepidflights.com/" />
+    <meta property="og:title" content="Intrepid Flights" />
+    <meta property="og:description" content="Latest updates and operational news from Intrepid Flights." />
+    <meta property="og:image" content="https://intrepidflights.com/assets/ognewscard.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
-<!-- Optional but recommended -->
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@intrepidflights" />
+    <meta name="twitter:title" content="Intrepid Flights" />
+    <meta name="twitter:description" content="Latest updates and operational news from Intrepid Flights." />
+    <meta name="twitter:image" content="https://intrepidflights.com/assets/ognewscard.png" />
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@intrepidflights" />
-<meta name="twitter:title" content="Intrepid Flights" />
-<meta name="twitter:description" content="Latest updates and operational news from Intrepid Flights." />
-<meta name="twitter:image" content="https://intrepidflights.com/assets/ognewscard.png" />
-    
     <style>
         :root {
             --navy: #002F6C;
@@ -125,14 +121,14 @@
             margin: 0 auto;
         }
 
-        /* --- Featured Article Styles --- */
+        /* --- News Card Styles --- */
         .featured-card {
             display: block;
             text-decoration: none;
             background-color: var(--white);
             border: 1px solid var(--medium-grey);
             padding: 35px 30px;
-            margin-top: 50px;
+            margin-top: 24px;
             text-align: left;
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
@@ -141,6 +137,11 @@
             transform: translateY(-5px);
             border-color: var(--navy);
             box-shadow: 0 10px 20px rgba(0, 47, 108, 0.08);
+        }
+
+        /* First card gets extra top margin to match the original spacing */
+        #news-card-container .featured-card:first-child {
+            margin-top: 50px;
         }
 
         .featured-tag {
@@ -167,6 +168,39 @@
             color: var(--text-grey);
             margin: 0;
             max-width: 100%;
+            line-height: 1.7;
+        }
+
+        /* Loading / error states */
+        .news-status {
+            margin-top: 50px;
+            font-style: italic;
+            color: var(--text-grey);
+            font-size: 1rem;
+        }
+
+        .news-loading {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .news-loading span {
+            width: 8px;
+            height: 8px;
+            background-color: var(--navy);
+            border-radius: 50%;
+            opacity: 0.2;
+            animation: pulse 1.2s ease-in-out infinite;
+        }
+
+        .news-loading span:nth-child(2) { animation-delay: 0.2s; }
+        .news-loading span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50%       { opacity: 1;   transform: scale(1.3); }
         }
 
         footer {
@@ -177,26 +211,27 @@
             color: var(--text-grey);
             text-transform: uppercase;
         }
+
         .brand-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
 
-.archive-link {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.75rem; 
-    color: var(--text-grey);
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 4px;
-    transition: color 0.3s ease;
-}
+        .archive-link {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-grey);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+            transition: color 0.3s ease;
+        }
 
-.archive-link:hover {
-    color: var(--navy);
-}
+        .archive-link:hover {
+            color: var(--navy);
+        }
     </style>
 </head>
 <body>
@@ -215,13 +250,16 @@
         <h1>Newsroom</h1>
         <div class="accent-line"></div>
         <p>
-            This index serves as the central hub for all Intrepid Flights press releases and corporate announcements. 
+            This index serves as the central hub for all Intrepid Flights press releases and corporate announcements.
             <br><br>
             Please check back for future updates and media statements.
         </p>
 
-        <div id="news-card-container"></div>
-
+        <div id="news-card-container">
+            <div class="news-loading">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
     </div>
 </main>
 
@@ -230,19 +268,125 @@
 </footer>
 
 <script>
-    fetch('https://intrepidflights.com/press/news-card.html')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+    // ─── CONFIG ────────────────────────────────────────────────────────────────
+    // Published Google Sheet CSV export URL.
+    const SHEET_CSV_URL =
+        'https://docs.google.com/spreadsheets/d/e/2PACX-1vQVae_znI9joNrAzn9hkrnulmoVTIt3E7-B-hBb_prwzr2-BQaNZX3fveYKg16RC7pqyWu4CT3rQP-n/pub?output=csv';
+
+    // ─── CSV PARSER ────────────────────────────────────────────────────────────
+    function parseCSVRow(row) {
+        const result = [];
+        let current = '';
+        let inQuotes = false;
+
+        for (let i = 0; i < row.length; i++) {
+            const ch = row[i];
+            if (ch === '"') {
+                if (inQuotes && row[i + 1] === '"') {
+                    current += '"'; i++;
+                } else {
+                    inQuotes = !inQuotes;
+                }
+            } else if (ch === ',' && !inQuotes) {
+                result.push(current); current = '';
+            } else {
+                current += ch;
             }
-            return response.text();
+        }
+        result.push(current);
+        return result;
+    }
+
+    function parseCSV(text) {
+        const lines = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim().split('\n');
+        if (lines.length < 2) return [];
+
+        const headers = parseCSVRow(lines[0]).map(h => h.trim().toLowerCase());
+        const rows = [];
+
+        for (let i = 1; i < lines.length; i++) {
+            if (!lines[i].trim()) continue;
+            const values = parseCSVRow(lines[i]);
+            const row = {};
+            headers.forEach((h, idx) => {
+                row[h] = (values[idx] || '').trim();
+            });
+            rows.push(row);
+        }
+        return rows;
+    }
+
+    // ─── COLUMN RESOLVER ───────────────────────────────────────────────────────
+    function col(row, ...aliases) {
+        for (const alias of aliases) {
+            if (row[alias] !== undefined && row[alias] !== '') return row[alias];
+        }
+        return '';
+    }
+
+    // ─── HTML ESCAPING ─────────────────────────────────────────────────────────
+    function esc(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    // ─── CARD RENDERER ─────────────────────────────────────────────────────────
+    function renderCards(rows) {
+        const container = document.getElementById('news-card-container');
+
+        const valid = rows.filter(row =>
+            col(row, 'title', 'headline', 'name', 'subject', 'release title') !== ''
+        );
+
+        if (valid.length === 0) {
+            container.innerHTML =
+                '<p class="news-status">No announcements at this time. Please check back later.</p>';
+            return;
+        }
+
+        const html = valid.slice(0, 1).map((row, idx) => {
+            const title = col(row, 'title', 'headline', 'name', 'subject', 'release title');
+            
+            // --- THE CHANGE IS HERE ---
+            // 'snippet' has been added as the first priority column name
+            const desc  = col(row, 'snippet', 'description', 'summary', 'excerpt', 'body', 'content', 'blurb');
+            
+            const url   = col(row, 'url', 'link', 'href', 'press release url', 'release url');
+            const date  = col(row, 'date', 'published', 'pub date', 'publish date', 'release date');
+            const tag   = col(row, 'tag', 'category', 'label', 'type', 'section')
+                          || (idx === 0 ? 'Latest' : 'Announcement');
+
+            const tagLine = `<span class="featured-tag">${esc(tag)}${date ? ' &mdash; ' + esc(date) : ''}</span>`;
+            const titleEl = `<div class="featured-title">${esc(title)}</div>`;
+            const descEl  = desc ? `<p class="featured-desc">${esc(desc)}</p>` : '';
+            const inner   = tagLine + titleEl + descEl;
+
+            if (url) {
+                return `<a class="featured-card" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${inner}</a>`;
+            }
+            return `<div class="featured-card">${inner}</div>`;
+        }).join('');
+
+        container.innerHTML = html;
+    }
+
+    // ─── FETCH ─────────────────────────────────────────────────────────────────
+    fetch(SHEET_CSV_URL)
+        .then(res => {
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            return res.text();
         })
-        .then(html => {
-            document.getElementById('news-card-container').innerHTML = html;
+        .then(csv => {
+            const rows = parseCSV(csv);
+            renderCards(rows);
         })
-        .catch(error => {
-            console.error('Error loading the news card:', error);
-            document.getElementById('news-card-container').innerHTML = '<p style="margin-top: 50px;"><em>Latest news is currently unavailable. Please check back later.</em></p>';
+        .catch(err => {
+            console.error('Newsroom: failed to load sheet data —', err);
+            document.getElementById('news-card-container').innerHTML =
+                '<p class="news-status">Latest news is currently unavailable. Please check back later.</p>';
         });
 </script>
 </body>
