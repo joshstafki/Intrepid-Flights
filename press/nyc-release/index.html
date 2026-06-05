@@ -99,13 +99,6 @@
       letter-spacing: -0.01em;
     }
 
-    .newsroom-label svg {
-      width: 16px;
-      height: 16px;
-      color: #1d1d1f;
-      margin-top: 2px;
-    }
-
     /* ── ARTICLE HEADER ──────────────────────────────────────── */
     .article-header {
       max-width: 692px;
@@ -187,23 +180,6 @@
       height: 100%;
       object-fit: cover;
       display: block;
-    }
-
-    .hero-placeholder {
-      width: 100%;
-      height: 100%;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-placeholder img {
-      width: 72px;
-      height: 72px;
-      border-radius: 16px;
-      opacity: 0.25;
-      object-fit: cover;
     }
 
     /* ── ARTICLE BODY ────────────────────────────────────────── */
@@ -325,13 +301,11 @@
   </nav>
 
   <!-- NEWSROOM SUB-NAV -->
+  <!-- FIX: Removed chevron SVG — implied a dropdown with no wired interaction -->
   <div class="newsroom-nav">
     <div class="newsroom-nav-inner">
       <div class="newsroom-label">
         Newsroom
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="4 6 8 10 12 6"/>
-        </svg>
       </div>
     </div>
   </div>
@@ -368,11 +342,11 @@
     </div>
   </header>
 
-  <!-- HERO IMAGE (full-bleed black) -->
+  <!-- HERO IMAGE (full-bleed) -->
+  <!-- FIX: Removed .hero-placeholder wrapper and opacity:0.25 — image now renders at full opacity -->
+  <!-- FIX: Added descriptive alt text to hero image -->
   <div class="hero-image">
-    <div class="hero-placeholder">
-      <img src="https://www.metro-manhattan.com/wp-content/uploads/2025/04/iStock-1406960186.jpg" alt="" />
-    </div>
+    <img src="https://www.metro-manhattan.com/wp-content/uploads/2025/04/iStock-1406960186.jpg" alt="Aerial view of New York City" />
   </div>
 
   <!-- ARTICLE BODY -->
