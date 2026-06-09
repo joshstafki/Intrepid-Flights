@@ -3,685 +3,429 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Open Graph (Facebook, LinkedIn, Discord, etc.) -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://intrepidflights.com/" />
-<meta property="og:title" content="Intrepid Flights" />
-<meta property="og:description" content="Latest updates and operational news from Intrepid Flights." />
-<meta property="og:image" content="https://intrepidflights.com/assets/ognewscard.png" />
+  <title>On Memorial Day, We Fly With Purpose — Intrepid Flights Newsroom</title>
 
-<!-- Optional but recommended -->
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@intrepidflights" />
-<meta name="twitter:title" content="Intrepid Flights" />
-<meta name="twitter:description" content="Latest updates and operational news from Intrepid Flights." />
-<meta name="twitter:image" content="https://intrepidflights.com/assets/ognewscard.png" />
-  <title>News Release — Memorial Day 2026 | Intrepid Flights</title>
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://intrepidflights.com/assets/indigo.png">
   <link rel="apple-touch-icon" sizes="180x180" href="https://intrepidflights.com/assets/apple-touch-icon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="article" />
+  <meta property="og:url"         content="https://intrepidflights.com/newsroom/memorial-day-2026" />
+  <meta property="og:title"       content="On Memorial Day, We Fly With Purpose | Intrepid Flights" />
+  <meta property="og:description" content="Intrepid Flights pauses to honor those who gave everything — and to reflect on what it means to look up at the sky in freedom." />
+  <meta property="og:image"       content="https://cdn.pixabay.com/photo/2018/05/27/02/11/memorial-day-3432665_1280.jpg" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="853" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:site"        content="@intrepidflights" />
+  <meta name="twitter:title"       content="On Memorial Day, We Fly With Purpose | Intrepid Flights" />
+  <meta name="twitter:description" content="Intrepid Flights pauses to honor those who gave everything — and to reflect on what it means to look up at the sky in freedom." />
+  <meta name="twitter:image"       content="https://cdn.pixabay.com/photo/2018/05/27/02/11/memorial-day-3432665_1280.jpg" />
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --navy: #002F6C;
-      --silver: #A7A8AA;
-      --white: #FFFFFF;
-      --red: #B22234;
-      --red-light: #e8303f;
-      --ink: #1a1a1a;
-      --ink-mid: #444;
-      --ink-light: #777;
-      --rule: #d8d8d8;
-      --bg: #f5f4f0;
-    }
-
-    html { font-size: 16px; }
-
     body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: 'Source Serif 4', Georgia, serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      background: #fff;
+      color: #1d1d1f;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── SITE HEADER ─────────────────────────────────── */
-    .site-header {
-      background: var(--navy);
-      padding: 0 48px;
+    /* ── GLOBAL NAV (dark) ───────────────────────────────────── */
+    .global-nav {
+      background: #1d1d1f;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .global-nav-inner {
+      width: 100%;
+      max-width: 1024px;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── NEWSROOM SUB-NAV (white) ────────────────────────────── */
+    .newsroom-nav {
+      background: #fff;
+      border-bottom: 1px solid #d2d2d7;
+      height: 52px;
+      display: flex;
+      align-items: center;
+    }
+
+    .newsroom-nav-inner {
+      width: 100%;
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 0 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 62px;
     }
 
-    .site-logo {
-      font-family: 'Oswald', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--white);
-      text-decoration: none;
-    }
-
-    .site-logo span {
-      color: var(--silver);
-      font-weight: 300;
-    }
-
-    .site-nav {
+    .newsroom-label {
       display: flex;
-      gap: 28px;
-      list-style: none;
-    }
-
-    .site-nav a {
-      font-family: 'Oswald', sans-serif;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--silver);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .site-nav a:hover { color: var(--white); }
-
-    /* ── BREADCRUMB ──────────────────────────────────── */
-    .breadcrumb-bar {
-      background: var(--white);
-      border-bottom: 1px solid var(--rule);
-      padding: 10px 48px;
-    }
-
-    .breadcrumb {
-      font-family: 'Oswald', sans-serif;
-      font-size: 10px;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-light);
-    }
-
-    .breadcrumb a { color: var(--navy); text-decoration: none; }
-    .breadcrumb a:hover { text-decoration: underline; }
-    .breadcrumb .sep { margin: 0 8px; color: var(--rule); }
-
-    /* ── RELEASE BANNER ──────────────────────────────── */
-    .release-banner {
-      background: var(--navy);
-      padding: 64px 48px 52px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .release-banner::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: var(--red);
-    }
-
-    .release-banner::after {
-      content: 'INTREPID FLIGHTS';
-      position: absolute;
-      right: -20px;
-      top: 50%;
-      transform: translateY(-50%) rotate(90deg);
-      font-family: 'Oswald', sans-serif;
-      font-size: 72px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: rgba(255,255,255,0.04);
-      pointer-events: none;
-      white-space: nowrap;
-    }
-
-    .banner-inner {
-      max-width: 820px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    .release-label {
-      display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 4px;
+      font-size: 19px;
+      font-weight: 700;
+      color: #1d1d1f;
+      letter-spacing: -0.01em;
+    }
+
+    .newsroom-label svg {
+      width: 16px;
+      height: 16px;
+      color: #1d1d1f;
+      margin-top: 2px;
+    }
+
+    /* ── ARTICLE HEADER ──────────────────────────────────────── */
+    .article-header {
+      max-width: 692px;
+      margin: 0 auto;
+      padding: 52px 22px 44px;
+    }
+
+    .article-tag {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6e6e73;
+      margin-bottom: 4px;
+    }
+
+    .article-date {
+      font-size: 17px;
+      font-weight: 400;
+      color: #1d1d1f;
       margin-bottom: 24px;
     }
 
-    .release-label-pill {
-      background: var(--red);
-      color: var(--white);
-      font-family: 'Oswald', sans-serif;
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 2px;
-    }
-
-    .release-label-date {
-      font-family: 'Oswald', sans-serif;
-      font-size: 11px;
-      font-weight: 300;
-      letter-spacing: 0.14em;
-      color: var(--silver);
-    }
-
-    .release-headline {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(32px, 5vw, 52px);
-      font-weight: 700;
-      line-height: 1.05;
-      color: var(--white);
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-      margin-bottom: 16px;
-    }
-
-    .release-headline em {
-      font-style: normal;
-      color: var(--red-light);
-    }
-
-    .release-deck {
-      font-family: 'Source Serif 4', serif;
-      font-size: 18px;
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.55;
-      color: rgba(255,255,255,0.65);
-      max-width: 600px;
-      margin-top: 8px;
-    }
-
-    /* ── MAIN LAYOUT ─────────────────────────────────── */
-    .release-layout {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 0 48px 80px;
-      display: grid;
-      grid-template-columns: 1fr 260px;
-      gap: 60px;
-      align-items: start;
-    }
-
-    /* ── ARTICLE BODY ────────────────────────────────── */
-    .release-body {
-      padding-top: 44px;
-    }
-
-    .dateline {
-      font-family: 'Oswald', sans-serif;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--navy);
+    .article-title {
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.07;
+      letter-spacing: -0.003em;
+      color: #1d1d1f;
       margin-bottom: 20px;
-      padding-bottom: 16px;
-      border-bottom: 2px solid var(--navy);
+    }
+
+    .article-subtitle {
+      font-size: 21px;
+      font-weight: 400;
+      line-height: 1.38;
+      color: #1d1d1f;
+      margin-bottom: 28px;
+    }
+
+    /* ── SHARE ROW ───────────────────────────────────────────── */
+    .share-row {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 18px;
+      margin-top: 4px;
     }
 
-    .dateline-location { color: var(--ink-mid); font-weight: 400; }
-
-    .release-body p {
-      font-size: 16.5px;
-      line-height: 1.82;
-      color: var(--ink-mid);
-      margin-bottom: 22px;
+    .share-row a {
+      display: flex;
+      align-items: center;
+      color: #6e6e73;
+      text-decoration: none;
+      transition: color 0.15s;
     }
 
-    .release-body p:first-of-type {
-      font-size: 17.5px;
-      color: var(--ink);
-    }
+    .share-row a:hover { color: #1d1d1f; }
 
-    .release-body p:first-of-type::first-letter {
-      font-family: 'Oswald', sans-serif;
-      font-size: 58px;
-      font-weight: 700;
-      line-height: 0.82;
-      float: left;
-      margin-right: 6px;
-      margin-top: 6px;
-      color: var(--navy);
-    }
-
-    .pull-quote {
-      border-left: 3px solid var(--red);
-      margin: 36px 0;
-      padding: 4px 0 4px 24px;
-    }
-
-    .pull-quote blockquote {
-      font-family: 'Source Serif 4', serif;
-      font-size: 22px;
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.5;
-      color: var(--navy);
-    }
-
-    .pull-quote cite {
+    .share-icon {
+      width: 24px;
+      height: 24px;
       display: block;
-      margin-top: 12px;
-      font-family: 'Oswald', sans-serif;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--ink-light);
-      font-style: normal;
     }
 
-    .section-rule {
-      border: none;
-      border-top: 1px solid var(--rule);
-      margin: 36px 0;
+    /* ── HERO IMAGE (full-bleed black) ───────────────────────── */
+    .hero-image {
+      width: 100%;
+      background: #000;
+      aspect-ratio: 16/9;
+      max-height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
 
-    .boilerplate-head {
-      font-family: 'Oswald', sans-serif;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-light);
-      margin-bottom: 10px;
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    .boilerplate {
-      font-size: 13px;
+    .hero-placeholder {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-placeholder img {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      opacity: 0.25;
+      object-fit: cover;
+    }
+
+    /* ── ARTICLE BODY ────────────────────────────────────────── */
+    .article-body {
+      max-width: 692px;
+      margin: 0 auto;
+      padding: 52px 22px 80px;
+    }
+
+    .article-body p {
+      font-size: 17px;
       line-height: 1.7;
-      color: var(--ink-light);
-      font-style: italic;
+      color: #1d1d1f;
+      margin-bottom: 22px;
+      font-weight: 400;
     }
 
-    .contact-block {
-      margin-top: 28px;
-      padding: 18px 20px;
-      border: 1px solid var(--rule);
-      background: var(--white);
-      border-radius: 4px;
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body strong { font-weight: 600; }
+
+    .article-body a {
+      color: #06c;
+      text-decoration: none;
     }
 
-    .contact-block-label {
-      font-family: 'Oswald', sans-serif;
-      font-size: 9px;
+    .article-body a:hover { text-decoration: underline; }
+    
+    .article-blockquote {
+      text-align: center; 
+      margin: 40px 0; 
+      font-style: italic; 
+      color: #6e6e73;
+      font-size: 19px;
+    }
+
+    /* ── ABOUT SECTION ───────────────────────────────────────── */
+    .about-section {
+      border-top: 1px solid #d2d2d7;
+      margin-top: 48px;
+      padding-top: 32px;
+    }
+
+    .about-section h3 {
+      font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--silver);
-      margin-bottom: 8px;
+      color: #6e6e73;
+      margin-bottom: 12px;
     }
 
-    .contact-block p {
-      font-size: 13.5px;
-      line-height: 1.6;
-      color: var(--ink-mid);
-      margin: 0;
+    .about-section > p {
+      font-size: 15px !important;
+      color: #6e6e73 !important;
+      line-height: 1.6 !important;
+      margin-bottom: 0 !important;
+    }
+
+    .contact-grid {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid #d2d2d7;
+    }
+
+    .contact-block h4 {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6e6e73;
+      margin-bottom: 4px;
     }
 
     .contact-block a {
-      color: var(--navy);
+      font-size: 14px;
+      color: #06c;
       text-decoration: none;
-      font-style: normal;
     }
 
     .contact-block a:hover { text-decoration: underline; }
 
-    .release-end {
-      margin-top: 36px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .release-end-mark {
-      font-family: 'Oswald', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      color: var(--ink-light);
-    }
-
-    .release-end-rule {
-      flex: 1;
-      height: 1px;
-      background: var(--rule);
-    }
-
-    /* ── SIDEBAR ─────────────────────────────────────── */
-    .release-sidebar {
-      padding-top: 44px;
-    }
-
-    .sidebar-module {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 4px;
-      padding: 20px 22px;
-      margin-bottom: 20px;
-    }
-
-    .sidebar-module-label {
-      font-family: 'Oswald', sans-serif;
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--silver);
-      margin-bottom: 14px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .meta-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 7px 0;
-      border-bottom: 1px solid #efefef;
-      font-size: 12.5px;
-    }
-
-    .meta-row:last-child { border-bottom: none; }
-
-    .meta-key {
-      font-family: 'Oswald', sans-serif;
-      font-size: 10px;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-light);
-    }
-
-    .meta-val {
-      font-family: 'Source Serif 4', serif;
-      font-size: 12.5px;
-      color: var(--ink);
-      text-align: right;
-    }
-
-    .sidebar-flag {
-      background: var(--navy);
-      border-radius: 4px;
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      background: #f5f5f7;
+      border-top: 1px solid #d2d2d7;
       padding: 24px 22px;
-      margin-bottom: 20px;
-      position: relative;
-      overflow: hidden;
+      text-align: center;
     }
 
-    .sidebar-flag::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--red);
-    }
-
-    .sidebar-flag-quote {
-      font-family: 'Source Serif 4', serif;
-      font-size: 14px;
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.75);
-      margin-bottom: 14px;
-    }
-
-    .sidebar-flag-attr {
-      font-family: 'Oswald', sans-serif;
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--silver);
-    }
-
-    .sidebar-links {
-      list-style: none;
-    }
-
-    .sidebar-links li {
-      padding: 7px 0;
-      border-bottom: 1px solid #efefef;
-    }
-
-    .sidebar-links li:last-child { border-bottom: none; }
-
-    .sidebar-links a {
-      font-family: 'Oswald', sans-serif;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--navy);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .sidebar-links a::before {
-      content: '→';
-      color: var(--red);
+    footer p {
       font-size: 12px;
+      color: #6e6e73;
+      line-height: 1.8;
     }
 
-    .sidebar-links a:hover { color: var(--red); }
-
-    /* ── FOOTER ──────────────────────────────────────── */
-    .site-footer {
-      background: var(--navy);
-      border-top: 3px solid var(--red);
-      padding: 28px 48px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-copy {
-      font-family: 'Oswald', sans-serif;
-      font-size: 10px;
-      font-weight: 300;
-      letter-spacing: 0.14em;
-      color: var(--silver);
-    }
-
-    .footer-copy strong {
-      font-weight: 600;
-      color: var(--white);
-    }
-
-    .footer-url {
-      font-family: 'Oswald', sans-serif;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      color: rgba(167,168,170,0.6);
+    footer a {
+      color: #06c;
       text-decoration: none;
     }
 
-    .footer-url:hover { color: var(--white); }
-
-    @media (max-width: 760px) {
-      .site-header { padding: 0 20px; }
-      .breadcrumb-bar { padding: 10px 20px; }
-      .release-banner { padding: 40px 20px 36px; }
-      .release-layout {
-        grid-template-columns: 1fr;
-        gap: 0;
-        padding: 0 20px 60px;
-      }
-      .site-nav { display: none; }
-      .site-footer { padding: 20px; flex-direction: column; gap: 12px; text-align: center; }
+    /* ── MOBILE RESPONSIVE ───────────────────────────────────── */
+    @media (max-width: 600px) {
+      .article-header { padding: 36px 20px 32px; }
+      .article-title { font-size: 30px; line-height: 1.1; }
+      .article-subtitle { font-size: 17px; line-height: 1.4; }
+      .article-date { font-size: 15px; }
+      .article-body { padding: 36px 20px 60px; }
+      .article-body p { font-size: 16px; }
+      .newsroom-label { font-size: 16px; }
+      .contact-grid { gap: 20px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- SITE HEADER -->
-  <header class="site-header">
-    <a href="#" class="site-logo">Intrepid <span>Flights</span></a>
-    <nav>
-      <ul class="site-nav">
-        <li><a href="https://intrepidflights.com/">Services</a></li>
-        <li><a href="https://www.instagram.com/intrepid.flights?igsh=ZW11Zzd1OW13NnR3&utm_source=qr">Portfolio</a></li>
-        <li><a href="https://intrepidflights.com/about">About</a></li>
-        <li><a href="https://intrepidflights.com/press">Newsroom</a></li>
-        <li><a href="mailto:joshstafki@intrepidflights.com">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- GLOBAL NAV -->
+  <nav class="global-nav">
+    <div class="global-nav-inner">
+      <a href="https://www.intrepidflights.com" class="nav-logo" aria-label="Intrepid Flights">
+        <img src="https://www.intrepidflights.com/assets/apple-touch-icon.png" alt="Intrepid Flights" />
+      </a>
+    </div>
+  </nav>
 
-  <!-- BREADCRUMB -->
-  <div class="breadcrumb-bar">
-    <span class="breadcrumb">
-      <a href="#">Home</a>
-      <span class="sep">/</span>
-      <a href="#">Newsroom</a>
-      <span class="sep">/</span>
-      Memorial Day 2026
-    </span>
-  </div>
-
-  <!-- RELEASE BANNER -->
-  <div class="release-banner">
-    <div class="banner-inner">
-      <div class="release-label">
-        <span class="release-label-pill">News Release</span>
-        <span class="release-label-date">For Immediate Release &mdash; May 26, 2026</span>
+  <!-- NEWSROOM SUB-NAV -->
+  <div class="newsroom-nav">
+    <div class="newsroom-nav-inner">
+      <div class="newsroom-label">
+        Newsroom
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="4 6 8 10 12 6"/>
+        </svg>
       </div>
-      <h1 class="release-headline">
-        On <em>Memorial Day,</em><br>We Fly With Purpose.
-      </h1>
-      <p class="release-deck">
-        Intrepid Flights pauses to honor those who gave everything — and to reflect on what it means to look up at the sky in freedom.
-      </p>
     </div>
   </div>
 
-  <!-- MAIN LAYOUT -->
-  <div class="release-layout">
+  <!-- ARTICLE HEADER -->
+  <header class="article-header">
+    <div class="article-tag">Official Statement</div>
+    <div class="article-date">May 26, 2026</div>
+    <h1 class="article-title">On Memorial Day, We Fly With Purpose.</h1>
+    <p class="article-subtitle">Intrepid Flights pauses to honor those who gave everything — and to reflect on what it means to look up at the sky in freedom.</p>
+    <div class="share-row">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fintrepidflights.com%2Fnewsroom%2Fmemorial-day-2026" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
+        <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+        </svg>
+      </a>
+      <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fintrepidflights.com%2Fnewsroom%2Fmemorial-day-2026&text=On%20Memorial%20Day,%20We%20Fly%20With%20Purpose" target="_blank" rel="noopener noreferrer" aria-label="Share on X">
+        <svg class="share-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/>
+        </svg>
+      </a>
+      <a href="mailto:?subject=Intrepid%20Flights%20%E2%80%94%20On%20Memorial%20Day,%20We%20Fly%20With%20Purpose&body=https%3A%2F%2Fintrepidflights.com%2Fnewsroom%2Fmemorial-day-2026" aria-label="Share via Email">
+        <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <polyline points="2,4 12,13 22,4"/>
+        </svg>
+      </a>
+      <a href="https://www.intrepidflights.com/newsroom" aria-label="Copy link">
+        <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+        </svg>
+      </a>
+    </div>
+  </header>
 
-    <!-- ARTICLE -->
-    <article class="release-body">
-      <div class="dateline">
-        <span>Intrepid Flights &mdash; Official Statement</span>
-        <span class="dateline-location">Minneapolis–Saint Paul, MN</span>
-      </div>
-
-      <p>
-        Every time we launch a drone, we do it beneath skies secured by sacrifice. This Memorial Day, Intrepid Flights takes a moment to set down the cameras and look up — not through a lens, but with gratitude.
-      </p>
-
-      <p>
-        Memorial Day is not a marketing occasion. It is a day of reckoning — a national pause to remember the men and women of the United States Armed Forces who did not come home. Their names are carved in stone and stitched into flags. Their service made possible every ordinary thing we do in freedom, including the simple act of flying.
-      </p>
-
-      <p>
-        At Intrepid Flights, aerial imaging is our craft — capturing landscapes, construction sites, properties, and events from perspectives that inspire. But perspective is also something we try to carry in how we operate. On days like this, the work stops. The gratitude doesn't.
-      </p>
-
-      <p>
-        We encourage our clients, partners, and the broader Twin Cities community to take time today to visit a local memorial, reach out to a Gold Star family, or simply stand outside and look up in silence. If you know a veteran or active service member, let them know they are seen.
-      </p>
-
-      <p>
-        Intrepid Flights will resume standard operations on Tuesday, May 27, 2026. We look forward to continuing to serve our clients with the same commitment to quality and professionalism that those we honor today brought to their own service.
-      </p>
-
-      <hr class="section-rule" />
-
-      <p class="boilerplate-head">About Intrepid Flights</p>
-      <p class="boilerplate">
-        Intrepid Flights is a licensed, FAA Part 107–compliant aerial imaging company based in the Minneapolis–Saint Paul metropolitan area. Founded and operated by Josh Stafki, Intrepid Flights provides professional drone photography and videography services for real estate, construction, events, and commercial applications across the Twin Cities region.
-      </p>
-
-      <div class="contact-block">
-        <div class="contact-block-label">Media Contact</div>
-        <p>
-          Josh Stafki, Founder &amp; Chief Pilot<br>
-          Intrepid Flights<br>
-          Minneapolis–Saint Paul, MN<br>
-          <a href="https://intrepidflights.com">intrepidflights.com</a>
-        </p>
-      </div>
-
-      <div class="release-end">
-        <span class="release-end-mark">###</span>
-        <div class="release-end-rule"></div>
-      </div>
-    </article>
-
-    <!-- SIDEBAR -->
-    <aside class="release-sidebar">
-
-      <div class="sidebar-flag">
-        <p class="sidebar-flag-quote">
-          "In valor there is hope."
-        </p>
-        <span class="sidebar-flag-attr">— Tacitus</span>
-      </div>
-
-      <div class="sidebar-module">
-        <div class="sidebar-module-label">Release Details</div>
-        <div class="meta-row">
-          <span class="meta-key">Date</span>
-          <span class="meta-val">May 26, 2026</span>
-        </div>
-        <div class="meta-row">
-          <span class="meta-key">Type</span>
-          <span class="meta-val">Statement</span>
-        </div>
-        <div class="meta-row">
-          <span class="meta-key">Distribution</span>
-          <span class="meta-val">Immediate</span>
-        </div>
-        <div class="meta-row">
-          <span class="meta-key">Region</span>
-          <span class="meta-val">Twin Cities, MN</span>
-        </div>
-        <div class="meta-row">
-          <span class="meta-key">Category</span>
-          <span class="meta-val">Community</span>
-        </div>
-      </div>
-
-      <div class="sidebar-module">
-        <div class="sidebar-module-label">Related</div>
-        <ul class="sidebar-links">
-          <li><a href="https://intrepidflights.com/about">About Intrepid Flights</a></li>
-          <li><a href="https://intrepidflights.com/">Our Services</a></li>
-          <li><a href="mailto:joshstafki@intrepidflights.com">Request a Quote</a></li>
-          <li><a href="https://intrepidflights.com/press">Newsroom</a></li>
-        </ul>
-      </div>
-
-    </aside>
-
+  <!-- HERO IMAGE (full-bleed black) -->
+  <div class="hero-image">
+    <img src="https://cdn.pixabay.com/photo/2018/05/27/02/11/memorial-day-3432665_1280.jpg" alt="American Flag Memorial Day" />
   </div>
 
-  <!-- SITE FOOTER -->
-  <footer class="site-footer">
-    <p class="footer-copy">
-      &copy; 2026 <strong>Intrepid Flights</strong> &mdash; Minneapolis&ndash;Saint Paul, MN. All rights reserved.
+  <!-- ARTICLE BODY -->
+  <main>
+    <article class="article-body">
+      <p><strong>Minneapolis–Saint Paul, MN</strong> — Every time we launch a drone, we do it beneath skies secured by sacrifice. This Memorial Day, Intrepid Flights takes a moment to set down the cameras and look up — not through a lens, but with gratitude.</p>
+
+      <p>Memorial Day is not a marketing occasion. It is a day of reckoning — a national pause to remember the men and women of the United States Armed Forces who did not come home. Their names are carved in stone and stitched into flags. Their service made possible every ordinary thing we do in freedom, including the simple act of flying.</p>
+
+      <p>At Intrepid Flights, aerial imaging is our craft — capturing landscapes, construction sites, properties, and events from perspectives that inspire. But perspective is also something we try to carry in how we operate. On days like this, the work stops. The gratitude doesn't.</p>
+
+      <p>We encourage our clients, partners, and the broader Twin Cities community to take time today to visit a local memorial, reach out to a Gold Star family, or simply stand outside and look up in silence. If you know a veteran or active service member, let them know they are seen.</p>
+
+      <p>Intrepid Flights will resume standard operations on Tuesday, May 27, 2026. We look forward to continuing to serve our clients with the same commitment to quality and professionalism that those we honor today brought to their own service.</p>
+      
+      <div class="article-blockquote">
+        "In valor there is hope." <br/>
+        <span style="font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em;">— Tacitus</span>
+      </div>
+
+      <div class="about-section">
+        <h3>About Intrepid Flights</h3>
+        <p>Intrepid Flights is a licensed, FAA compliant aerial imaging company based in the Minneapolis–Saint Paul metropolitan area. Founded and operated by Josh Stafki, Intrepid Flights provides professional drone photography and videography services for real estate, construction, events, and commercial applications across the Twin Cities region.</p>
+
+        <div class="contact-grid">
+          <div class="contact-block">
+            <h4>Media Contact</h4>
+            <a href="https://www.intrepidflights.com">intrepidflights.com</a>
+          </div>
+          <div class="contact-block">
+            <h4>Press Resources</h4>
+            <a href="https://www.intrepidflights.com">Newsroom &amp; Press Kit</a>
+          </div>
+          <div class="contact-block">
+            <h4>Licensing</h4>
+            <a href="https://www.intrepidflights.com">Request a License</a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Copyright &copy; 2026 Intrepid Flights. All rights reserved.<br/>
+      <a href="https://www.intrepidflights.com">intrepidflights.com</a> &nbsp;&middot;&nbsp; Minneapolis–Saint Paul, Minnesota
     </p>
-    <a href="https://intrepidflights.com" class="footer-url">intrepidflights.com</a>
   </footer>
 
 </body>
